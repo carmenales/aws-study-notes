@@ -1,0 +1,4079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes sobre AWS">
+      
+      
+        <meta name="author" content="carmenales">
+      
+      
+      
+        <link rel="prev" href="../developing/">
+      
+      
+        <link rel="next" href="../cache/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Advance Developing - Apuntes AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apuntes-aws-advance-developing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Apuntes AWS" class="md-header__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Advance Developing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.public/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../servicios/" class="md-tabs__link">
+          
+  
+  
+  Teoría
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Apuntes AWS" class="md-nav__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.public/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-essentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advance Developing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advance Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cqrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CQRS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CQRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-se-utiliza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué se utiliza?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cqrs-vs-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CQRS vs Queue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CQRS vs Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GraphQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-son-las-api-graphql-y-como-funcionan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué son las API GraphQL y cómo funcionan?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cidr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CIDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-elastic-beanstalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Elastic Beanstalk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Elastic Beanstalk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-y-que-incluye" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo funciona y qué incluye?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principales-ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principales ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-y-ciclo-de-vida-de-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración y Ciclo de Vida de Aplicaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-beanstalk-vs-aws-cloudformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Elastic Beanstalk vs AWS CloudFormation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-beanstalk-deployment-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Elastic Beanstalk deployment strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-elastic-beanstalk-cli-eb-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de Elastic Beanstalk CLI (EB CLI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-uso-avanzados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos de Uso Avanzados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-authorization-and-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication, Authorization and Access Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication, Authorization and Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-gateways-authorizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Gateways authorizes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Gateways authorizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwt-based-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JWT-based authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-iam-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS IAM permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-authorizers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda authorizers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Cognito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oidc-vs-saml-20-en-amazon-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OIDC vs. SAML 2.0 en Amazon Cognito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujos-de-autenticacion-personalizados-y-lambda-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujos de Autenticación Personalizados y Lambda Triggers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flujos de Autenticación Personalizados y Lambda Triggers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-cognito-user-pools-vs-federated-identities-for-authn-and-authz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Cognito user pools vs. federated identities for AuthN and AuthZ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracion-y-mensajeria-decoupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración y Mensajería (Decoupling)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integración y Mensajería (Decoupling)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqs-simple-queue-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS (Simple Queue Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sns-simple-notification-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SNS (Simple Notification Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-de-integracion-asincrona-colas-point-to-point-vs-topicos-pubsub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos de Integración Asíncrona: Colas (Point-to-Point) vs. Tópicos (Pub/Sub)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelos de Integración Asíncrona: Colas (Point-to-Point) vs. Tópicos (Pub/Sub)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-comparativa-tecnica-amazon-sns-vs-amazon-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Comparativa Técnica: Amazon SNS vs. Amazon SQS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-patron-fan-out-con-buffer-de-carga-sns-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Patrón Fan-Out con Buffer de Carga (SNS + SQS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gestion-de-mensajes-fallidos-dead-letter-queues-dlq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Gestión de Mensajes Fallidos: Dead Letter Queues (DLQ)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-fan-out-sns-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón Fan-out (SNS + SQS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-orientada-a-eventos-event-driven-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura Orientada a Eventos (Event-Driven Architecture)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitectura Orientada a Eventos (Event-Driven Architecture)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patrones-de-procesamiento-batch-vs-event-driven-near-real-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrones de Procesamiento: Batch vs. Event-Driven (Near-Real Time)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Lambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cold-starts-vs-warm-starts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cold Starts vs. Warm Starts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-concurrencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency (Concurrencia)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concurrency (Concurrencia)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spillover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spillover
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-source-mapping-mapeo-de-fuentes-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Source Mapping (Mapeo de fuentes de eventos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-en-una-vpc-virtual-private-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda en una VPC (Virtual Private Cloud)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon DynamoDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon DynamoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos Básicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-de-capacidad-y-calculo-de-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Capacidad y Cálculo de Rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indices-secundarios-gsi-vs-lsi-y-patrones-de-consulta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índices Secundarios (GSI vs LSI) y Patrones de Consulta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Índices Secundarios (GSI vs LSI) y Patrones de Consulta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-arquitectonicas-lsi-vs-gsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias Arquitectónicas: LSI vs. GSI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-de-unicidad-y-particionado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas de Unicidad y Particionado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-de-consulta-por-atributo-alternativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón de Consulta por Atributo Alternativo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proyeccion-de-atributos-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proyección de Atributos (Projections)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dax-dynamodb-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAX (DynamoDB Accelerator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-avanzadas-y-gestion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operaciones Avanzadas y Gestión de Datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-developer-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD (Developer Tools)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD (Developer Tools)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-serverless-application-model-aws-sam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Serverless Application Model (AWS SAM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Serverless Application Model (AWS SAM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-y-secciones-de-la-plantilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura y Secciones de la Plantilla
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Permisos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-la-cli-de-aws-sam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de la CLI de AWS SAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diseno-y-modelado-visual-aws-application-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño y Modelado Visual: AWS Application Composer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codecommit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodeCommit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodeBuild
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodeDeploy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS CodeDeploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-desplazamiento-de-trafico-traffic-shifting-en-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Desplazamiento de Tráfico (Traffic Shifting) en Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatizacion-y-pruebas-continuas-con-aws-sam-y-codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización y Pruebas Continuas con AWS SAM y CodeDeploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodePipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudformation-exportacion-entre-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CloudFormation (Exportación entre Stacks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolucion-de-problemas-troubleshooting-y-configuracion-estricta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolución de Problemas (Troubleshooting) y Configuración Estricta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd-avanzado-despliegues-multi-cuenta-y-orquestacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Avanzado (Despliegues Multi-Cuenta y Orquestación)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD Avanzado (Despliegues Multi-Cuenta y Orquestación)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#despliegues-multi-cuenta-cross-account-deployments-en-codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Despliegues Multi-Cuenta (Cross-Account Deployments en CodePipeline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acciones-personalizadas-custom-actions-en-codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acciones Personalizadas (Custom Actions) en CodePipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatizacion-de-pipelines-con-amazon-eventbridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización de Pipelines con Amazon EventBridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orquestacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orquestación:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Orquestación:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-step-functions-patrones-y-gestion-de-estado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Step Functions: Patrones y Gestión de Estado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Step Functions: Patrones y Gestión de Estado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-vs-express-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard vs. Express Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-de-integracion-wait-for-callback-tasktoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón de Integración: Wait for Callback (TaskToken)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manejo-de-errores-catch-y-retry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manejo de Errores: Catch y Retry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-functions-vs-simple-workflow-service-swf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Functions vs Simple Workflow Service (SWF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entornos-multi-cuenta-y-operaciones-globales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entornos Multi-Cuenta y Operaciones Globales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entornos Multi-Cuenta y Operaciones Globales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-organizations-y-organizational-units-ous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Organizations y Organizational Units (OUs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-control-tower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Control Tower
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudformation-stacksets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CloudFormation StackSets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entornos-multi-cuenta-y-operaciones-globales_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entornos Multi-Cuenta y Operaciones Globales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entornos Multi-Cuenta y Operaciones Globales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-organizations-y-organizational-units-ous_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Organizations y Organizational Units (OUs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-control-tower_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Control Tower
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudformation-stacksets_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CloudFormation StackSets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-gobernanza-y-automatizacion-aws-systems-manager-y-aws-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Gobernanza y Automatización (AWS Systems Manager y AWS Config)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Gobernanza y Automatización (AWS Systems Manager y AWS Config)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-systems-manager-ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Systems Manager (SSM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-configuracion-y-automatizacion-aws-systems-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Configuración y Automatización (AWS Systems Manager)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Configuración y Automatización (AWS Systems Manager)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-systems-manager-parameter-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Systems Manager Parameter Store
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrategias-de-recuperacion-ante-desastres-disaster-recovery-dr-y-enrutamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Recuperación ante Desastres (Disaster Recovery - DR) y Enrutamiento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estrategias de Recuperación ante Desastres (Disaster Recovery - DR) y Enrutamiento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-fundamentales-de-resiliencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos Fundamentales de Resiliencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-disaster-recovery-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Disaster Recovery en AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-route-53-politicas-de-enrutamiento-para-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Route 53: Políticas de Enrutamiento para Disaster Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad-y-automatizacion-de-respuesta-a-incidentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad y Automatización de Respuesta a Incidentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad y Automatización de Respuesta a Incidentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-guardduty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon GuardDuty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Security Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-de-automatizacion-de-respuesta-a-incidentes-event-driven-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón de Automatización de Respuesta a Incidentes (Event-Driven Remediation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anexo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anexo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frameworks-para-aplicaciones-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frameworks para aplicaciones serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cqrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CQRS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CQRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-se-utiliza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué se utiliza?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cqrs-vs-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CQRS vs Queue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CQRS vs Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GraphQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-son-las-api-graphql-y-como-funcionan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué son las API GraphQL y cómo funcionan?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cidr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CIDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-elastic-beanstalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Elastic Beanstalk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Elastic Beanstalk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-y-que-incluye" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo funciona y qué incluye?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principales-ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principales ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-y-ciclo-de-vida-de-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración y Ciclo de Vida de Aplicaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-beanstalk-vs-aws-cloudformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Elastic Beanstalk vs AWS CloudFormation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-beanstalk-deployment-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Elastic Beanstalk deployment strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-elastic-beanstalk-cli-eb-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de Elastic Beanstalk CLI (EB CLI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-uso-avanzados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos de Uso Avanzados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-authorization-and-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication, Authorization and Access Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication, Authorization and Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-gateways-authorizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Gateways authorizes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Gateways authorizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwt-based-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JWT-based authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-iam-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS IAM permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-authorizers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda authorizers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Cognito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oidc-vs-saml-20-en-amazon-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OIDC vs. SAML 2.0 en Amazon Cognito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujos-de-autenticacion-personalizados-y-lambda-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujos de Autenticación Personalizados y Lambda Triggers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flujos de Autenticación Personalizados y Lambda Triggers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-cognito-user-pools-vs-federated-identities-for-authn-and-authz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Cognito user pools vs. federated identities for AuthN and AuthZ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracion-y-mensajeria-decoupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración y Mensajería (Decoupling)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integración y Mensajería (Decoupling)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqs-simple-queue-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS (Simple Queue Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sns-simple-notification-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SNS (Simple Notification Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-de-integracion-asincrona-colas-point-to-point-vs-topicos-pubsub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos de Integración Asíncrona: Colas (Point-to-Point) vs. Tópicos (Pub/Sub)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelos de Integración Asíncrona: Colas (Point-to-Point) vs. Tópicos (Pub/Sub)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-comparativa-tecnica-amazon-sns-vs-amazon-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Comparativa Técnica: Amazon SNS vs. Amazon SQS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-patron-fan-out-con-buffer-de-carga-sns-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Patrón Fan-Out con Buffer de Carga (SNS + SQS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gestion-de-mensajes-fallidos-dead-letter-queues-dlq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Gestión de Mensajes Fallidos: Dead Letter Queues (DLQ)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-fan-out-sns-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón Fan-out (SNS + SQS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-orientada-a-eventos-event-driven-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura Orientada a Eventos (Event-Driven Architecture)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitectura Orientada a Eventos (Event-Driven Architecture)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patrones-de-procesamiento-batch-vs-event-driven-near-real-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrones de Procesamiento: Batch vs. Event-Driven (Near-Real Time)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Lambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cold-starts-vs-warm-starts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cold Starts vs. Warm Starts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-concurrencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency (Concurrencia)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concurrency (Concurrencia)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spillover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spillover
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-source-mapping-mapeo-de-fuentes-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Source Mapping (Mapeo de fuentes de eventos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-en-una-vpc-virtual-private-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda en una VPC (Virtual Private Cloud)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon DynamoDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon DynamoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos Básicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-de-capacidad-y-calculo-de-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Capacidad y Cálculo de Rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indices-secundarios-gsi-vs-lsi-y-patrones-de-consulta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índices Secundarios (GSI vs LSI) y Patrones de Consulta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Índices Secundarios (GSI vs LSI) y Patrones de Consulta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-arquitectonicas-lsi-vs-gsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias Arquitectónicas: LSI vs. GSI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-de-unicidad-y-particionado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas de Unicidad y Particionado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-de-consulta-por-atributo-alternativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón de Consulta por Atributo Alternativo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proyeccion-de-atributos-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proyección de Atributos (Projections)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dax-dynamodb-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAX (DynamoDB Accelerator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-avanzadas-y-gestion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operaciones Avanzadas y Gestión de Datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-developer-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD (Developer Tools)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD (Developer Tools)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-serverless-application-model-aws-sam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Serverless Application Model (AWS SAM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Serverless Application Model (AWS SAM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-y-secciones-de-la-plantilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura y Secciones de la Plantilla
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Permisos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-la-cli-de-aws-sam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de la CLI de AWS SAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diseno-y-modelado-visual-aws-application-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño y Modelado Visual: AWS Application Composer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codecommit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodeCommit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodeBuild
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodeDeploy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS CodeDeploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-desplazamiento-de-trafico-traffic-shifting-en-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Desplazamiento de Tráfico (Traffic Shifting) en Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatizacion-y-pruebas-continuas-con-aws-sam-y-codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización y Pruebas Continuas con AWS SAM y CodeDeploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CodePipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudformation-exportacion-entre-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CloudFormation (Exportación entre Stacks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolucion-de-problemas-troubleshooting-y-configuracion-estricta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolución de Problemas (Troubleshooting) y Configuración Estricta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd-avanzado-despliegues-multi-cuenta-y-orquestacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Avanzado (Despliegues Multi-Cuenta y Orquestación)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD Avanzado (Despliegues Multi-Cuenta y Orquestación)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#despliegues-multi-cuenta-cross-account-deployments-en-codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Despliegues Multi-Cuenta (Cross-Account Deployments en CodePipeline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acciones-personalizadas-custom-actions-en-codepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acciones Personalizadas (Custom Actions) en CodePipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatizacion-de-pipelines-con-amazon-eventbridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización de Pipelines con Amazon EventBridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orquestacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orquestación:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Orquestación:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-step-functions-patrones-y-gestion-de-estado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Step Functions: Patrones y Gestión de Estado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Step Functions: Patrones y Gestión de Estado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-vs-express-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard vs. Express Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-de-integracion-wait-for-callback-tasktoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón de Integración: Wait for Callback (TaskToken)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manejo-de-errores-catch-y-retry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manejo de Errores: Catch y Retry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-functions-vs-simple-workflow-service-swf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Functions vs Simple Workflow Service (SWF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entornos-multi-cuenta-y-operaciones-globales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entornos Multi-Cuenta y Operaciones Globales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entornos Multi-Cuenta y Operaciones Globales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-organizations-y-organizational-units-ous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Organizations y Organizational Units (OUs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-control-tower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Control Tower
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudformation-stacksets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CloudFormation StackSets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entornos-multi-cuenta-y-operaciones-globales_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entornos Multi-Cuenta y Operaciones Globales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entornos Multi-Cuenta y Operaciones Globales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-organizations-y-organizational-units-ous_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Organizations y Organizational Units (OUs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-control-tower_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Control Tower
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudformation-stacksets_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CloudFormation StackSets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-gobernanza-y-automatizacion-aws-systems-manager-y-aws-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Gobernanza y Automatización (AWS Systems Manager y AWS Config)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Gobernanza y Automatización (AWS Systems Manager y AWS Config)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-systems-manager-ssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Systems Manager (SSM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-configuracion-y-automatizacion-aws-systems-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Configuración y Automatización (AWS Systems Manager)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Configuración y Automatización (AWS Systems Manager)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-systems-manager-parameter-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Systems Manager Parameter Store
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrategias-de-recuperacion-ante-desastres-disaster-recovery-dr-y-enrutamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Recuperación ante Desastres (Disaster Recovery - DR) y Enrutamiento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estrategias de Recuperación ante Desastres (Disaster Recovery - DR) y Enrutamiento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-fundamentales-de-resiliencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos Fundamentales de Resiliencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-disaster-recovery-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Disaster Recovery en AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-route-53-politicas-de-enrutamiento-para-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Route 53: Políticas de Enrutamiento para Disaster Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad-y-automatizacion-de-respuesta-a-incidentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad y Automatización de Respuesta a Incidentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad y Automatización de Respuesta a Incidentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-guardduty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon GuardDuty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Security Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patron-de-automatizacion-de-respuesta-a-incidentes-event-driven-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patrón de Automatización de Respuesta a Incidentes (Event-Driven Remediation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anexo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anexo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frameworks-para-aplicaciones-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frameworks para aplicaciones serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="apuntes-aws-advance-developing">Apuntes AWS Advance Developing</h1>
+<h2 id="general">General</h2>
+<h3 id="cqrs">CQRS</h3>
+<p>CQRS (Command Query Responsibility Segregation) es un patrón de diseño arquitectónico que separa las operaciones de lectura (consultas o queries) de las operaciones de escritura (comandos) en una aplicación. Permite optimizar, escalar y proteger ambas partes de forma totalmente independiente</p>
+<h4 id="conceptos-clave">Conceptos Clave</h4>
+<ul>
+<li>Comandos (Commands): Son acciones que modifican el estado de los datos (crear, actualizar o eliminar) pero no devuelven información.</li>
+<li>Consultas (Queries): Son operaciones que recuperan datos sin alterar el estado del sistema. </li>
+</ul>
+<h4 id="por-que-se-utiliza">¿Por qué se utiliza?</h4>
+<ul>
+<li>
+<p>Escalabilidad independiente: En muchos sistemas, las lecturas superan con creces a las escrituras. CQRS permite escalar la infraestructura de lectura sin necesidad de sobredimensionar la base de datos de escritura. </p>
+</li>
+<li>
+<p>Optimización de bases de datos: Se pueden utilizar bases de datos relacionales o NoSQL optimizadas específicamente para gestionar el alto tráfico de consultas, mientras que el lado de escritura maneja de forma segura las transacciones complejas. </p>
+</li>
+<li>
+<p>Modelo de datos simplificado: El modelo utilizado para leer datos suele ser diferente y más sencillo que el requerido para validar la lógica de negocio al escribir. </p>
+</li>
+</ul>
+<h4 id="cqrs-vs-queue">CQRS vs Queue</h4>
+<ul>
+<li>La diferencia principal es que CQRS es un patrón de separación de responsabilidades (Lectura vs. Escritura), mientras que una arquitectura basada en colas (Queues) es un patrón de comunicación asíncrona.</li>
+</ul>
+<h5 id="diferencias-clave">Diferencias Clave</h5>
+<ul>
+<li>Propósito principal: CQRS busca estructurar el código y los modelos de datos para optimizar lecturas y escrituras por separado. Las colas buscan desacoplar componentes, garantizar la entrega de mensajes y procesar tareas en segundo plano.</li>
+<li>Manejo del tiempo: CQRS puede implementarse de forma síncrona o asíncrona. Una arquitectura basada en colas es intrínsecamente asíncrona.</li>
+<li>Flujo de datos: CQRS divide la aplicación en dos caminos (comandos y consultas). Las colas gestionan el flujo de trabajo secuencial entre diferentes servicios o microservicios</li>
+</ul>
+<h3 id="graphql">GraphQL</h3>
+<ul>
+<li>GraphQL es un lenguaje de consulta de código abierto y un tiempo de ejecución del servidor que especifica cómo deben interactuar los clientes con las interfaces de programación de aplicaciones (API). </li>
+<li>GraphQL ofrece una alternativa eficiente y más flexible a la transferencia de estado representacional (REST) y a las API RESTful y resuelve algunas limitaciones de REST. Por ejemplo, proporcionar la capacidad de orientar los recursos con mayor precisión con una sola consulta.</li>
+</ul>
+<h4 id="que-son-las-api-graphql-y-como-funcionan">¿Qué son las API GraphQL y cómo funcionan?</h4>
+<p>Las características declarativas de obtención de datos de una arquitectura GraphQL giran en torno a varios componentes y procesos clave, cada uno de los cuales desempeña un papel único en el manejo y procesamiento de datos.</p>
+<p>Entre las que se encuentran:</p>
+<ul>
+<li>Esquemas</li>
+<li>Solucionadores</li>
+<li>Consultas</li>
+<li>Mutaciones</li>
+</ul>
+<h3 id="cidr">CIDR</h3>
+<p>El enrutamiento entre dominios sin clases (CIDR) es un método de asignación de direcciones IP que mejora la eficiencia del enrutamiento de datos en Internet. Cada máquina, servidor y dispositivo de usuario final que se conecta a Internet tiene asociado un número único, denominado dirección IP. Los dispositivos se encuentran y se comunican entre sí mediante estas direcciones IP. Las organizaciones utilizan el CIDR para asignar direcciones IP de manera flexible y eficiente en sus redes.</p>
+<h2 id="iam">IAM</h2>
+<h3 id="permission-boundaries">Permission boundaries</h3>
+<ul>
+<li>Es la posibilidad que tienes de dar permisos a usuarios para que tú lo gestiones.</li>
+<li>Está limitado a un contexto.</li>
+<li>No conceden permisos por sí mismas, sino que establecen el límite máximo de permisos que un usuario/rol puede llegar a tener, incluso si su política le otorga acceso total.</li>
+</ul>
+<h3 id="condition-keys">Condition keys</h3>
+<p>Las Condition Keys añaden control de acceso granular basado en contexto a las políticas de IAM, permitiendo permitir o denegar acciones según atributos específicos de la petición (como la IP origen, el uso de MFA o parámetros del propio recurso)</p>
+<h2 id="aws-elastic-beanstalk">AWS Elastic Beanstalk</h2>
+<ul>
+<li>AWS Elastic Beanstalk es un servicio de plataforma como servicio (PaaS) de Amazon Web Services. </li>
+<li>Permite a los desarrolladores implementar y escalar aplicaciones web rápidamente cargando su código fuente, mientras que el servicio automatiza el aprovisionamiento de servidores, el balanceo de carga y el autoescalado.</li>
+</ul>
+<h3 id="como-funciona-y-que-incluye">¿Cómo funciona y qué incluye?</h3>
+<ul>
+<li>En lugar de configurar manualmente servicios como Amazon EC2, Auto Scaling o Elastic Load Balancing, Elastic Beanstalk los despliega y gestiona de forma transparente.</li>
+</ul>
+<h3 id="principales-ventajas">Principales ventajas</h3>
+<ul>
+<li><strong>Gestión simplificada:</strong> Tú solo te encargas de escribir y subir tu aplicación.</li>
+<li><strong>Control total:</strong> Aunque la configuración está automatizada, mantienes el control total de los recursos subyacentes y puedes modificarlos si es necesario.</li>
+<li><strong>Monitorización:</strong> Permite supervisar el estado de la aplicación y de la infraestructura fácilmente.</li>
+</ul>
+<h3 id="configuracion-y-ciclo-de-vida-de-aplicaciones">Configuración y Ciclo de Vida de Aplicaciones</h3>
+<ul>
+<li><strong>Archivos de configuración avanzada (.ebextensions):</strong> Para personalizar la infraestructura subyacente que Elastic Beanstalk aprovisiona (por ejemplo, definir una URL específica para el <em>Health Check</em> del balanceador de carga), las directivas deben declararse en un archivo con la extensión estricta <code>.config</code>. Este archivo debe ubicarse dentro de un directorio denominado <code>.ebextensions</code> en la raíz (root) del paquete de código fuente de la aplicación.</li>
+<li><strong>Retención de código en S3:</strong> AWS Elastic Beanstalk administra una política de ciclo de vida para las versiones de la aplicación (Application version lifecycle policy) con el fin de limitar el número máximo de versiones retenidas. Para prevenir que el proceso automático elimine los paquetes de código fuente almacenados en el bucket original de Amazon S3, la directiva <code>Retention</code> dentro de la configuración del ciclo de vida debe configurarse con el valor <code>Retain source bundle in S3</code>.</li>
+</ul>
+<h3 id="aws-elastic-beanstalk-vs-aws-cloudformation">AWS Elastic Beanstalk vs AWS CloudFormation</h3>
+<p>La diferencia principal es que AWS Elastic Beanstalk es una Plataforma como Servicio (PaaS) centrada en desplegar aplicaciones de forma automática, mientras que AWS CloudFormation es una herramienta de Infraestructura como Código (IaC) diseñada para definir y aprovisionar cualquier recurso de AWS mediante plantillas.</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>AWS Elastic Beanstalk</th>
+<th>AWS CloudFormation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enfoque principal</td>
+<td>Centrado en la aplicación (código)</td>
+<td>Centrado en la infraestructura (recursos)</td>
+</tr>
+<tr>
+<td>Nivel de abstracción</td>
+<td>Alto. Oculta la complejidad de la red y los servidores</td>
+<td>Bajo. Debes definir cada componente explícitamente</td>
+</tr>
+<tr>
+<td>Uso de código</td>
+<td>Subes tu código fuente (<code>.zip</code>, <code>.war</code>, Docker)</td>
+<td>Creas archivos de configuración (JSON o YAML)</td>
+</tr>
+<tr>
+<td>Alcance</td>
+<td>Limitado a arquitecturas web estándar y microservicios</td>
+<td>Ilimitado. Puede crear bases de datos, redes, usuarios, etc.</td>
+</tr>
+<tr>
+<td>Público objetivo</td>
+<td>Desarrolladores que buscan rapidez</td>
+<td>Ingenieros de DevOps y administradores de sistemas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="aws-elastic-beanstalk-deployment-strategies">AWS Elastic Beanstalk deployment strategies</h3>
+<ul>
+<li><strong>All-at-once:</strong></li>
+<li>Despliega la nueva versión en todas las instancias existentes simultáneamente, in situ.</li>
+<li>Reduce la capacidad a cero durante el despliegue (o genera errores) porque todas las instancias se actualizan a la vez.</li>
+<li>Es la política por defecto y la más rápida, pero también la de mayor riesgo.</li>
+<li>Rollback: hay que volver a desplegar la versión anterior manualmente.</li>
+<li>Instancias usadas: las existentes.</li>
+<li><strong>Rolling:</strong> </li>
+<li>Divide las instancias existentes en lotes y despliega lote a lote.</li>
+<li>Reduce la capacidad durante el despliegue: el tamaño de la reducción es igual al tamaño del lote (las instancias del lote actual se retiran de servicio mientras se actualizan).</li>
+<li>Instancias usadas: solo las existentes, en ningún momento se lanzan instancias nuevas.</li>
+<li>Rollback: hay que volver a desplegar la versión anterior; puede quedar el entorno con una mezcla de versiones si falla a mitad del proceso.</li>
+<li><strong>Rolling with additional batch:</strong></li>
+<li>Igual que "Rolling", pero antes de retirar cualquier instancia de servicio, lanza un lote adicional de instancias nuevas para no perder capacidad.</li>
+<li>Mantiene la capacidad total durante todo el despliegue.</li>
+<li>El despliegue en sí (a partir del segundo lote) ocurre sobre las instancias existentes; el lote adicional es temporal y se termina automáticamente al finalizar el despliegue.</li>
+<li>Es la opción a elegir cuando se pide explícitamente "mantener capacidad completa" + "usar las instancias existentes".</li>
+<li>Coste: instancias temporales adicionales durante el despliegue.</li>
+<li><strong>Immutable:</strong> </li>
+<li>Lanza una instancia EC2 completamente nueva en un Auto Scaling Group temporal, con la nueva versión ya desplegada.</li>
+<li>Si pasa los health checks, lanza el resto de instancias nuevas necesarias para igualar la capacidad, las añade al balanceador, y entonces termina todas las instancias antiguas.</li>
+<li>Mantiene capacidad total durante el despliegue, pero no usa las instancias existentes: construye una flota paralela completa y sustituye la anterior.</li>
+<li>Rollback muy seguro y rápido: si falla, simplemente se terminan las instancias nuevas sin haber tocado las antiguas.</li>
+<li>Es la opción más costosa temporalmente (duplica instancias durante el proceso) pero la más segura frente a fallos.</li>
+<li><strong>Traffic splitting:</strong></li>
+<li>Es una variante de "Immutable": lanza la flota nueva igual que en immutable, pero en lugar de mover todo el tráfico de golpe, redirige un porcentaje del tráfico a las instancias nuevas durante un periodo predefinido (canary release).</li>
+<li>Si las instancias nuevas se mantienen sanas, se redirige el 100% del tráfico y se apagan las antiguas.</li>
+<li>Igual que immutable: no usa las instancias existentes, construye una flota nueva.</li>
+<li>Útil para detectar problemas con una fracción real de tráfico antes del cambio completo.</li>
+</ul>
+<h3 id="uso-de-elastic-beanstalk-cli-eb-cli">Uso de Elastic Beanstalk CLI (EB CLI)</h3>
+<p>Para gestionar despliegues de forma programática o desde línea de comandos sin usar la consola, el flujo estricto es:
+1. <code>eb init</code> (Inicializa y configura el entorno local).
+2. <code>eb create</code> (Crea la infraestructura base en AWS).
+3. <code>eb deploy</code> (Despliega la nueva versión de la aplicación).</p>
+<h3 id="casos-de-uso-avanzados">Casos de Uso Avanzados</h3>
+<ul>
+<li><strong>Cambio de Load Balancer (Migración a ALB):</strong> Si tu entorno usa un Classic Load Balancer y debes migrar a un Application Load Balancer (ALB), no puedes editar el entorno existente. Debes <strong>crear un nuevo entorno</strong> con el ALB configurado, desplegar tu aplicación y ejecutar una acción de <strong>Swap environment CNAMEs</strong> (Blue/Green deployment).</li>
+<li><strong>Entorno Multi-Contenedor (Docker):</strong> En AWS Elastic Beanstalk, si despliegas un entorno de múltiples contenedores de Docker (usando Amazon ECS por debajo), es obligatorio incluir un archivo llamado <strong><code>Dockerrun.aws.json</code></strong> para configurar las instancias.</li>
+</ul>
+<h2 id="authentication-authorization-and-access-control">Authentication, Authorization and Access Control</h2>
+<h3 id="api-gateways-authorizes">API Gateways authorizes</h3>
+<h4 id="jwt-based-authorization">JWT-based authorization</h4>
+<ul>
+<li>Allows or denies requests based on token validation</li>
+<li>HTTP: JWT authorizers</li>
+<li>REST: Amazon Cognito user pools</li>
+<li>Uses the OIDC standard JWT </li>
+</ul>
+<h4 id="aws-iam-permissions">AWS IAM permissions</h4>
+<ul>
+<li>Requires a requestor with IAM credentials </li>
+<li>Applies IAM policies to APIs</li>
+<li>HTTP: route level</li>
+<li>REST: API or method level</li>
+<li>Authorizes requests the way that AWS APIs do</li>
+</ul>
+<h4 id="lambda-authorizers">Lambda authorizers</h4>
+<ul>
+<li>Lets a Lambda function perform custom authorization</li>
+<li>Uses a policy returned by Lambda to allow or deny a request</li>
+<li>Supports custom schemes that use bearer tokens (for example, SAML)</li>
+</ul>
+<h3 id="amazon-cognito">Amazon Cognito</h3>
+<h3 id="oidc-vs-saml-20-en-amazon-cognito">OIDC vs. SAML 2.0 en Amazon Cognito</h3>
+<p>Amazon Cognito User Pools soporta la integración con proveedores de identidad externos mediante protocolos estándar para la federación de usuarios:
+*   <strong>OpenID Connect (OIDC):</strong> Es una capa de identidad simple construida sobre el protocolo OAuth 2.0 que utiliza tokens basados en JSON Web Tokens (JWT) para verificar la identidad del usuario. Está diseñado principalmente para aplicaciones web y móviles modernas, permitiendo la autenticación interoperable y basada en REST.
+*   <strong>Security Assertion Markup Language 2.0 (SAML 2.0):</strong> Es un estándar abierto basado en XML empleado fundamentalmente en entornos empresariales para el inicio de sesión único (SSO) y la federación de identidades. Permite que las empresas mantengan el control centralizado de sus identidades en directorios corporativos (ej. Active Directory, Okta, Azure AD) y otorguen acceso a los usuarios sin necesidad de replicar credenciales en AWS.</p>
+<h3 id="flujos-de-autenticacion-personalizados-y-lambda-triggers">Flujos de Autenticación Personalizados y Lambda Triggers</h3>
+<p>Amazon Cognito User Pools permite interceptar y personalizar el ciclo de vida de la autenticación y el registro mediante funciones de AWS Lambda (<em>Lambda Triggers</em>):
+*   <strong>Custom Authentication Flow (Flujo de retos personalizados):</strong> Permite implementar mecanismos de autenticación propios (como autenticación multifactor personalizada, validación de CAPTCHA o esquemas sin contraseña) utilizando tres activadores secuenciales:
+    1.  <code>Define Auth Challenge</code>: Determina el siguiente paso o reto que se presentará al cliente en función del estado actual de la autenticación.
+    2.  <code>Create Auth Challenge</code>: Genera el contenido del reto (por ejemplo, un código de verificación) y lo despacha al usuario.
+    3.  <code>Verify Auth Challenge Response</code>: Evalúa si la respuesta enviada por el cliente es correcta para aprobar o denegar la fase.
+*   <strong>Pre Token Generation Trigger:</strong> Permite modificar las reclamaciones (<em>claims</em>) incluidas en los tokens JWT antes de que sean emitidos, facilitando la inyección dinámica de atributos de usuario, grupos o permisos personalizados.
+*   <strong>Otros Triggers del Ciclo de Vida:</strong> Incluyen <code>Pre Sign-up</code> (validación previa al registro), <code>Post Confirmation</code> (acciones posteriores al registro exitoso), <code>Pre Authentication</code> y <code>Post Authentication</code>.</p>
+<h4 id="amazon-cognito-user-pools-vs-federated-identities-for-authn-and-authz">Amazon Cognito user pools vs. federated identities for AuthN and AuthZ</h4>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User pools</td>
+<td>Authentication</td>
+<td>Acts as an identity provider with profile management.<br><br>Provides the option of authentication from federation with third-party IdPs.</td>
+</tr>
+<tr>
+<td>Federated identities (Identity pools)</td>
+<td>Authorization</td>
+<td>Uses IAM roles to generate temporary credentials and grant permissions to AWS resources</td>
+</tr>
+</tbody>
+</table>
+<h2 id="integracion-y-mensajeria-decoupling">Integración y Mensajería (Decoupling)</h2>
+<h3 id="sqs-simple-queue-service">SQS (Simple Queue Service)</h3>
+<ul>
+<li>Es un servicio de colas de mensajes que actúa como un <strong>amortiguador (buffer)</strong> entre los componentes de una aplicación.</li>
+<li><strong>Caso de uso en IoT:</strong> Si miles de sensores envían datos a la vez, SQS absorbe el pico de tráfico reteniendo los mensajes temporalmente. Esto evita que la base de datos o el backend colapsen, permitiendo que los consumidores (ej. funciones Lambda) procesen los datos a su propio ritmo.</li>
+<li><strong>Short Polling vs Long Polling:</strong> Para reducir costes (menos peticiones vacías) y <strong>minimizar la latencia</strong> desde que un mensaje llega a la cola hasta que el consumidor lo recibe, habilita el <strong>Long Polling</strong> estableciendo el parámetro <code>ReceiveMessageWaitTimeSeconds</code> a un valor mayor que 0 (ej. 20 segundos).</li>
+</ul>
+<h3 id="sns-simple-notification-service">SNS (Simple Notification Service)</h3>
+<ul>
+<li>Es un servicio de publicación/suscripción (Pub/Sub) de mensajes.</li>
+<li>Actúa como un <strong>megáfono</strong>. Un editor envía un mensaje a un "Topic", y SNS lo distribuye instantáneamente a múltiples suscriptores (Email, SMS, HTTP/S, o colas SQS).</li>
+<li><strong>Caso de uso en IoT:</strong> Ideal para alertas en tiempo real. Si un sensor detecta una anomalía (ej. exceso de temperatura), publica en SNS para disparar alertas a los técnicos inmediatamente.</li>
+</ul>
+<h3 id="modelos-de-integracion-asincrona-colas-point-to-point-vs-topicos-pubsub">Modelos de Integración Asíncrona: Colas (Point-to-Point) vs. Tópicos (Pub/Sub)</h3>
+<p>En el diseño de arquitecturas desacopladas y tolerantes a fallos, AWS categoriza la mensajería asíncrona según el patrón de distribución y consumo de datos:</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph P2P ["1. Modelo Punto a Punto (Colas - Amazon SQS)"]
+        direction LR
+        Prod1["Productor (Emisor)"] --&gt;|"Envía mensaje"| Queue[("Cola SQS&lt;br/&gt;(Buffer / Almacén intermedio)")]
+        Queue --&gt;|"Polling (1 a 1)"| Cons1["Consumidor (Worker)"]
+        Queue -.-&gt;|"Mensajes fallidos (MaxReceiveCount)"| DLQ[("Dead Letter Queue&lt;br/&gt;(DLQ)")]
+    end
+
+    subgraph PubSub ["2. Modelo Publicación / Suscripción (Tópicos - Amazon SNS)"]
+        direction LR
+        Prod2["Productor (Emisor)"] --&gt;|"Publish (1 a N)"| Topic(("Tópico SNS&lt;br/&gt;(Hub de Distribución)"))
+        Topic --&gt;|"Fan-Out / Push"| SubA["Suscriptor A (Email/SMS)"]
+        Topic --&gt;|"Fan-Out / Push"| SubB[("Cola SQS App 1")]
+        Topic --&gt;|"Fan-Out / Push"| SubC[("Cola SQS App 2")]
+    end
+
+    classDef default fill:#fcfcfc,stroke:#555,stroke-width:1px,color:#111,font-size:11px;
+    classDef sqsStyle fill:#fff3e0,stroke:#f57c00,stroke-width:1.5px,color:#b26a00;
+    classDef snsStyle fill:#fce8e6,stroke:#c5221f,stroke-width:1.5px,color:#a50e0e;
+    classDef dlqStyle fill:#f8d7da,stroke:#721c24,stroke-width:1.5px,color:#721c24;
+    class Queue,SubB,SubC sqsStyle;
+    class Topic snsStyle;
+    class DLQ dlqStyle;</code></pre>
+<h4 id="1-comparativa-tecnica-amazon-sns-vs-amazon-sqs">1. Comparativa Técnica: Amazon SNS vs. Amazon SQS</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Amazon SQS (Colas)</th>
+<th style="text-align: left;">Amazon SNS (Tópicos)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Patrón Arquitectónico</strong></td>
+<td style="text-align: left;"><strong>Punto a Punto (Point-to-Point)</strong> / Buffer</td>
+<td style="text-align: left;"><strong>Publicación / Suscripción (Pub/Sub)</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modelo de Comunicación</strong></td>
+<td style="text-align: left;"><strong>Pull / Polling</strong> (El consumidor sondea la cola a su propio ritmo)</td>
+<td style="text-align: left;"><strong>Push</strong> (El tópico empuja el evento instantáneamente a los suscriptores)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Persistencia / Durabilidad</strong></td>
+<td style="text-align: left;"><strong>Garantizada</strong> (Los mensajes se almacenan hasta 14 días en la cola)</td>
+<td style="text-align: left;"><strong>Efímera</strong> (Si no hay suscriptores o falla la entrega, el mensaje se pierde salvo que tenga DLQ adjunta)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Emisor-Receptor</strong></td>
+<td style="text-align: left;"><strong>1 a 1</strong> (Un mensaje es procesado y eliminado por un único consumidor)</td>
+<td style="text-align: left;"><strong>1 a N (Fan-Out)</strong> (Cada suscriptor recibe una copia idéntica del mensaje)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Propósito de Diseño</strong></td>
+<td style="text-align: left;"><strong>Amortiguar y garantizar la entrega</strong> ante picos de tráfico (<em>rate limiting</em>)</td>
+<td style="text-align: left;"><strong>Difundir y alertar en tiempo real</strong> (<em>fan-out notification</em>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="2-patron-fan-out-con-buffer-de-carga-sns-sqs">2. Patrón Fan-Out con Buffer de Carga (SNS + SQS)</h4>
+<p>En sistemas de alta concurrencia donde un evento debe desencadenar múltiples acciones independientes pero los consumidores tienen capacidades de procesamiento limitadas:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant Prod as Productor (Pico: 100 msg/s)
+    participant SNS as Tópico Amazon SNS
+    participant SQS1 as Cola SQS (Servicio A)
+    participant SQS2 as Cola SQS (Servicio B)
+    participant WorkerA as Consumidor A (Capacidad: 50 msg/s)
+    participant WorkerB as Consumidor B (Capacidad: 10 msg/s)
+
+    Prod-&gt;&gt;SNS: Publica Evento (100 msg/s)
+    SNS-&gt;&gt;SQS1: Fan-Out inmediato (Copia mensaje)
+    SNS-&gt;&gt;SQS2: Fan-Out inmediato (Copia mensaje)
+
+    Note over SQS1,SQS2: Las colas absorben el pico de tráfico reteniendo los mensajes
+
+    SQS1-&gt;&gt;WorkerA: Polling controlado (Procesa a 50 msg/s sin saturarse)
+    SQS2-&gt;&gt;WorkerB: Polling controlado (Procesa a 10 msg/s sin saturarse)</code></pre>
+<ul>
+<li><strong>Principio de Resiliencia:</strong> "Amazon SNS distribuye en abanico (<em>Fan-Out</em>), Amazon SQS amortigua y protege al consumidor".</li>
+<li><strong>Aislamiento de Fallos:</strong> Si el Servicio B se cae o se ralentiza, sus mensajes se acumulan de forma segura en su cola SQS dedicada sin afectar la velocidad ni la entrega del Servicio A.</li>
+</ul>
+<hr />
+<h4 id="3-gestion-de-mensajes-fallidos-dead-letter-queues-dlq">3. Gestión de Mensajes Fallidos: Dead Letter Queues (DLQ)</h4>
+<ul>
+<li><strong>Definición:</strong> Una cola secundaria configurada para aislar mensajes corruptos o que provocan excepciones continuas en el código (<em>poison pills</em>) tras agotar el número máximo de reintentos (<code>maxReceiveCount</code>).</li>
+<li><strong>Consejos:</strong><ul>
+<li>En lugar de bloquear la cola o descartar el mensaje definitivamente, SQS lo mueve a la DLQ para análisis forense, depuración manual o re-procesamiento diferido.</li>
+<li>Tanto <strong>Amazon SQS</strong>, <strong>Amazon SNS</strong> como <strong>AWS Lambda</strong> admiten la configuración de DLQs para capturar fallos de entrega e invocación asíncrona.</li>
+</ul>
+</li>
+</ul>
+<h3 id="patron-fan-out-sns-sqs">Patrón Fan-out (SNS + SQS)</h3>
+<ul>
+<li>Es un patrón de arquitectura estrella en AWS. Consiste en un Topic de SNS que tiene como suscriptores a múltiples colas SQS diferentes.</li>
+<li><strong>Ventaja:</strong> Permite que un solo evento (ej. la lectura de un sensor IoT o la subida de un archivo) sea replicado y procesado por diferentes sistemas de forma paralela e independiente, sin perder mensajes.</li>
+</ul>
+<h3 id="arquitectura-orientada-a-eventos-event-driven-architecture">Arquitectura Orientada a Eventos (Event-Driven Architecture)</h3>
+<p>La arquitectura orientada a eventos es un patrón de diseño arquitectónico basado en la producción, detección, consumo y reacción a eventos de forma desacoplada y asíncrona.</p>
+<h4 id="conceptos">Conceptos</h4>
+<ul>
+<li><strong>Evento:</strong> Un cambio de estado significativo dentro de un sistema o dominio (por ejemplo, la actualización de un registro o la recepción de datos).</li>
+<li><strong>Productor de Eventos (Event Producer):</strong> El componente que detecta o genera el cambio de estado y emite un mensaje de evento hacia un intermediario o bus, sin acoplarse ni conocer la identidad de los consumidores.</li>
+<li><strong>Consumidor de Eventos (Event Consumer):</strong> El componente que se suscribe o procesa de forma asíncrona el evento emitido para ejecutar su lógica de negocio de manera autónoma.</li>
+<li><strong>Desacoplamiento Temporal y Espacial:</strong> Los productores y consumidores no necesitan estar activos al mismo tiempo (temporal) ni conocer las direcciones de red o interfaces de sus contrapartes (espacial).</li>
+</ul>
+<h3 id="patrones-de-procesamiento-batch-vs-event-driven-near-real-time">Patrones de Procesamiento: Batch vs. Event-Driven (Near-Real Time)</h3>
+<p>En el diseño de arquitecturas sobre AWS orientadas a microservicios y bases de datos NoSQL, la elección del modelo de procesamiento determina la latencia con la que los datos analizados o derivados están disponibles para los sistemas analíticos o de negocio:</p>
+<ul>
+<li><strong>Procesamiento por Lotes (<em>Batch Processing</em>):</strong> Los datos acumulados en un almacén (como una tabla de Amazon DynamoDB) se procesan de forma diferida en intervalos programados (por ejemplo, mediante ejecuciones nocturnas). Introduce latencia significativa, ya que la información analizada no está disponible hasta la siguiente ejecución del lote.</li>
+<li><strong>Procesamiento Orientado a Eventos (<em>Event-Driven / Near-Real Time</em>):</strong> Los datos se procesan de forma inmediata a medida que se reciben o modifican en el origen. En AWS, este patrón se implementa desacoplando componentes mediante mecanismos nativos de captura de cambios (como <strong>Amazon DynamoDB Streams</strong>) combinados con servicios de cómputo reactivo (como <strong>AWS Lambda</strong>), eliminando la necesidad de esperar a procesos programados.</li>
+</ul>
+<h2 id="aws-lambda">AWS Lambda</h2>
+<h3 id="cold-starts-vs-warm-starts">Cold Starts vs. Warm Starts</h3>
+<ul>
+<li><strong>Cold Start (Arranque en frío):</strong> Ocurre cuando se invoca una función Lambda y AWS necesita crear un nuevo entorno de ejecución (descarga el código, inicia el entorno base y ejecuta el código de inicialización). Añade latencia a la respuesta.</li>
+<li><strong>Warm Start (Arranque en caliente):</strong> Ocurre cuando llega una petición y AWS reutiliza un entorno de ejecución que ya estaba inicializado e inactivo. La ejecución es casi instantánea.</li>
+</ul>
+<h3 id="concurrency-concurrencia">Concurrency (Concurrencia)</h3>
+<p>Es el número de peticiones en vuelo (in-flight) que tu función Lambda está procesando al mismo tiempo.</p>
+<ul>
+<li><strong>Reserved Concurrency (Concurrencia Reservada):</strong></li>
+<li>Asigna una cantidad máxima de instancias concurrentes exclusivas para una función específica del total disponible en tu cuenta.</li>
+<li><strong>Doble propósito:</strong> Garantiza que esa función siempre tenga capacidad disponible (nadie se la roba) y actúa como un <strong>límite (throttle)</strong> para evitar que esa función escale infinitamente y abrume recursos downstream (como una base de datos relacional).</li>
+<li>No evita los <em>Cold Starts</em>.</li>
+<li><strong>Provisioned Concurrency (Concurrencia Aprovisionada):</strong></li>
+<li>Pre-inicializa un número específico de entornos de ejecución para que estén listos de inmediato ("calientes").</li>
+<li><strong>Objetivo:</strong> Eliminar los <em>Cold Starts</em> y ofrecer latencia baja y constante para aplicaciones críticas.</li>
+<li><strong>Regla de oro (Costes):</strong> Si el tráfico mantiene ocupada esta capacidad más del 60% del tiempo, es más rentable económicamente que el modelo On-Demand puro.</li>
+</ul>
+<h4 id="spillover">Spillover</h4>
+<ul>
+<li>Spillover significa literalmente "desbordamiento" o "exceso".</li>
+<li>El "desbordamiento" es un concepto intrínseco de la gestión de la concurrencia (Provisioned vs. On-Demand) en Lambda.</li>
+<li><strong>Estrategia Híbrida:</strong> Cuando el tráfico supera tu <code>Provisioned Concurrency</code>, AWS Lambda maneja ese exceso (Spillover) utilizando concurrencia On-Demand estándar. Esas peticiones extra sufrirán <em>Cold Starts</em>, pero evitas pagar por capacidad ociosa durante las horas valle.</li>
+</ul>
+<h3 id="event-source-mapping-mapeo-de-fuentes-de-eventos">Event Source Mapping (Mapeo de fuentes de eventos)</h3>
+<ul>
+<li>Es un recurso de AWS que lee automáticamente de una fuente de eventos basada en flujos o colas (como <strong>Amazon SQS, Amazon Kinesis o DynamoDB Streams</strong>) e invoca la función Lambda de forma síncrona enviándole lotes (<em>batches</em>) de registros.</li>
+<li><strong>Ventaja:</strong> Tú no escribes código para hacer el <em>polling</em> (sondeo) a la cola; AWS Lambda lo gestiona por debajo. Solo escribes la lógica para procesar el evento.</li>
+</ul>
+<h3 id="lambda-en-una-vpc-virtual-private-cloud">Lambda en una VPC (Virtual Private Cloud)</h3>
+<ul>
+<li>Por defecto, las funciones Lambda se ejecutan en una VPC segura administrada por AWS con acceso directo a Internet.</li>
+<li>Si tu función necesita acceder a recursos privados de tu empresa (como una base de datos RDS que no es pública), debes configurarla para que se conecte a tu VPC especificando <strong>Subredes (Subnets)</strong> y <strong>Grupos de Seguridad (Security Groups)</strong>.</li>
+<li><strong>Limitación de red:</strong> Al conectar Lambda a una subred privada de tu VPC, la función pierde su acceso por defecto a Internet. Si tu código necesita salir a Internet (ej. para llamar a una API externa), la subred privada debe tener una ruta hacia un <strong>NAT Gateway</strong> público.</li>
+</ul>
+<h2 id="amazon-dynamodb">Amazon DynamoDB</h2>
+<h3 id="conceptos-basicos">Conceptos Básicos</h3>
+<ul>
+<li>Es una base de datos NoSQL de clave-valor y documentos, totalmente administrada, que ofrece un rendimiento de milisegundos de un solo dígito a cualquier escala.</li>
+<li><strong>Clave de partición (Partition Key / Hash Key):</strong> Determina en qué partición física (servidor interno) se almacenan los datos. Debe tener alta cardinalidad para distribuir bien la carga y evitar "hot partitions".</li>
+<li><strong>Clave de ordenación (Sort Key / Range Key):</strong> Es opcional. Sirve para agrupar elementos con la misma clave de partición y ordenarlos, permitiendo consultas de rango (mayor que, menor que, entre, empieza por).</li>
+</ul>
+<h3 id="modos-de-capacidad-y-calculo-de-rendimiento">Modos de Capacidad y Cálculo de Rendimiento</h3>
+<ul>
+<li><strong>Modo Provisionado:</strong> El administrador especifica el número exacto de lecturas y escrituras por segundo esperadas. Es la opción más eficiente en costes para patrones de tráfico predecibles y constantes.</li>
+<li><strong>Unidades de Capacidad de Escritura (WCU):</strong> 1 WCU representa 1 escritura por segundo para un elemento de hasta <strong>1 KB</strong>. Las escrituras transaccionales (<em>Transactional writes</em>) tienen un coste computacional mayor y multiplican el consumo de capacidad por <strong>2</strong>.</li>
+<li><strong>Unidades de Capacidad de Lectura (RCU):</strong> 1 RCU representa 1 lectura fuertemente consistente (<em>Strongly Consistent</em>) por segundo para un elemento de hasta <strong>4 KB</strong> (o 2 lecturas eventualmente consistentes).</li>
+<li><em>Cálculo analítico de ejemplo:</em> Un ítem de 7 KB que requiere 3 lecturas fuertemente consistentes/seg y 10 escrituras/seg.<ul>
+<li>Lecturas: 7 KB se redondea al siguiente múltiplo de 4 KB (8 KB). 8 KB / 4 KB = 2 RCU por petición. 3 peticiones × 2 RCU = <strong>6 RCU</strong>.</li>
+<li>Escrituras: 7 KB se redondea al siguiente múltiplo de 1 KB (7 KB). 7 KB / 1 KB = 7 WCU por petición. 10 peticiones × 7 WCU = <strong>70 WCU</strong>.</li>
+</ul>
+</li>
+<li><strong>Modo On-Demand (Bajo demanda):</strong> AWS escala instantáneamente el rendimiento para acomodar el tráfico y la facturación se calcula por cada solicitud individual de lectura y escritura. Ideal para cargas de trabajo impredecibles o aplicaciones con picos pronunciados y repentinos.</li>
+</ul>
+<h3 id="indices-secundarios-gsi-vs-lsi-y-patrones-de-consulta">Índices Secundarios (GSI vs LSI) y Patrones de Consulta</h3>
+<p>Los índices permiten consultar los datos de la tabla utilizando atributos alternativos a la clave principal, evitando operaciones de escaneo completo (<code>Scan</code>) que degradan el rendimiento y agotan la capacidad de lectura.</p>
+<h4 id="diferencias-arquitectonicas-lsi-vs-gsi">Diferencias Arquitectónicas: LSI vs. GSI</h4>
+<ul>
+<li><strong>LSI (Local Secondary Index):</strong><ul>
+<li>Comparte obligatoriamente la misma clave de partición que la tabla base, pero define una clave de ordenación diferente.</li>
+<li><em>Limitación estricta:</em> Solo se puede definir durante la creación de la tabla base; no puede añadirse, modificarse ni eliminarse posteriormente.</li>
+<li>Comparte la capacidad aprovisionada (RCU y WCU) de la tabla base.</li>
+</ul>
+</li>
+<li><strong>GSI (Global Secondary Index):</strong><ul>
+<li>Define una clave de partición diferente y, opcionalmente, una clave de ordenación diferente a las de la tabla base.</li>
+<li><em>Flexibilidad:</em> Se puede crear, actualizar o eliminar en cualquier momento tras la creación de la tabla.</li>
+<li><em>Capacidad independiente:</em> Dispone de su propia configuración de rendimiento (RCU y WCU). Si el GSI tiene capacidad de escritura sub-aprovisionada, estrangulará (<em>throttle</em>) las escrituras de la tabla base.</li>
+</ul>
+</li>
+</ul>
+<h4 id="reglas-de-unicidad-y-particionado">Reglas de Unicidad y Particionado</h4>
+<ul>
+<li><strong>Unicidad en la Tabla Base vs. GSI:</strong> Mientras que en la tabla principal la clave primaria (Partition Key o Partition + Sort Key) debe ser estrictamente única para cada ítem, en un GSI <strong>los valores de las claves no requieren ser únicos</strong>. Múltiples ítems pueden compartir la misma Partition Key en el índice (por ejemplo, agrupar múltiples jugadores bajo el mismo <code>GameTitle</code>).</li>
+<li><strong>Particionado Físico Interno:</strong> DynamoDB procesa el valor de la Partition Key mediante una función <em>hash</em> interna cuyo resultado determina la partición física exacta en la que se almacena el ítem. Los elementos que comparten la misma clave de partición se almacenan conjuntamente en la misma partición física y se ordenan por su Sort Key.</li>
+</ul>
+<h4 id="patron-de-consulta-por-atributo-alternativo">Patrón de Consulta por Atributo Alternativo</h4>
+<ul>
+<li><strong>Requisito de Operación <code>Query</code>:</strong> Una operación <code>Query</code> en DynamoDB exige obligatoriamente especificar un valor exacto para la Partition Key del esquema consultado.</li>
+<li><strong>Resolución de Consultas Alternativas:</strong> Si una aplicación requiere consultar datos indistintamente por dos identificadores únicos (por ejemplo, buscar un usuario por su <code>user_id</code> o por su <code>email</code>), definir <code>email</code> como Sort Key en la tabla base es ineficiente, ya que consultar por <code>email</code> sin conocer el <code>user_id</code> requeriría un <code>Scan</code> completo de todas las particiones. La solución correcta es establecer <code>user_id</code> como Partition Key de la tabla y <strong>crear un GSI con <code>email</code> como su Partition Key</strong>.</li>
+</ul>
+<h4 id="proyeccion-de-atributos-projections">Proyección de Atributos (Projections)</h4>
+<p>Al definir un índice (LSI o GSI), se debe configurar la proyección de atributos para determinar qué datos se copian de la tabla base al índice:
+*   <code>KEYS_ONLY</code>: Solo proyecta las claves de la tabla base y las claves del índice (menor consumo de almacenamiento y capacidad).
+*   <code>INCLUDE</code>: Proyecta las claves más una lista específica de atributos adicionales requeridos frecuentemente por las consultas.
+*   <code>ALL</code>: Proyecta todos los atributos de la tabla base al índice (mayor consumo de almacenamiento y WCUs duplicadas).</p>
+<h3 id="dax-dynamodb-accelerator">DAX (DynamoDB Accelerator)</h3>
+<ul>
+<li>Es un clúster de caché en memoria totalmente administrado, de alta disponibilidad y diseñado específicamente para DynamoDB.</li>
+<li>Acelera el rendimiento de lectura reduciendo la latencia de milisegundos a <strong>microsegundos</strong>.</li>
+<li>Es compatible con la API de DynamoDB, lo que significa que los desarrolladores no necesitan reescribir la lógica de la aplicación para implementarlo.</li>
+<li>Es la solución ideal para aplicaciones con cargas de lectura extremadamente intensivas o para aliviar el tráfico sobre una misma clave de partición muy solicitada (hot key).</li>
+</ul>
+<h3 id="operaciones-avanzadas-y-gestion-de-datos">Operaciones Avanzadas y Gestión de Datos</h3>
+<ul>
+<li><strong>Time To Live (TTL):</strong> Para eliminar registros antiguos de forma automática de DynamoDB, debes añadir un nuevo atributo de tipo numérico (Number) que contenga un timestamp. Luego, configuras la tabla con un TTL que haga referencia a ese nuevo atributo.</li>
+<li><strong>Consistencia y Rendimiento:</strong> Las lecturas fuertemente consistentes (Strongly Consistent Reads) utilizan más capacidad de rendimiento (throughput) que las lecturas eventualmente consistentes.</li>
+<li><strong>Transacciones:</strong> Si tu aplicación necesita realizar cambios coordinados de "todo o nada" en múltiples ítems de DynamoDB, debes usar la operación <code>TransactWriteItems</code> para agrupar los cambios.</li>
+<li><strong>Operaciones en lote:</strong> Para permitir la recuperación de múltiples ítems de una tabla en una sola llamada a la API, debes usar la operación <code>BatchGetItem</code>.</li>
+<li><strong>Lecturas Fuertemente Consistentes por API:</strong> Por defecto, las consultas a DynamoDB son eventualmente consistentes. Si un requerimiento exige consistencia fuerte en el código (para no recuperar datos viejos), debes configurar explícitamente el parámetro <code>ConsistentRead</code> a <code>true</code> al llamar a las APIs <code>GetItem</code> o <code>Query</code>.</li>
+<li><strong>Desacoplamiento con DynamoDB Streams:</strong> En arquitecturas de microservicios, si el "Servicio A" tiene su propia tabla DynamoDB y el "Servicio B" necesita enterarse en tiempo real de los cambios (ej. Servicio de Cuentas y Servicio de Pagos), el patrón más simple y fiable es habilitar <strong>Amazon DynamoDB Streams</strong> en la tabla A para capturar las modificaciones y enviar los eventos al Servicio B.</li>
+</ul>
+<h2 id="cicd-developer-tools">CI/CD (Developer Tools)</h2>
+<h3 id="aws-serverless-application-model-aws-sam">AWS Serverless Application Model (AWS SAM)</h3>
+<p>AWS SAM es un framework de código abierto para compilar aplicaciones sin servidor (serverless). Es una extensión de AWS CloudFormation, por lo que cualquier plantilla de SAM requiere obligatoriamente la declaración <code>Transform: AWS::Serverless-2016-10-31</code> en la raíz del documento para que CloudFormation interprete la sintaxis simplificada y construya los recursos subyacentes.</p>
+<h4 id="estructura-y-secciones-de-la-plantilla">Estructura y Secciones de la Plantilla</h4>
+<ul>
+<li><strong>Globals</strong>: Permite definir configuraciones comunes que se reutilizan en múltiples recursos dentro de la plantilla. Si varias funciones sin servidor comparten propiedades como <code>Runtime</code>, <code>Memory</code>, <code>VpcConfig</code>, <code>Environment</code> o <code>Cors</code>, se declaran una única vez en la sección <code>Globals</code> y todos los recursos <code>AWS::Serverless::Function</code> heredan dichos valores. Esto reduce la duplicación de código y facilita el mantenimiento a escala.</li>
+<li><strong>Parameters</strong>: Permite inyectar valores dinámicos en la plantilla en el momento de la ejecución o despliegue (por ejemplo, para definir identificadores de entorno como <code>dev</code> o <code>prod</code>), proporcionando la flexibilidad necesaria para reutilizar la misma plantilla en diferentes contextos o cuentas.</li>
+</ul>
+<h4 id="gestion-de-permisos">Gestión de Permisos</h4>
+<ul>
+<li><strong>SAM Policy Templates</strong>: Son plantillas de políticas de IAM predefinidas por AWS que permiten aplicar el principio de privilegio mínimo a las funciones Lambda sin necesidad de redactar documentos JSON completos. Se asignan a través de la propiedad <code>Policies</code> del recurso (ej. <code>DynamoDBCrudPolicy</code>, <code>S3ReadPolicy</code>, <code>SQSPollerPolicy</code>), limitando el acceso de forma estricta y segura a los recursos especificados.</li>
+</ul>
+<h4 id="comandos-de-la-cli-de-aws-sam">Comandos de la CLI de AWS SAM</h4>
+<p>Para el ciclo de desarrollo, pruebas locales y despliegue programático, el flujo de trabajo requiere el uso de comandos específicos de la CLI de AWS SAM:</p>
+<ul>
+<li><strong><code>sam init</code></strong>: Inicializa un nuevo proyecto de AWS SAM desde plantillas predefinidas o desde un tipo de aplicación concreto, generando la estructura base del repositorio y los archivos necesarios para empezar a desarrollar.</li>
+<li><strong><code>sam build</code></strong>: Procesa la plantilla de AWS SAM, el código de la aplicación y cualquier dependencia, compilando los artefactos de construcción localmente para prepararlos para el despliegue.</li>
+<li><strong><code>sam validate</code></strong>: Valida la sintaxis y la estructura de la plantilla de AWS SAM antes de desplegarla, ayudando a detectar errores de configuración o incompatibilidades en la definición de recursos.</li>
+<li><strong><code>sam local invoke</code></strong>: Ejecuta y prueba una función Lambda localmente utilizando una imagen de contenedor Docker de código abierto que simula de forma exacta el entorno de ejecución de AWS Lambda. Facilita la depuración local, la inyección de eventos de prueba y la revisión de registros antes de afectar la infraestructura en la nube.</li>
+<li><strong><code>sam sync</code></strong>: Sincroniza automáticamente los cambios del código local con el entorno de AWS en tiempo casi real. Omite la ejecución estándar del ciclo completo de AWS CloudFormation para acelerar la iteración y el ciclo de retroalimentación de código durante la fase de desarrollo.</li>
+<li><strong><code>sam package</code></strong> (o <code>aws cloudformation package</code>): Empaqueta los artefactos de la aplicación, los sube a un bucket de Amazon S3 y genera un archivo de plantilla modificado que hace referencia a la ubicación exacta de estos artefactos en S3.</li>
+<li><strong><code>sam deploy</code></strong> (o <code>aws cloudformation deploy</code>): Despliega la aplicación sin servidor utilizando la plantilla empaquetada. Crea o actualiza una pila (Stack) de AWS CloudFormation en la cuenta destino con los recursos definidos.</li>
+<li><strong><code>sam publish</code></strong>: Publica una versión del artefacto de la aplicación en el registro de aplicaciones de AWS Serverless Application Repository (SAR), permitiendo compartir o reutilizar la aplicación como un paquete desplegable reutilizable.</li>
+</ul>
+<h4 id="diseno-y-modelado-visual-aws-application-composer">Diseño y Modelado Visual: AWS Application Composer</h4>
+<p>AWS Application Composer (integrado en la consola de AWS CloudFormation y disponible como extensión para IDEs como VS Code) es un lienzo visual interactivo que permite diseñar, configurar y estructurar arquitecturas serverless generando automáticamente plantillas conformes a <strong>AWS SAM</strong> o <strong>AWS CloudFormation</strong>.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Auth ["Autenticación"]
+        CUP["Cognito User Pool&lt;br/&gt;(PollyNotesPool)"]
+        CUPC["User Pool Client&lt;br/&gt;(PollyNotesPoolClient)"]
+    end
+
+    subgraph Gateway ["Amazon API Gateway (pollyNotesAPI)"]
+        AUTH["Authorizer: PollyNotesAuthorizer"]
+        R1["GET /notes"]
+        R2["POST /notes"]
+        R3["GET /notes/search"]
+        R4["DELETE /notes/{id}"]
+        R5["POST /notes/{id}"]
+    end
+
+    subgraph Compute ["AWS Lambda Functions"]
+        F1["listFunction"]
+        F2["createUpdateFunction"]
+        F3["searchFunction"]
+        F4["deleteFunction"]
+        F5["dictateFunction"]
+    end
+
+    subgraph Data ["Almacenamiento"]
+        DDB[("DynamoDB Table&lt;br/&gt;pollyNotesTable")]
+    end
+
+    CUP --- AUTH
+    CUPC --- AUTH
+    AUTH -.-&gt; R1 &amp; R2 &amp; R3 &amp; R4 &amp; R5
+
+    R1 --&gt; F1
+    R2 --&gt; F2
+    R3 --&gt; F3
+    R4 --&gt; F4
+    R5 --&gt; F5
+
+    F1 &amp; F2 &amp; F3 &amp; F4 &amp; F5 --&gt; DDB
+
+    classDef default fill:#fcfcfc,stroke:#555,stroke-width:1px,color:#111,font-size:11px;
+    classDef authStyle fill:#fce8e6,stroke:#c5221f,stroke-width:1.5px,color:#a50e0e;
+    classDef gwStyle fill:#e8f0fe,stroke:#1a73e8,stroke-width:1.5px,color:#0c479d;
+    classDef fnStyle fill:#fff3e0,stroke:#f57c00,stroke-width:1.5px,color:#b26a00;
+    classDef dbStyle fill:#e6f4ea,stroke:#137333,stroke-width:1.5px,color:#0d652d;
+
+    class CUP,CUPC authStyle;
+    class Gateway,AUTH,R1,R2,R3,R4,R5 gwStyle;
+    class F1,F2,F3,F4,F5 fnStyle;
+    class DDB dbStyle;</code></pre>
+<ul>
+<li><strong>Sincronización Bidireccional en Tiempo Real:</strong> Los cambios realizados visualmente arrastrando componentes en el lienzo actualizan instantáneamente el archivo de código <code>template.yaml</code> (SAM); del mismo modo, cualquier modificación manual en el código YAML/JSON se renderiza de inmediato en el diagrama.</li>
+<li><strong>Inferencia de Permisos y Configuración Automática:</strong> Al conectar visualmente dos recursos (ej. una función Lambda con una tabla DynamoDB), Application Composer genera automáticamente las variables de entorno requeridas y las políticas de IAM de privilegio mínimo correspondientes (utilizando <em>SAM Policy Templates</em> como <code>DynamoDBCrudPolicy</code>).</li>
+<li><strong>Patrón de Microservicios Serverless:</strong> Modela la separación de responsabilidades creando funciones Lambda dedicadas por cada verbo y ruta HTTP (<code>listFunction</code>, <code>createUpdateFunction</code>, <code>deleteFunction</code>) en lugar de usar una única función monolítica, optimizando los tiempos de <em>Cold Start</em> y aislando los permisos de ejecución de cada endpoint.</li>
+</ul>
+<h3 id="aws-codecommit">AWS CodeCommit</h3>
+<ul>
+<li>Es un servicio de control de código fuente administrado, seguro y de alta escalabilidad que aloja repositorios Git privados.</li>
+<li><strong>Integración IAM:</strong> A diferencia de un Git autogestionado, CodeCommit se integra de forma nativa con IAM, permitiendo controlar el acceso a los repositorios a nivel de usuario y asignar permisos granulares (por ejemplo, restringir quién puede hacer <em>push</em> a la rama <code>main</code>).</li>
+<li><strong>Cifrado:</strong> Los repositorios se cifran automáticamente en reposo (con AWS KMS) y en tránsito.</li>
+<li><strong>Clonación HTTPS:</strong> Antes de clonar un repositorio de CodeCommit sobre HTTPS, la forma más segura y recomendada de autenticarse es configurar el <strong>Git credential helper</strong> para que utilice el perfil de credenciales de AWS de la máquina local.</li>
+</ul>
+<h3 id="aws-codebuild">AWS CodeBuild</h3>
+<ul>
+<li>Es un servicio de integración continua totalmente administrado que compila código fuente, ejecuta pruebas y produce paquetes de software listos para su despliegue.</li>
+<li>No es necesario aprovisionar, administrar ni escalar sus propios servidores de compilación; AWS escala los contenedores de compilación automáticamente.</li>
+<li><strong>El archivo clave (buildspec.yml):</strong> Es un archivo en formato YAML que debes colocar en el directorio raíz de tu código fuente. Contiene las instrucciones y comandos que CodeBuild usará para ejecutar la compilación (dividido en fases como <code>install</code>, <code>pre_build</code>, <code>build</code>, <code>post_build</code>).</li>
+<li><strong>Troubleshooting de Compilación:</strong> Si un proyecto de CodeBuild falla tras un cambio en el código fuente, el lugar correcto para identificar la causa raíz es revisar los <strong>Build Logs</strong> (registros de compilación) de la fase fallida en el historial de compilación (Build History) de CodeBuild.</li>
+<li><strong>Variables de Entorno Masivas:</strong> Si el comando falla porque la suma de las variables de entorno supera el límite máximo de caracteres permitido, la solución recomendada es guardar esas variables en <strong>AWS Systems Manager Parameter Store</strong>.</li>
+<li><strong>Ejecución de Pruebas Unitarias:</strong> En un pipeline de CI/CD (con AWS CodePipeline), las pruebas unitarias siempre deben ejecutarse actualizando el archivo de especificación de <strong>AWS CodeBuild</strong> (<code>buildspec.yml</code>) para incluir una fase de tests, antes de pasar el artefacto a la fase de pruebas o despliegue.</li>
+</ul>
+<h3 id="aws-codedeploy">AWS CodeDeploy</h3>
+<ul>
+<li>Es un servicio de despliegue totalmente administrado que automatiza las implementaciones de software en una variedad de servicios de computación, como Amazon EC2, AWS Fargate, AWS Lambda y servidores on-premises.</li>
+<li><strong>El archivo clave (appspec.yml):</strong> </li>
+<li>Archivo YAML (o JSON) que define cómo CodeDeploy debe ejecutar el despliegue y gestionar el ciclo de vida del enrutamiento del tráfico (los <em>hooks</em> como <code>BeforeInstall</code>, <code>AfterInstall</code>, <code>ApplicationStart</code>).</li>
+<li>Para que AWS CodeDeploy funcione correctamente, este archivo debe colocarse obligatoriamente en el <strong>directorio raíz</strong> (root) de la estructura del código fuente de la aplicación.</li>
+<li><strong>Tipos y configuraciones de despliegue:</strong></li>
+<li><strong>In-place deployment (Despliegue in situ):</strong> La aplicación en cada instancia del grupo de despliegue se detiene, se instala la última revisión y se inicia y valida la nueva versión. (No soportado para AWS Lambda ni Amazon ECS).</li>
+<li><strong>Blue/Green deployment (Despliegue azul/verde):</strong> El tráfico se redirige desde el entorno original (azul) hacia un entorno de reemplazo idéntico (verde) que tiene la nueva versión de la aplicación. Es el más seguro porque permite un <em>rollback</em> (vuelta atrás) instantáneo simplemente devolviendo el tráfico al entorno original.</li>
+<li><strong>Canary deployment (Despliegue Canary):</strong> El tráfico se desplaza a la nueva versión en dos incrementos. Primero, se envía una pequeña porción del tráfico (por ejemplo, el 10%) a la nueva versión. Tras un periodo de tiempo especificado de espera y evaluación (por ejemplo, 10 minutos), el porcentaje de tráfico restante (90%) se redirige de golpe a la nueva versión. Minimiza el impacto en los usuarios si la nueva versión tiene errores.</li>
+<li><strong>Linear deployment (Despliegue Lineal):</strong> El tráfico se redirige a la nueva versión en incrementos iguales y regulares, dejando un tiempo específico entre cada incremento (por ejemplo, enviar un 10% más de tráfico cada 5 minutos hasta llegar al 100%).</li>
+<li><strong>All-at-once (Todo a la vez):</strong> Todo el tráfico se redirige de la versión original a la nueva versión de forma simultánea. Es el más rápido, pero el más arriesgado si hay fallos.</li>
+<li><strong>Orden de Lifecycle Hooks</strong>: Para un despliegue de tipo <em>in-place</em> (in situ), el orden de ejecución correcto de los hooks en el archivo <code>appspec.yml</code> es:<ol>
+<li><code>ApplicationStop</code></li>
+<li><code>BeforeInstall</code></li>
+<li><code>AfterInstall</code></li>
+<li><code>ApplicationStart</code></li>
+</ol>
+</li>
+<li><strong>Despliegues Híbridos:</strong> Si necesitas automatizar el despliegue de un paquete de software tanto en instancias Amazon EC2 como en servidores virtuales <em>on-premises</em>, <strong>AWS CodeDeploy</strong> es la herramienta adecuada. Deberás subir tu bundle a Amazon S3 y configurarlo como origen.</li>
+</ul>
+<h4 id="estrategias-de-desplazamiento-de-trafico-traffic-shifting-en-serverless">Estrategias de Desplazamiento de Tráfico (Traffic Shifting) en Serverless</h4>
+<p>En entornos Serverless (como AWS Lambda), dado que no hay servidores en los que instalar software gradualmente, AWS CodeDeploy utiliza el <strong>desplazamiento de tráfico</strong> (mediante <em>Aliases</em> y pesos). Dirige un porcentaje exacto de las invocaciones a la nueva versión mientras el resto sigue en la versión antigua. </p>
+<p>Las dos estrategias principales para este despliegue gradual son:</p>
+<ul>
+<li><strong>Canary deployment (Despliegue Canary):</strong> El desplazamiento de tráfico se hace en <strong>solo dos pasos</strong>. Primero, envía una pequeña porción del tráfico (ej. 10%) a la nueva versión para probarla. Tras un periodo de evaluación (ej. 10 minutos) para verificar que no hay errores, el 90% restante del tráfico se redirige <strong>de golpe</strong> en un segundo y último paso.</li>
+<li><strong>Linear deployment (Despliegue Lineal):</strong> El desplazamiento de tráfico se hace en <strong>múltiples pasos iguales y escalonados</strong>. El tráfico se redirige a la nueva versión en incrementos regulares, dejando un tiempo de evaluación entre cada incremento (ej.  10% de tráfico cada 5 minutos hasta alcanzar el 100%).</li>
+</ul>
+<h4 id="automatizacion-y-pruebas-continuas-con-aws-sam-y-codedeploy">Automatización y Pruebas Continuas con AWS SAM y CodeDeploy</h4>
+<p><strong>Pruebas a lo largo del Pipeline (Best Practice)</strong>
+Una canalización (pipeline) automatizada y bien estructurada debe incluir validaciones progresivas en cada etapa para garantizar que los errores se detecten antes de llegar a producción:
+- <strong>Fase de Build:</strong> Ejecución de análisis estático de código (linting/sintaxis), pruebas unitarias y compilación (usualmente con CodeBuild).
+- <strong>Fase de Testing:</strong> Despliegue de la aplicación en un entorno de pruebas para ejecutar pruebas de integración aisladas (utilizando <em>mocks</em> o <em>stubs</em> para simular otros servicios).
+- <strong>Fase de Staging:</strong> Pruebas de integración contra servicios reales (API tests). Es el lugar ideal para incluir una etapa de <strong>Aprobación Manual (QA sign-off)</strong>.
+- <strong>Fase de Producción:</strong> Despliegue gradual empleando estrategias Canary o Linear, validado mediante pruebas automatizadas de tráfico.</p>
+<p><strong>Despliegues Seguros (Safe Deployments) en AWS SAM</strong>
+AWS SAM permite automatizar los despliegues graduales de las funciones Lambda integrando las configuraciones de <strong>AWS CodeDeploy</strong> directamente en la plantilla de infraestructura (mediante la propiedad <code>DeploymentPreference</code>).</p>
+<ul>
+<li><strong>Tipos de despliegue nativos:</strong> Puedes configurar la plantilla para que la actualización de la Lambda utilice estrategias <strong>Canary</strong> o <strong>Linear</strong> para realizar pruebas Blue/Green de forma automática.</li>
+<li><strong>Rollback Automático:</strong> Si alguna de las pruebas falla durante el proceso de despliegue gradual, el pipeline se detiene automáticamente y revierte (rollback) el tráfico a la versión anterior para proteger el entorno de producción.</li>
+<li><strong>Traffic Hooks (Funciones de validación):</strong> AWS SAM permite especificar funciones Lambda auxiliares que CodeDeploy invocará automáticamente para testear el despliegue:</li>
+<li><strong>PreTraffic Hook:</strong> Se ejecuta <em>antes</em> de que el tráfico de los usuarios empiece a ser redirigido a la nueva versión. Sirve para comprobar la salud (health check) de la nueva función. Si esta prueba falla, el despliegue se aborta instantáneamente.</li>
+<li><strong>PostTraffic Hook:</strong> Se ejecuta <em>después</em> de que el 100% del tráfico ya se ha desplazado a la nueva versión. Se utiliza para ejecutar pruebas de integración de extremo a extremo (E2E) finales o enviar métricas/notificaciones de éxito.</li>
+</ul>
+<h3 id="aws-codepipeline">AWS CodePipeline</h3>
+<ul>
+<li>Es un servicio de entrega continua totalmente administrado que ayuda a automatizar los canales de publicación (pipelines) para lograr actualizaciones de aplicaciones e infraestructuras rápidas y fiables.</li>
+<li><strong>Orquestación:</strong> CodePipeline no compila ni despliega por sí mismo; orquesta a los demás servicios (extrae el código de CodeCommit, manda compilar a CodeBuild y manda desplegar a CodeDeploy).</li>
+<li><strong>Artifacts (Artefactos):</strong> A medida que el código pasa de una etapa (stage) a otra, CodePipeline guarda y transfiere los archivos generados utilizando un bucket de Amazon S3 designado como almacén de artefactos.</li>
+<li><strong>Manual Approvals (Aprobaciones manuales):</strong> Permite añadir una etapa de revisión manual donde el pipeline se pausa hasta que una persona con los permisos de IAM adecuados apruebe o rechace la transición al siguiente entorno (muy usado antes de desplegar en Producción).</li>
+<li>Si el flujo requiere que una persona apruebe el código antes de desplegar en producción, añade una acción de aprobación (approval action) a la etapa correspondiente.</li>
+<li>Configura esta acción de aprobación para que publique en un topic de Amazon SNS. Esto detendrá la ejecución del pipeline a la espera de la aprobación.</li>
+</ul>
+<h3 id="aws-cloudformation-exportacion-entre-stacks">AWS CloudFormation (Exportación entre Stacks)</h3>
+<ul>
+<li>Para hacer referencia a un recurso (ej. una VPC o S3 Bucket) creado en una plantilla de infraestructura desde otra plantilla de aplicación, usa la declaración <code>Export</code> en la sección <code>Outputs</code> de la primera plantilla, y luego usa la función <code>Fn::ImportValue</code> en la segunda.</li>
+</ul>
+<h3 id="resolucion-de-problemas-troubleshooting-y-configuracion-estricta">Resolución de Problemas (Troubleshooting) y Configuración Estricta</h3>
+<ul>
+<li><strong>Ubicación de AppSpec en AWS CodeDeploy:</strong> El motor de implementación requiere obligatoriamente que el archivo de especificación <code>appspec.yml</code> se encuentre ubicado en el directorio raíz (root) de la estructura del código fuente de la aplicación.</li>
+<li><strong>Límites de Variables en AWS CodeBuild:</strong> Si un proyecto de compilación falla debido a que la longitud combinada de todas las variables de entorno definidas supera el límite de caracteres impuesto por el servicio, la solución recomendada es eliminar dichas variables del proyecto y almacenarlas como pares clave-valor dentro de <strong>AWS Systems Manager Parameter Store</strong>.</li>
+<li><strong>Identificación de Fallos de Compilación:</strong> Si un cambio reciente en el repositorio de origen provoca un error de compilación en AWS CodeBuild, la causa raíz debe auditarse revisando los registros de construcción (<em>Build logs</em>) correspondientes a la fase fallida dentro del historial de compilación (<em>Build history</em>) del proyecto.</li>
+<li><strong>Comportamiento de Rollback Automático en CodeDeploy:</strong> Durante una implementación in-situ (<em>in-place</em>) sobre instancias EC2 con los rollbacks automáticos habilitados, si el despliegue falla por una regresión en el código, CodeDeploy no restaura instantáneas (snapshots). El servicio vuelve a desplegar automáticamente la última versión funcional (last known good deployment) ejecutándola como una nueva implementación con un ID de despliegue completamente nuevo.</li>
+</ul>
+<h3 id="cicd-avanzado-despliegues-multi-cuenta-y-orquestacion">CI/CD Avanzado (Despliegues Multi-Cuenta y Orquestación)</h3>
+<h4 id="despliegues-multi-cuenta-cross-account-deployments-en-codepipeline">Despliegues Multi-Cuenta (Cross-Account Deployments en CodePipeline)</h4>
+<p>Para centralizar la integración y entrega continua en una cuenta centralizada (<em>Tooling Account</em>) y realizar despliegues automatizados en cuentas aisladas (como <em>Staging</em> o <em>Production</em>):
+- <strong>Roles de Acceso Cruzado (<em>Cross-Account Roles</em>):</strong> Se configura un rol de IAM en la cuenta de destino que establece una relación de confianza (<em>Trust Policy</em>) con el rol de servicio de CodePipeline de la cuenta central.
+- <strong>Flujo de Ejecución:</strong> Durante la fase de despliegue, CodePipeline utiliza operaciones de AWS STS (<code>AssumeRole</code>) para adquirir credenciales de seguridad temporales, permitiendo aprovisionar o actualizar recursos en la cuenta de destino sin utilizar claves de acceso permanentes.</p>
+<h4 id="acciones-personalizadas-custom-actions-en-codepipeline">Acciones Personalizadas (<em>Custom Actions</em>) en CodePipeline</h4>
+<ul>
+<li>Cuando las acciones predeterminadas (como AWS CodeBuild, AWS CodeDeploy o Amazon S3) no satisfacen los requisitos del flujo de trabajo, se pueden implementar <strong>Custom Actions</strong>.</li>
+<li>Permiten integrar herramientas externas o procesos personalizados (ej. análisis estático de seguridad de terceros) asociando la acción a una función de AWS Lambda o a un servicio web registrado como proveedor de acciones personalizadas.</li>
+</ul>
+<h4 id="automatizacion-de-pipelines-con-amazon-eventbridge">Automatización de Pipelines con Amazon EventBridge</h4>
+<ul>
+<li><strong>Monitoreo de Cambios de Estado:</strong> Amazon EventBridge intercepta de forma nativa los eventos generados por las herramientas de desarrollo (ej. fallos en compilaciones de CodeBuild, cambios de estado en CodePipeline o eventos de despliegue en CodeDeploy).</li>
+<li><strong>Acciones Automatizadas:</strong> Permite configurar reglas (<em>Rules</em>) basadas en patrones de eventos para disparar acciones reactivas de manera asíncrona, tales como el envío de alertas operativas mediante Amazon SNS o la ejecución de rutinas de diagnóstico con AWS Lambda.</li>
+</ul>
+<h2 id="orquestacion">Orquestación:</h2>
+<h3 id="aws-step-functions-patrones-y-gestion-de-estado">AWS Step Functions: Patrones y Gestión de Estado</h3>
+<p>AWS Step Functions es el servicio de orquestación serverless basado en máquinas de estado definidas en JSON o YAML mediante el Lenguaje de Estados de Amazon (<em>Amazon States Language</em>). Permite coordinar servicios de AWS como AWS Lambda o Amazon DynamoDB en flujos secuenciales o paralelos.</p>
+<h4 id="standard-vs-express-workflows">Standard vs. Express Workflows</h4>
+<ul>
+<li><strong>Standard Workflows:</strong></li>
+<li>Diseñados para flujos de trabajo de larga duración (con un límite de ejecución de hasta 1 año).</li>
+<li>Mantienen un historial de ejecución detallado y persistente, permitiendo la auditoría visual completa de cada paso en la consola de AWS.</li>
+<li>Se facturan en función del número de transiciones de estado ejecutadas.</li>
+<li>Indicados para procesos críticos, transacciones financieras o flujos que requieren intervención humana (<em>human-in-the-loop</em>).</li>
+<li><strong>Express Workflows:</strong></li>
+<li>Diseñados para procesamiento de alto volumen y corta duración (con un límite máximo de 5 minutos por ejecución).</li>
+<li>Optimizados para arquitecturas orientadas a eventos de alta frecuencia, ingesta de datos o microservicios síncronos.</li>
+<li>Los registros de eventos y ejecución se transmiten directamente a Amazon CloudWatch Logs en lugar de persistir el historial en la consola del servicio.</li>
+<li>Se facturan por número de solicitudes, duración y consumo de recursos de memoria.</li>
+</ul>
+<h4 id="patron-de-integracion-wait-for-callback-tasktoken">Patrón de Integración: Wait for Callback (TaskToken)</h4>
+<ul>
+<li>Se utiliza cuando una tarea en la máquina de estado necesita suspender su ejecución y aguardar a que un proceso externo (sistemas <em>on-premises</em>, operadores humanos o servicios de terceros) complete una acción y emita una respuesta explícita.</li>
+<li>Al configurar la tarea con el sufijo <strong><code>.waitForTaskToken</code></strong>, Step Functions genera un identificador único (<strong><code>TaskToken</code></strong>) que se incluye en la carga útil (<em>payload</em>) enviada a través de un servicio de mensajería (ej. Amazon SQS o Amazon SNS).</li>
+<li>La ejecución del flujo permanece en pausa indefinida hasta que el componente externo recupera dicho <code>TaskToken</code> y ejecuta las llamadas a la API <strong><code>SendTaskSuccess</code></strong> o <strong><code>SendTaskFailure</code></strong>.</li>
+</ul>
+<h4 id="manejo-de-errores-catch-y-retry">Manejo de Errores: Catch y Retry</h4>
+<ul>
+<li><strong>Retry:</strong> Permite reintentar de forma automática la ejecución de un estado cuando se produce un error específico (<code>ErrorEquals</code>). Sus parámetros principales son:</li>
+<li><code>IntervalSeconds</code>: Tiempo de espera inicial previo al primer reintento.</li>
+<li><code>BackoffRate</code>: Factor multiplicador que incrementa de forma exponencial el intervalo de espera entre reintentos.</li>
+<li><code>MaxAttempts</code>: Límite máximo de intentos permitidos antes de declarar el fallo definitivo.</li>
+<li><strong>Catch:</strong> Permite capturar errores que han agotado los reintentos configurados o que no disponen de reglas de reintento, desviando la ejecución hacia un estado de control de errores alternativo.</li>
+<li><code>ResultPath</code>: Propiedad que permite conservar simultáneamente la entrada original del estado y el mensaje de error en la salida, evitando la pérdida de contexto durante el proceso de depuración.</li>
+</ul>
+<h3 id="step-functions-vs-simple-workflow-service-swf">Step Functions vs Simple Workflow Service (SWF)</h3>
+<ul>
+<li><strong>AWS Step Functions:</strong> Es el orquestador serverless recomendado. Se define con máquinas de estado (JSON/YAML). Ideal para coordinar lambdas secuenciales o en paralelo.</li>
+<li><strong>Amazon SWF (Simple Workflow Service):</strong> Es un servicio heredado (<em>legacy</em>). Su característica distintiva en el examen es que la lógica está dividida entre <strong>Workers</strong> (los que hacen el trabajo) y <strong>Deciders</strong> (los que deciden qué tarea va después). Si una pregunta menciona <em>deciders</em> y <em>workers</em>, se refiere a SWF.</li>
+</ul>
+<h2 id="entornos-multi-cuenta-y-operaciones-globales">Entornos Multi-Cuenta y Operaciones Globales</h2>
+<h3 id="aws-organizations-y-organizational-units-ous">AWS Organizations y Organizational Units (OUs)</h3>
+<p>AWS Organizations es un servicio de gestión de cuentas que permite centralizar la administración de múltiples cuentas AWS bajo una única estructura jerárquica.
+- <strong>Management Account (Cuenta de Gestión):</strong> Antiguamente llamada cuenta maestra, es la cuenta central encargada de crear la organización, gestionar las políticas, consolidar la facturación y administrar los métodos de pago.
+- <strong>Organizational Units (OUs - Unidades Organizativas):</strong> Agrupaciones lógicas de cuentas dentro de una organización (ej. <code>Security OU</code>, <code>Workloads OU</code>, <code>Sandbox OU</code>). Permiten aplicar controles de seguridad y gobernanza de forma jerárquica heredando políticas a todas las cuentas contenidas.
+- <strong>Service Control Policies (SCPs):</strong> Son políticas JSON adjuntas a la cuenta de gestión, a una OU o a una cuenta individual que establecen los <strong>permisos máximos</strong> disponibles para todas las identidades (usuarios y roles) de las cuentas miembro. Actúan como un límite estricto de control, complementando (pero no reemplazando) a las políticas de IAM. Una SCP de tipo <code>Deny</code> anula cualquier permiso otorgado por IAM en las cuentas subordinadas.</p>
+<h3 id="aws-control-tower">AWS Control Tower</h3>
+<p>AWS Control Tower automatiza la configuración de un entorno multi-cuenta seguro y bien estructurado (denominado <em>Landing Zone</em>) basado en las mejores prácticas de AWS y el marco <em>Well-Architected Framework</em>.
+- <strong>Guardrails:</strong> Reglas de gobernanza automatizadas que se aplican de forma continua en toda la organización. Se dividen en:
+  - <em>Preventative Guardrails:</em> Implementados mediante SCPs para bloquear acciones que violen las políticas de seguridad antes de que ocurran.
+  - <em>Detective Guardrails:</em> Implementados mediante reglas de AWS Config y notificaciones en Amazon EventBridge para detectar y reportar incumplimientos o desviaciones de conformidad.
+- <strong>Account Factory:</strong> Automatiza el aprovisionamiento de nuevas cuentas estandarizadas dentro de la organización con redes, seguridad y políticas preconfiguradas.</p>
+<h3 id="aws-cloudformation-stacksets">AWS CloudFormation StackSets</h3>
+<p>Permite desplegar, actualizar o eliminar pilas (<em>stacks</em>) de CloudFormation de forma simultánea en <strong>múltiples cuentas de AWS y múltiples regiones</strong> desde una única plantilla centralizada.
+- <strong>Administración de Despliegues:</strong>
+  - <em>Self-managed permissions:</em> Requiere la creación manual de roles IAM específicos (<code>cloudformation-stackset-execution-role</code>) en cada cuenta de destino para permitir que la cuenta administradora ejecute los cambios.
+  - <em>Service-managed permissions (Recomendado con AWS Organizations):</em> Se integra de forma nativa con AWS Organizations. Permite desplegar automáticamente en todas las cuentas actuales y futuras de una organización o de una OU específica sin necesidad de configurar roles manualmente en cada cuenta miembro.
+- <strong>Operaciones de StackSets:</strong> Permite definir la concurrencia máxima de despliegue y el porcentaje de tolerancia a fallos (<em>Failure Tolerance</em>) para controlar cómo se propagan los cambios a lo largo de la infraestructura global.</p>
+<h2 id="entornos-multi-cuenta-y-operaciones-globales_1">Entornos Multi-Cuenta y Operaciones Globales</h2>
+<h3 id="aws-organizations-y-organizational-units-ous_1">AWS Organizations y Organizational Units (OUs)</h3>
+<p>AWS Organizations es un servicio de gestión de cuentas que permite centralizar la administración de múltiples cuentas AWS bajo una única estructura jerárquica.
+- <strong>Management Account (Cuenta de Gestión):</strong> Cuenta central responsable de crear la organización, administrar la facturación consolidada y gestionar los métodos de pago.
+- <strong>Organizational Units (OUs - Unidades Organizativas):</strong> Agrupaciones lógicas de cuentas dentro de una organización (ej. <code>Security OU</code>, <code>Workloads OU</code>, <code>Sandbox OU</code>). Permiten aplicar controles de gobernanza heredando políticas de manera jerárquica.
+- <strong>Service Control Policies (SCPs):</strong> Políticas JSON adjuntas a la cuenta de gestión, a una OU o a una cuenta individual que establecen los <strong>permisos máximos</strong> disponibles para todas las identidades (usuarios y roles) de las cuentas miembro. Actúan como un límite estricto de control: una SCP de tipo <code>Deny</code> anula cualquier permiso otorgado por IAM en las cuentas subordinadas.</p>
+<h3 id="aws-control-tower_1">AWS Control Tower</h3>
+<p>AWS Control Tower automatiza la configuración de un entorno multi-cuenta seguro y estandarizado (<em>Landing Zone</em>) alineado con el marco <em>Well-Architected Framework</em>.
+- <strong>Guardrails:</strong> Reglas de gobernanza aplicadas de forma continua en toda la organización:
+  - <em>Preventative Guardrails:</em> Implementados mediante SCPs para bloquear acciones que violen las políticas de seguridad.
+  - <em>Detective Guardrails:</em> Implementados mediante reglas de AWS Config y eventos en Amazon EventBridge para identificar desviaciones de cumplimiento.
+- <strong>Account Factory:</strong> Automatiza el aprovisionamiento de nuevas cuentas estandarizadas con redes, seguridad y políticas preconfiguradas.</p>
+<h3 id="aws-cloudformation-stacksets_1">AWS CloudFormation StackSets</h3>
+<p>Permite desplegar, actualizar o eliminar pilas (<em>stacks</em>) de CloudFormation de forma simultánea en <strong>múltiples cuentas de AWS y múltiples regiones</strong> desde una única plantilla centralizada.
+- <strong>Modos de Permisos:</strong>
+  - <em>Self-managed permissions:</em> Requiere la creación manual de roles IAM específicos (<code>cloudformation-stackset-execution-role</code>) en cada cuenta de destino para autorizar a la cuenta administradora.
+  - <em>Service-managed permissions (Recomendado):</em> Integrado de forma nativa con AWS Organizations. Permite automatizar el despliegue en todas las cuentas actuales y futuras de una organización o de una OU específica sin configurar roles manualmente en cada cuenta miembro.
+- <strong>Parámetros de Operación:</strong> Permite definir la concurrencia máxima de despliegue y el porcentaje de tolerancia a fallos (<em>Failure Tolerance</em>) para controlar la propagación de los cambios a escala global.</p>
+<h2 id="gestion-de-gobernanza-y-automatizacion-aws-systems-manager-y-aws-config">Gestión de Gobernanza y Automatización (AWS Systems Manager y AWS Config)</h2>
+<h3 id="aws-systems-manager-ssm">AWS Systems Manager (SSM)</h3>
+<p>Suite de herramientas centralizada para el control operativo, la gestión de configuración y la automatización de recursos en la nube y en entornos <em>on-premises</em>.</p>
+<ul>
+<li><strong>Parameter Store:</strong> Almacenamiento jerárquico de pares clave-valor para datos de configuración de aplicaciones y secretos básicos. Organiza los parámetros mediante rutas (ej. <code>/prod/database/password</code>) y soporta cifrado mediante claves de AWS KMS (<code>SecureString</code>).</li>
+<li><strong>Session Manager:</strong> Capacidad de gestión interactiva de nodos (instancias EC2 y servidores <em>on-premises</em>) mediante un shell basado en navegador o mediante la AWS CLI. Elimina la necesidad de abrir puertos de red entrantes (como SSH en el puerto 22 o RDP en el 3389), gestionar claves SSH o desplegar hosts bastión (<em>jump boxes</em>), ya que el tráfico se canaliza de forma segura a través de HTTPS mediante un agente instalado en la instancia.</li>
+<li><strong>Patch Manager:</strong> Automatiza el proceso de aplicación de parches de sistemas operativos y software en flotas masivas de instancias mediante líneas de referencia (<em>patch baselines</em>) y calendarios de ejecución (<em>maintenance windows</em>).</li>
+<li><strong>Automation Documents:</strong> Permite definir flujos de trabajo basados en código (YAML o JSON) para automatizar tareas rutinarias de administración, diagnóstico y remediación operativa a escala.</li>
+</ul>
+<h3 id="aws-config">AWS Config</h3>
+<p>Servicio de evaluación, auditoría y supervisión continua de las configuraciones de los recursos de AWS.</p>
+<ul>
+<li><strong>Historial de Configuración:</strong> Registra los cambios de configuración de los recursos de la cuenta, permitiendo evaluar el estado actual frente a un punto específico del pasado.</li>
+<li><strong>AWS Config Rules:</strong> Reglas personalizadas o gestionadas que evalúan si las configuraciones de los recursos de AWS cumplen con las directrices de seguridad y gobernanza corporativa.</li>
+<li><strong>Conformance Packs (Paquetes de conformidad):</strong> Colecciones de reglas de AWS Config y documentos de automatización empaquetados como una única entidad para simplificar la gestión del cumplimiento frente a normativas específicas (ej. PCI-DSS, HIPAA).</li>
+<li><strong>Remediación Automática:</strong> Permite asociar una regla de AWS Config que detecte un recurso no conforme a un documento de automatización de AWS Systems Manager (SSM Automation). Esto permite corregir de forma automática y en tiempo real las desviaciones de seguridad en la infraestructura.</li>
+</ul>
+<h2 id="gestion-de-configuracion-y-automatizacion-aws-systems-manager">Gestión de Configuración y Automatización (AWS Systems Manager)</h2>
+<h3 id="aws-systems-manager-parameter-store">AWS Systems Manager Parameter Store</h3>
+<ul>
+<li><strong>Almacenamiento de Secretos y Configuración:</strong> Permite almacenar datos de configuración de aplicaciones y credenciales (como contraseñas de bases de datos o claves de API) de forma centralizada en formato de pares clave-valor.</li>
+<li><strong>Resolución de Límites en CI/CD:</strong> Se utiliza como solución recomendada cuando los proyectos de compilación en AWS CodeBuild fallan debido a que la longitud combinada de las variables de entorno supera el límite máximo de caracteres permitido.</li>
+<li><strong>Acceso Seguro desde Instancias:</strong> Permite que las aplicaciones desplegadas en instancias Amazon EC2 recuperen credenciales y parámetros de forma programática utilizando los permisos otorgados por un rol de IAM, evitando almacenar claves de acceso estáticas en el código fuente.</li>
+</ul>
+<h2 id="estrategias-de-recuperacion-ante-desastres-disaster-recovery-dr-y-enrutamiento">Estrategias de Recuperación ante Desastres (Disaster Recovery - DR) y Enrutamiento</h2>
+<h3 id="conceptos-fundamentales-de-resiliencia">Conceptos Fundamentales de Resiliencia</h3>
+<ul>
+<li><strong>Recovery Point Objective (RPO):</strong> Es la cantidad máxima aceptable de pérdida de datos medida en el tiempo, derivada del momento en que se produce el desastre hasta la última copia de seguridad o sincronización disponible.</li>
+<li><strong>Recovery Time Objective (RTO):</strong> Es el tiempo máximo aceptable que un sistema puede permanecer inactivo o inaccesible después de que ocurre una interrupción del servicio.</li>
+</ul>
+<h3 id="estrategias-de-disaster-recovery-en-aws">Estrategias de Disaster Recovery en AWS</h3>
+<p>Las arquitecturas de alta disponibilidad y recuperación se clasifican según su complejidad, coste y los tiempos de recuperación (RTO/RPO):</p>
+<ol>
+<li><strong>Backup and Restore (Copia de seguridad y restauración):</strong></li>
+<li><em>Funcionamiento:</em> Los datos se respaldan de forma periódica (ej. mediante snapshots de Amazon EBS o copias en Amazon S3/Glacier) hacia una región de respaldo. En caso de fallo, se aprovisiona y despliega la infraestructura completa desde cero utilizando plantillas de Infraestructura como Código y se restauran los datos.</li>
+<li>
+<p><em>RTO/RPO:</em> Altos (horas o días), ya que requiere aprovisionar recursos e ingerir datos tras el desastre. Es la opción más económica.</p>
+</li>
+<li>
+<p><strong>Pilot Light (Luz piloto):</strong></p>
+</li>
+<li><em>Funcionamiento:</em> Una versión mínima y esencial de la infraestructura crítica (principalmente la capa de base de datos con replicación activa) se mantiene ejecutándose en la región secundaria. Los servidores de aplicación o cómputo están apagados o en capacidad mínima y solo se despliegan o encienden cuando ocurre un fallo.</li>
+<li>
+<p><em>RTO/RPO:</em> RTO medio (minutos u horas para escalar la compute), RPO bajo (gracias a la replicación continua de datos).</p>
+</li>
+<li>
+<p><strong>Warm Standby (Espera en caliente):</strong></p>
+</li>
+<li><em>Funcionamiento:</em> Una versión reducida pero completamente funcional de toda la pila de aplicación (incluyendo servidores web y de aplicación) se ejecuta de manera continua en la región secundaria, procesando una fracción del tráfico o operando en capacidad baja. Ante una contingencia, la capacidad se amplía rápidamente mediante Amazon EC2 Auto Scaling.</li>
+<li>
+<p><em>RTO/RPO:</em> RTO bajo (segundos o minutos), RPO muy bajo o cercano a cero.</p>
+</li>
+<li>
+<p><strong>Multi-Site Active/Active (Multisede activo/activo):</strong></p>
+</li>
+<li><em>Funcionamiento:</em> La aplicación se ejecuta simultáneamente en dos o más regiones, procesando tráfico de producción en paralelo. Los datos se replican en tiempo real entre ambas regiones.</li>
+<li><em>RTO/RPO:</em> Cercanos a cero (failover casi instantáneo y sin pérdida de datos). Representa la estrategia con mayor coste operativo.</li>
+</ol>
+<h3 id="amazon-route-53-politicas-de-enrutamiento-para-disaster-recovery">Amazon Route 53: Políticas de Enrutamiento para Disaster Recovery</h3>
+<p>Amazon Route 53 permite gestionar el tráfico global de la aplicación y coordinar las estrategias de conmutación por error (<em>failover</em>) mediante políticas de enrutamiento específicas:</p>
+<ul>
+<li><strong>Simple Routing:</strong> Dirige el tráfico a un único recurso sin comprobaciones de salud (<em>health checks</em>). No es apto para entornos de alta disponibilidad.</li>
+<li><strong>Failover Routing:</strong> Se utiliza para configuraciones Active/Passive (como Pilot Light o Warm Standby). Route 53 evalúa el estado de los recursos mediante <em>health checks</em>. Si el recurso primario falla, Route 53 desvía automáticamente el tráfico hacia el recurso secundario (de respaldo).</li>
+<li><strong>Latency-based Routing:</strong> Enruta las peticiones de los usuarios hacia el endpoint de AWS que ofrezca la latencia de red más baja.</li>
+<li><strong>Geolocation / Geoproximity Routing:</strong> Dirige el tráfico basándose en la ubicación geográfica de los usuarios o mediante restricciones geográficas de cumplimiento normativo.</li>
+<li><strong>Multivalue Answer Routing:</strong> Permite configurar Route 53 para que devuelva hasta ocho registros de recursos saludables elegidos de forma aleatoria en cada consulta, proporcionando un balanceo de carga básico y alta disponibilidad a nivel DNS.</li>
+</ul>
+<h2 id="seguridad-y-automatizacion-de-respuesta-a-incidentes">Seguridad y Automatización de Respuesta a Incidentes</h2>
+<h3 id="amazon-guardduty">Amazon GuardDuty</h3>
+<p>Servicio de detección de amenazas inteligente y gestionado que monitorea continuamente las cuentas de AWS y las cargas de trabajo en busca de actividad maliciosa o no autorizada.
+- <strong>Fuentes de Datos:</strong> Analiza registros de AWS CloudTrail (eventos de API), registros de flujo de Amazon VPC (VPC Flow Logs) y registros de consultas DNS.
+- <strong>Detección basada en Inteligencia Artificial/ML:</strong> Identifica comportamientos anómalos, como llamadas a la API desde direcciones IP sospechosas, intentos de desactivar logs o tráfico de red inusual en instancias Amazon EC2.</p>
+<h3 id="aws-security-hub">AWS Security Hub</h3>
+<p>Servicio centralizado de gestión de postura de seguridad que proporciona una vista única de los hallazgos de seguridad (<em>findings</em>) en toda la organización de AWS.
+- <strong>Agregación de Alertas:</strong> Recopila y prioriza automáticamente alertas procedentes de servicios nativos de seguridad (como Amazon GuardDuty, Amazon Inspector y Amazon Macie) y de soluciones de terceros integradas.
+- <strong>Estándares de Cumplimiento:</strong> Evalúa continuamente la infraestructura frente a marcos de conformidad y estándares industriales (ej. CIS AWS Foundations Benchmark, PCI-DSS).</p>
+<h3 id="patron-de-automatizacion-de-respuesta-a-incidentes-event-driven-remediation">Patrón de Automatización de Respuesta a Incidentes (Event-Driven Remediation)</h3>
+<p>El diseño operativo estándar para mitigar amenazas de seguridad en tiempo real sin intervención manual combina tres servicios de AWS mediante una arquitectura orientada a eventos:
+1. <strong>Detección (GuardDuty / Security Hub):</strong> Identifica un evento de seguridad crítico (ej. una instancia EC2 comprometida que realiza escaneos de puertos).
+2. <strong>Enrutamiento (Amazon EventBridge):</strong> Captura el hallazgo de seguridad mediante una regla (<em>Rule</em>) configurada con un patrón de eventos específico.
+3. <strong>Remediación (AWS Lambda):</strong> Actúa como destino (<em>Target</em>) de la regla de EventBridge, ejecutando de forma automatizada un script de mitigación (ej. aislar la instancia modificando sus Grupos de Seguridad, revocar claves de IAM comprometidas o tomar snapshots forenses del volumen EBS).</p>
+<h2 id="anexo">Anexo</h2>
+<h3 id="frameworks-para-aplicaciones-serverless">Frameworks para aplicaciones serverless</h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Benefits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloudFormation</td>
+<td>• Declarative style, model anything<br>• Broad adoption</td>
+</tr>
+<tr>
+<td>AWS CDK</td>
+<td>• Imperative programming, use familiar language or the same language you write code in<br>• Useful for backend things that AWS SAM doesn't account for</td>
+</tr>
+<tr>
+<td>AWS SAM</td>
+<td>• Built for serverless, very strong for Lambda and API Gateway resources<br>• Support for new services continues to be added<br>• AWS SAM CLI for local debugging or iterating<br>• Familiar syntax for CloudFormation users</td>
+</tr>
+<tr>
+<td>Amplify</td>
+<td>• Build and deploy fast using defaults with less AWS knowledge<br>• Mobile apps, single page web apps, and front-end clients<br>• Great for GraphQL and AWS AppSync</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

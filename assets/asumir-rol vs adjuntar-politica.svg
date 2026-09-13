@@ -1,0 +1,38 @@
+<svg viewBox="0 0 690 180" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <style>
+    .header { font-family: 'Trebuchet MS', Verdana, Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #0c479d; text-anchor: middle; }
+    .header-alt { font-family: 'Trebuchet MS', Verdana, Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #a50e0e; text-anchor: middle; }
+    .body-text { font-family: 'Trebuchet MS', Verdana, Arial, sans-serif; font-size: 11px; fill: #333333; text-anchor: middle; }
+    .card-left { fill: #88B0F7; stroke: #1a73e8; stroke-width: 1.5px; rx: 6px; ry: 6px; }
+    .card-blue { fill: #eef3fc; stroke: #ccc; stroke-width: 1.5px; rx: 6px; ry: 6px; }
+    .card-right { fill: #CF9893; stroke: #c5221f; stroke-width: 1.5px; rx: 6px; ry: 6px; }
+    .card-red { fill: #fce8e6; stroke: #ccc; stroke-width: 1.5px; rx: 6px; ry: 6px; }
+  </style>
+
+  <!-- Fondo general -->
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <!-- Columna Izquierda: Asumir un Rol -->
+  <rect x="30" y="20" width="310" height="40" class="card-left"/>
+  <text x="185" y="45" class="header">Asumir un Rol (AWS STS)</text>
+
+  <rect x="30" y="61" width="310" height="55" class="card-blue"/>
+  <text x="185" y="80" class="body-text" font-weight="bold">Emisión de credenciales temporales</text>
+  <text x="185" y="100" class="body-text">y de corta duración vía AWS STS.</text>
+
+  <rect x="30" y="117" width="310" height="55" class="card-blue"/>
+  <text x="185" y="135" class="body-text" font-weight="bold">Reduce el riesgo por compromiso</text>
+  <text x="185" y="155" class="body-text">de credenciales estáticas.</text>
+
+  <!-- Columna Derecha: Adjuntar una Política -->
+  <rect x="360" y="20" width="310" height="40" class="card-right"/>
+  <text x="515" y="45" class="header-alt">Adjuntar una Política</text>
+
+  <rect x="360" y="61" width="310" height="55" class="card-red"/>
+  <text x="515" y="80" class="body-text" font-weight="bold">Asignación permanente y continua</text>
+  <text x="515" y="100" class="body-text">de permisos sobre una identidad.</text>
+
+  <rect x="360" y="117" width="310" height="55" class="card-red"/>
+  <text x="515" y="135" class="body-text" font-weight="bold">Requiere rotación periódica</text>
+  <text x="515" y="155" class="body-text">si usa Access Keys de larga duración.</text>
+</svg>

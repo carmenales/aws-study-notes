@@ -1,0 +1,3052 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes sobre AWS">
+      
+      
+        <meta name="author" content="carmenales">
+      
+      
+      
+        <link rel="prev" href="../servicios/">
+      
+      
+        <link rel="next" href="../developing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Technical Essentials - Apuntes AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apuntes-aws-technical-essentials" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Apuntes AWS" class="md-header__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Technical Essentials
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.public/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../servicios/" class="md-tabs__link">
+          
+  
+  
+  Teoría
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Apuntes AWS" class="md-nav__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.public/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Essentials
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-iamidentity-and-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS IAM(Identity and Access Management)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS IAM(Identity and Access Management)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionalidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS root user
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS root user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-root-user-vs-iam-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Root User vs. IAM Login
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Root User vs. IAM Login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-en-el-inicio-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias en el Inicio de Sesión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principio-de-minimo-privilegio-con-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principio de Mínimo Privilegio con IAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM roles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EC2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon EC2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-machine-image-ami" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Machine Image (AMI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instancias-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instancias EC2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenedores-vs-maquinas-virtuales-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenedores vs Máquinas Virtuales (VMs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contenedores vs Máquinas Virtuales (VMs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenedores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maquinas-virtuales-vms-y-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Máquinas Virtuales (VMs) y Virtualización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servicios-de-orquestacion-de-contenedores-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Servicios de Orquestación de Contenedores en AWS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Servicios de Orquestación de Contenedores en AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-amazon-elastic-container-service-amazon-ecs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Amazon Elastic Container Service (Amazon ECS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-amazon-elastic-kubernetes-service-amazon-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Amazon Elastic Kubernetes Service (Amazon EKS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serverless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Serverless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-fargate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Fargate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Lambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-de-las-funciones-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Características de las Funciones Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Networking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Networking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-virtual-private-cloud-amazon-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Virtual Private Cloud (Amazon VPC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon Virtual Private Cloud (Amazon VPC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subnets-subredes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnets (Subredes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direccionamiento-cidr-classless-inter-domain-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direccionamiento CIDR (Classless Inter-Domain Routing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conectividad-de-red-y-puertas-de-enlace-gateways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conectividad de Red y Puertas de Enlace (Gateways)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enrutamiento-en-vpc-route-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrutamiento en VPC (Route Tables)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-groups-vs-network-access-control-lists-nacls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Groups vs. Network Access Control Lists (NACLs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Groups vs. Network Access Control Lists (NACLs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-tecnica-y-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparativa Técnica y Funcional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comportamiento-stateful-vs-stateless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comportamiento Stateful vs. Stateless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comportamiento Stateful vs. Stateless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comportamiento-con-estado-stateful-en-security-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comportamiento con Estado (Stateful) en Security Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comportamiento-sin-estado-stateless-en-network-acls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comportamiento sin Estado (Stateless) en Network ACLs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-puertos-efimeros-ephemeral-ports-en-nacls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Puertos Efímeros (Ephemeral Ports) en NACLs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Puertos Efímeros (Ephemeral Ports) en NACLs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reglas-requeridas-en-arquitecturas-con-nacls-personalizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas Requeridas en Arquitecturas con NACLs Personalizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capas-de-seguridad-en-profundidad-defense-in-depth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capas de Seguridad en Profundidad (Defense in Depth)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-storage-almacenamiento-en-bloques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block Storage (Almacenamiento en Bloques)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-storage-almacenamiento-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Storage (Almacenamiento de Archivos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-storage-almacenamiento-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Storage (Almacenamiento de Objetos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clases-de-almacenamiento-de-amazon-s3-s3-storage-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clases de Almacenamiento de Amazon S3 (S3 Storage Classes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clases de Almacenamiento de Amazon S3 (S3 Storage Classes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabla-comparativa-de-clases-de-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla Comparativa de Clases de Almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-de-recuperacion-en-la-familia-s3-glacier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Recuperación en la Familia S3 Glacier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-de-ciclo-de-vida-y-transicion-s3-lifecycle-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas de Ciclo de Vida y Transición (S3 Lifecycle Policies)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trampas-y-patrones-clave-para-certificacion-dva-c02-dop-c02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trampas y Patrones Clave para Certificación (DVA-C02 &amp; DOP-C02)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-de-versiones-en-s3-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control de Versiones en S3 (Versioning)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bases-de-datos-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bases de Datos en AWS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bases de Datos en AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beneficios-generales-de-las-bases-de-datos-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beneficios generales de las bases de datos en la nube
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-bases-de-datos-y-servicios-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de Bases de Datos y Servicios AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bases-de-datos-relacionales-conceptos-y-rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bases de Datos Relacionales (Conceptos y RDS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bases de Datos Relacionales (Conceptos y RDS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsabilidades-on-premises-vs-ec2-vs-managed-rdsaurora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsabilidades: On-Premises vs EC2 vs Managed (RDS/Aurora)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-rds-relational-database-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon RDS (Relational Database Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-dynamodb-nosql-key-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon DynamoDB (NoSQL Key-Value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitorizacion-escalado-y-balanceo-de-carga-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitorización, Escalado y Balanceo de Carga en AWS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitorización, Escalado y Balanceo de Carga en AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitorización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitorización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-cloudwatch-monitorizacion-y-observabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon CloudWatch (Monitorización y Observabilidad)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escalabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalabilidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escalabilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-escalado-vertical-vs-horizontal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Escalado (Vertical vs Horizontal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-ec2-auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EC2 Auto Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balanceo-de-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balanceo de Carga
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Balanceo de Carga">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elastic-load-balancing-elb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic Load Balancing (ELB)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elastic Load Balancing (ELB)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-principales-de-load-balancers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos principales de Load Balancers:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advance-developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advance Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-iamidentity-and-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS IAM(Identity and Access Management)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS IAM(Identity and Access Management)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionalidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS root user
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS root user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-root-user-vs-iam-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Root User vs. IAM Login
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Root User vs. IAM Login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-en-el-inicio-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias en el Inicio de Sesión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principio-de-minimo-privilegio-con-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principio de Mínimo Privilegio con IAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM roles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EC2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon EC2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-machine-image-ami" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Machine Image (AMI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instancias-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instancias EC2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenedores-vs-maquinas-virtuales-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenedores vs Máquinas Virtuales (VMs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contenedores vs Máquinas Virtuales (VMs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenedores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maquinas-virtuales-vms-y-virtualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Máquinas Virtuales (VMs) y Virtualización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servicios-de-orquestacion-de-contenedores-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Servicios de Orquestación de Contenedores en AWS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Servicios de Orquestación de Contenedores en AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-amazon-elastic-container-service-amazon-ecs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Amazon Elastic Container Service (Amazon ECS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-amazon-elastic-kubernetes-service-amazon-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Amazon Elastic Kubernetes Service (Amazon EKS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serverless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Serverless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-fargate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Fargate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Lambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-de-las-funciones-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Características de las Funciones Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Networking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Networking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-virtual-private-cloud-amazon-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Virtual Private Cloud (Amazon VPC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon Virtual Private Cloud (Amazon VPC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subnets-subredes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnets (Subredes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direccionamiento-cidr-classless-inter-domain-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direccionamiento CIDR (Classless Inter-Domain Routing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conectividad-de-red-y-puertas-de-enlace-gateways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conectividad de Red y Puertas de Enlace (Gateways)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enrutamiento-en-vpc-route-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrutamiento en VPC (Route Tables)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-groups-vs-network-access-control-lists-nacls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Groups vs. Network Access Control Lists (NACLs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Groups vs. Network Access Control Lists (NACLs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-tecnica-y-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparativa Técnica y Funcional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comportamiento-stateful-vs-stateless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comportamiento Stateful vs. Stateless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comportamiento Stateful vs. Stateless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comportamiento-con-estado-stateful-en-security-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comportamiento con Estado (Stateful) en Security Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comportamiento-sin-estado-stateless-en-network-acls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comportamiento sin Estado (Stateless) en Network ACLs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-puertos-efimeros-ephemeral-ports-en-nacls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Puertos Efímeros (Ephemeral Ports) en NACLs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Puertos Efímeros (Ephemeral Ports) en NACLs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reglas-requeridas-en-arquitecturas-con-nacls-personalizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas Requeridas en Arquitecturas con NACLs Personalizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capas-de-seguridad-en-profundidad-defense-in-depth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capas de Seguridad en Profundidad (Defense in Depth)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-storage-almacenamiento-en-bloques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block Storage (Almacenamiento en Bloques)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-storage-almacenamiento-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Storage (Almacenamiento de Archivos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-storage-almacenamiento-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Storage (Almacenamiento de Objetos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clases-de-almacenamiento-de-amazon-s3-s3-storage-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clases de Almacenamiento de Amazon S3 (S3 Storage Classes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clases de Almacenamiento de Amazon S3 (S3 Storage Classes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabla-comparativa-de-clases-de-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla Comparativa de Clases de Almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-de-recuperacion-en-la-familia-s3-glacier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Recuperación en la Familia S3 Glacier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-de-ciclo-de-vida-y-transicion-s3-lifecycle-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas de Ciclo de Vida y Transición (S3 Lifecycle Policies)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trampas-y-patrones-clave-para-certificacion-dva-c02-dop-c02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trampas y Patrones Clave para Certificación (DVA-C02 &amp; DOP-C02)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-de-versiones-en-s3-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control de Versiones en S3 (Versioning)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bases-de-datos-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bases de Datos en AWS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bases de Datos en AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beneficios-generales-de-las-bases-de-datos-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beneficios generales de las bases de datos en la nube
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-bases-de-datos-y-servicios-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de Bases de Datos y Servicios AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bases-de-datos-relacionales-conceptos-y-rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bases de Datos Relacionales (Conceptos y RDS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bases de Datos Relacionales (Conceptos y RDS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsabilidades-on-premises-vs-ec2-vs-managed-rdsaurora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsabilidades: On-Premises vs EC2 vs Managed (RDS/Aurora)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-rds-relational-database-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon RDS (Relational Database Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-dynamodb-nosql-key-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon DynamoDB (NoSQL Key-Value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitorizacion-escalado-y-balanceo-de-carga-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitorización, Escalado y Balanceo de Carga en AWS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitorización, Escalado y Balanceo de Carga en AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitorización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitorización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amazon-cloudwatch-monitorizacion-y-observabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon CloudWatch (Monitorización y Observabilidad)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escalabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalabilidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escalabilidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-escalado-vertical-vs-horizontal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategias de Escalado (Vertical vs Horizontal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-ec2-auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EC2 Auto Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balanceo-de-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balanceo de Carga
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Balanceo de Carga">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elastic-load-balancing-elb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic Load Balancing (ELB)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elastic Load Balancing (ELB)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-principales-de-load-balancers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos principales de Load Balancers:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="apuntes-aws-technical-essentials">Apuntes AWS Technical Essentials</h1>
+<h2 id="general">General</h2>
+<h2 id="aws-iamidentity-and-access-management">AWS IAM(Identity and Access Management)</h2>
+<p>Maneja el acceso seguro a las cuentas y recursos de AWS.</p>
+<h3 id="funcionalidades">Funcionalidades</h3>
+<ul>
+<li>Global.</li>
+<li>Integrado con servicios AWS.</li>
+<li>Acceso compartido a tu cuenta AWS.</li>
+<li>MFA.</li>
+<li>Identidad federada.</li>
+<li>Uso gratuito.</li>
+</ul>
+<h3 id="aws-root-user">AWS root user</h3>
+<ul>
+<li>Es el usuario registrado en la cuenta AWS principal.</li>
+<li>Te permite acceder a AWS Management Console.</li>
+</ul>
+<h4 id="best-practices">Best practices</h4>
+<ul>
+<li>Elegir una contraseña fuerte.</li>
+<li>Habilitar autenticación multifactor para el usuario root.</li>
+<li>Nunca compartir la contraseña root o las claves de acceso con nadie.</li>
+<li>Deshabilitar o borrar el acceso de claves asociadas con el usuario root.</li>
+<li>Crear un usuario IAM para tareas administrativas o tareas diarias.</li>
+</ul>
+<h4 id="access-keys">Access keys</h4>
+<ul>
+<li>Compuestas por access key ID y secret access key.</li>
+<li>Te permiten realizar solicitudes (<em>requests</em>) mediante programación desde la CLI de AWS o el SDK de AWS.</li>
+</ul>
+<h3 id="aws-root-user-vs-iam-login">AWS Root User vs. IAM Login</h3>
+<p>La gestión de accesos a una cuenta de AWS se divide fundamentalmente entre la identidad principal de control absoluto y las identidades delegadas de IAM.</p>
+<pre class="mermaid"><code>graph TD
+    subgraph RootLogin ["Root User Login"]
+        direction TB
+        R1["&lt;b&gt;Usuario Raíz (Root)&lt;/b&gt;&lt;br&gt;Acceso mediante la dirección de email de la cuenta"]
+        R2["Control total, ilimitado y de nivel administrativo supremo sobre toda la cuenta de AWS"]
+        R1 --&gt; R2
+    end
+
+    subgraph IAMLogin ["IAM Login"]
+        direction TB
+        I1["&lt;b&gt;Usuario de IAM / Federación&lt;/b&gt;&lt;br&gt;Requiere Account ID (12 dígitos) o alias + usuario/contraseña"]
+        I2["Acceso restringido según políticas y principio de mínimo privilegio"]
+        I1 --&gt; I2
+    end
+
+    style RootLogin fill:#ffcdd2,stroke:#e53935,stroke-width:2px,color:#000
+    style IAMLogin fill:#c8e6c9,stroke:#43a047,stroke-width:2px,color:#000</code></pre>
+<h4 id="diferencias-en-el-inicio-de-sesion">Diferencias en el Inicio de Sesión</h4>
+<ul>
+<li><strong>Login como Root:</strong> Se accede a la consola de gestión introduciendo directamente la dirección de correo electrónico asociada a la cuenta y su contraseña de root.</li>
+<li><strong>Login como IAM:</strong> La interfaz solicita obligatoriamente el <strong>Account ID de 12 dígitos</strong> o el alias corporativo de la cuenta antes de requerir el nombre de usuario y la contraseña de IAM, asegurando que la autenticación se resuelva dentro del espacio de nombres de esa cuenta específica.</li>
+</ul>
+<h4 id="principio-de-minimo-privilegio-con-iam">Principio de Mínimo Privilegio con IAM</h4>
+<p>Permite crear identidades acotadas (usuarios, grupos y roles) dotadas únicamente de los permisos estrictamente necesarios para desempeñar tareas operativas o de desarrollo, aislando el riesgo de seguridad frente a posibles compromisos de credenciales.</p>
+<h3 id="iam-policies">IAM policies</h3>
+<ul>
+<li>Policy: Documento que concede o deniega permisos a los servicios y recursos de AWS.</li>
+<li>Ejemplo:</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"ec2:StartInstances"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"ec2:StopInstances"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:ec2:*:*:instance/*"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+- Best practice: Seguir el principio de mínimo privilegio.</p>
+<h3 id="iam-groups">IAM groups</h3>
+<ul>
+<li>Group: Collección de usuarios IAM que heredan las politicas asignadas al grupo.</li>
+<li>Los grupos de IAM pueden tener muchos usuarios, y los usuarios pueden pertenecer a muchos grupos. Pero los grupos de IAM no pueden pertenecer a otros grupos.</li>
+<li>En el caso de que un usuario cambia entre diferentes roles a lo largo del día, es conveniente usar roles de IAM.</li>
+<li>Best practice: Asocias políticas de IAM a grupos de IAM, en lugar de a usuarios de IAM individuales.</li>
+</ul>
+<h3 id="iam-roles">IAM roles</h3>
+<ul>
+<li>Role: Identidad que puede ser asumida por una persona o un servicio para obtener acceso temporal a otros recursos o servicios de AWS.</li>
+<li>Al asumir un rol de IAM, se obtienen credenciales de seguridad temporales para la sesión.</li>
+<li>Los roles de IAM pueden ser utilizados por las siguientes entidades:<ul>
+<li>Un usuario de IAM en la misma cuenta de AWS que el rol o en una cuenta diferente.</li>
+<li>Un servicio de AWS.</li>
+<li>Un usuario externo autenticado por un servicio de proveedor de identidad (IdP) externo compatible con SAML 2.0 u OpenID Connect, o por un intermediario de identidad personalizado.</li>
+</ul>
+</li>
+<li>Puedes utilizar roles de IAM para conceder acceso a las identidades existentes en el directorio de usuarios de tu empresa, lo que se conoce como usuarios federados.</li>
+<li>Los servicios de AWS también pueden asumir un rol de IAM para realizar acciones en su cuenta de AWS en su nombre. Al configurar un servicio de AWS, debe definir un rol —que incluya todos los permisos necesarios— para que el servicio lo asuma, siguiendo los requisitos documentados para dicho servicio.</li>
+<li>Los roles asignados a un servicio de AWS son específicos de la cuenta.</li>
+<li>Best practice: Los roles de IAM son ideales para situaciones en las que se debe conceder acceso a servicios o recursos de forma <strong>temporal</strong>.</li>
+</ul>
+<h2 id="amazon-ec2">Amazon EC2</h2>
+<h3 id="amazon-machine-image-ami">Amazon Machine Image (AMI)</h3>
+<ul>
+<li>Al lanzar una instancia EC2, primero se especifica una Amazon Machine Image (AMI). </li>
+<li>Una AMI incluye el sistema operativo, la asignación de almacenamiento, el tipo de arquitectura, los permisos de lanzamiento y cualquier aplicación de software adicional preinstalada. A continuación, la AMI se copia en el volumen del dispositivo raíz. </li>
+<li>Puede utilizar una misma AMI para lanzar varias instancias EC2 con las mismas configuraciones.</li>
+</ul>
+<h3 id="instancias-ec2">Instancias EC2</h3>
+<p>El enfoque de AWS permite separar <strong>qué tipo</strong> (<em>Type</em>) de computación necesitas de <strong>cuánta</strong> (<em>Size</em>) necesitas. Esto te permite empezar con poco y redimensionar la instancia a medida que crece tu carga de trabajo, emparejando el hardware con el cuello de botella real y pagando solo por lo que usas.</p>
+<p><strong>1. Instance Type (Tipo de instancia)</strong></p>
+<p>Define la categoría de hardware de la instancia, incluyendo:</p>
+<ul>
+<li>El balance de recursos de computación, memoria y red.</li>
+<li>El tipo de procesador (Kind of processor).</li>
+</ul>
+<p><strong>2. Instance Size (Tamaño de la instancia)</strong></p>
+<p>Define qué cantidad exacta de recursos tiene asignados la instancia:</p>
+<ul>
+<li>Núcleos de CPU virtual (vCPU).</li>
+<li>Memoria del sistema (RAM).</li>
+<li>Ancho de banda de red.</li>
+<li>Almacenamiento de la instancia (Instance store).</li>
+</ul>
+<h3 id="contenedores-vs-maquinas-virtuales-vms">Contenedores vs Máquinas Virtuales (VMs)</h3>
+<h4 id="contenedores">Contenedores</h4>
+<ul>
+<li><strong>Qué es:</strong> Una unidad estandarizada que empaqueta el código de una aplicación y sus dependencias para que pueda ejecutarse en cualquier sistema operativo (OS) de forma idéntica, predecible y sin problemas de compatibilidad.</li>
+<li><strong>Ventajas frente a VMs:</strong><ul>
+<li>Comparten el mismo sistema operativo y el kernel de la máquina anfitriona (<em>host</em>).</li>
+<li>Tardan segundos en arrancar.</li>
+</ul>
+</li>
+<li><strong>Ejemplos:</strong> Plataformas de contenedorización como el motor de <strong>Docker</strong>, una plataforma de desarrollo de software para empaquetar, desplegar y ejecutar contenedores.</li>
+<li>Por lo general, las organizaciones pueden gestionar fácilmente unos pocos contenedores. A medida que se añaden más contenedores en múltiples instancias EC2 distribuidas entre zonas de disponibilidad, la gestión de los despliegues de contenedores —así como de los fallos tanto de los contenedores como de las instancias— puede volverse compleja. Para abordar esta situación, AWS ofrece servicios de orquestación de contenedores.</li>
+</ul>
+<h4 id="maquinas-virtuales-vms-y-virtualizacion">Máquinas Virtuales (VMs) y Virtualización</h4>
+<ul>
+<li><strong>Plataformas de virtualización:</strong> Utilizan un hipervisor (<em>hypervisor</em>).</li>
+<li><strong>Tipos de Hipervisores:</strong><ul>
+<li><strong>Type-1 (Nativo / Bare-metal):</strong> Se ejecuta directamente sobre el servidor físico (hardware) para controlarlo y gestionar los sistemas operativos invitados.</li>
+<li><strong>Type-2 (Hosted / Hospedado):</strong> Se ejecuta sobre un sistema operativo convencional.</li>
+</ul>
+</li>
+</ul>
+<h3 id="servicios-de-orquestacion-de-contenedores-en-aws">Servicios de Orquestación de Contenedores en AWS</h3>
+<p>AWS ofrece dos servicios principales para gestionar y escalar contenedores:</p>
+<h4 id="1-amazon-elastic-container-service-amazon-ecs">1. Amazon Elastic Container Service (Amazon ECS)</h4>
+<ul>
+<li><strong>Qué es:</strong> Un sistema de gestión de contenedores altamente escalable y de alto rendimiento que permite ejecutar y escalar aplicaciones contenedorizadas.</li>
+<li><strong>Funcionamiento:</strong> Utiliza llamadas a la API para controlar aplicaciones habilitadas para Docker. Para gestionar los contenedores en las instancias EC2, requiere instalar un agente de código abierto (<em>Amazon ECS container agent</em>) en dichas instancias (tanto en AMIs de Linux como de Windows).</li>
+</ul>
+<h4 id="2-amazon-elastic-kubernetes-service-amazon-eks">2. Amazon Elastic Kubernetes Service (Amazon EKS)</h4>
+<ul>
+<li><strong>Qué es:</strong> Un servicio gestionado para ejecutar y escalar aplicaciones utilizando <strong>Kubernetes</strong> (una plataforma de código abierto portable y extensible) tanto en la nube de AWS como en entornos <em>on-premises</em>.</li>
+<li><strong>Características:</strong> Permite crear clústeres altamente disponibles y seguros, automatizando tareas pesadas como la aplicación de parches (<em>patching</em>), el aprovisionamiento de nodos (<em>node provisioning</em>) y las actualizaciones.</li>
+</ul>
+<h2 id="serverless">Serverless</h2>
+<ul>
+<li>Ventajas:<ul>
+<li>Sin servidores que aprovisionar o gestionar.</li>
+<li>Se escala según el uso.</li>
+<li>Solo se paga por los recursos utilizados.</li>
+<li>Disponibilidad y tolerancia a fallos integradas.</li>
+</ul>
+</li>
+</ul>
+<h3 id="aws-fargate">AWS Fargate</h3>
+<h3 id="aws-lambda">AWS Lambda</h3>
+<ul>
+<li>Servicio de computación sin servidor (<em>serverless</em>) que permite ejecutar código sin aprovisionar ni gestionar servidores.</li>
+<li>Solo pagas por el tiempo de computación que consumes; no hay cargos cuando el código no se está ejecutando.</li>
+<li><strong>Administración cero:</strong> Solo subes el código y AWS se encarga de todo lo necesario para ejecutarlo y escalarlo con alta disponibilidad. Se puede lanzar automáticamente desde otros servicios de AWS o llamarlo directamente desde aplicaciones web/móviles.</li>
+<li><strong>Event Source (Fuente de eventos):</strong> El origen que invoca la llamada.</li>
+<li><strong>Language Choice:</strong> Elección del lenguaje de programación.</li>
+<li><strong>Execution Environment:</strong> Permisos y recursos necesarios para la ejecución.</li>
+</ul>
+<h4 id="caracteristicas-de-las-funciones-lambda">Características de las Funciones Lambda</h4>
+<ul>
+<li>El código se sube como una <strong>función Lambda</strong>, la cual incluye información de configuración (nombre, descripción, punto de entrada (<em>entry point</em>) y requisitos de recursos). Puede empaquetar librerías (incluso nativas).</li>
+<li><strong>Diseño Stateless (Sin estado):</strong> El código debe ser apátrida; no debe asumir ninguna afinidad con la infraestructura subyacente. <ul>
+<li>El acceso al sistema de archivos local, procesos hijos y artefactos similares no duran más allá del tiempo de vida de la solicitud.</li>
+<li>Cualquier estado persistente debe almacenarse en servicios externos como Amazon S3 o Amazon DynamoDB.</li>
+</ul>
+</li>
+</ul>
+<h2 id="aws-networking">AWS Networking</h2>
+<h3 id="amazon-virtual-private-cloud-amazon-vpc">Amazon Virtual Private Cloud (Amazon VPC)</h3>
+<ul>
+<li>Permite definir y aprovisionar una red virtual en la nube de AWS para tus recursos, similar a una red tradicional de centro de datos.</li>
+<li>Al crear una VPC, se debe indicar:<ul>
+<li>Región</li>
+<li>Nombre</li>
+<li>Rango de direcciones IP (bloque CIDR primario)</li>
+</ul>
+</li>
+<li>Una VPC <strong>se extiende a lo largo de múltiples Availability Zones (AZs)</strong> en la Región seleccionada.</li>
+</ul>
+<h4 id="subnets-subredes">Subnets (Subredes)</h4>
+<ul>
+<li>Redes más pequeñas dentro de una VPC donde se ubican los recursos de AWS. Su propósito es localizar recursos en una AZ específica y separar recursos por seguridad o rutas de acceso.</li>
+<li><strong>Alta Disponibilidad:</strong> Para garantizarla, se recomienda crear subredes públicas y privadas en al menos <strong>dos AZs diferentes</strong>.</li>
+<li><strong>Configuración de enrutamiento:</strong> Se aplica a nivel de subred para determinar si son públicas (con acceso a internet) o privadas.</li>
+</ul>
+<h4 id="direccionamiento-cidr-classless-inter-domain-routing">Direccionamiento CIDR (Classless Inter-Domain Routing)</h4>
+<ul>
+<li>Método para especificar rangos de IPs mediante una barra (<code>/</code>) y un número (ej. <code>192.168.1.0/24</code>, donde los primeros 24 bits son fijos).</li>
+</ul>
+<blockquote>
+<p><strong>Nota de AWS:</strong> AWS reserva <strong>5 direcciones IP</strong> en cada subred (para la dirección de red, el router, el DNS, uso futuro y la dirección de broadcast). Por tanto, en una subred <code>/24</code> (que da 256 IPs teóricas), quedan <strong>251 direcciones disponibles</strong>.</p>
+</blockquote>
+<ul>
+<li><strong>IPs Privadas (IANA):</strong> Los bloques reservados para redes privadas son <code>10.x.x.x</code>, <code>172.16.x.x - 172.31.x.x</code> y <code>192.168.x.x</code>. Las IPs para conectividad externa pública deben obtenerse de un registro de internet y no pertenecen a estos rangos.</li>
+</ul>
+<h4 id="conectividad-de-red-y-puertas-de-enlace-gateways">Conectividad de Red y Puertas de Enlace (Gateways)</h4>
+<ul>
+<li><strong>Internet Gateway:</strong> Conecta tu VPC a internet de forma altamente disponible y escalable.</li>
+<li><strong>NAT Gateway:</strong> Permite que los recursos de una <em>subred privada</em> salgan a internet bloqueando las conexiones entrantes desde el exterior. Se debe crear un NAT gateway en <strong>cada AZ</strong> para mantener la alta disponibilidad.</li>
+<li><strong>Virtual Private Gateway:</strong> Conecta de forma encriptada tu centro de datos <em>on-premises</em> con la VPC (VPN). Pasos: <ol>
+<li>Crear el virtual private gateway y adjuntarlo a la VPC.</li>
+<li>Crear un <em>customer gateway</em> conectado al data center local.</li>
+<li>Establecer la conexión VPN.</li>
+</ol>
+</li>
+<li><strong>AWS Direct Connect:</strong> Establece una conexión física segura (cable de fibra óptica Ethernet estándar) entre el data center local y la VPC, reduciendo costes de red y aumentando el ancho de banda.</li>
+</ul>
+<h4 id="enrutamiento-en-vpc-route-tables">Enrutamiento en VPC (Route Tables)</h4>
+<ul>
+<li>Las <strong>tablas de rutas</strong> controlan hacia dónde se dirige el tráfico de red.</li>
+<li>Cada subred está asociada a una tabla de rutas (varias subredes pueden compartir una tabla, pero una subred no puede tener múltiples tablas).</li>
+<li>Cada ruta contiene un <strong>destino</strong> (rango CIDR) y un <strong>objetivo (target)</strong> (la ruta que debe seguir).</li>
+<li><strong>Ruta local:</strong> Siempre está presente y no se puede borrar (permite tráfico entre subredes de la VPC).</li>
+<li><strong>Acceso a Internet (Público):</strong> Destino <code>0.0.0.0/0</code> (todo el tráfico restante) apuntando al ID del Internet Gateway (<code>igw-xxxx</code>).</li>
+<li><strong>Acceso a Internet desde Subred Privada:</strong> Requiere crear un NAT Gateway con una Elastic IP en la subred pública y actualizar la tabla de rutas de la subred privada para apuntar a dicho NAT Gateway.</li>
+</ul>
+<h3 id="security-groups-vs-network-access-control-lists-nacls">Security Groups vs. Network Access Control Lists (NACLs)</h3>
+<p>El control de la seguridad de red en Amazon VPC se implementa mediante dos capas complementarias de filtrado que operan en diferentes niveles de la arquitectura y con distintos modelos de gestión de estado.</p>
+<h4 id="comparativa-tecnica-y-funcional">Comparativa Técnica y Funcional</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Security Groups</th>
+<th style="text-align: left;">Network ACLs (NACLs)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Nivel de Operación</strong></td>
+<td style="text-align: left;">Nivel de instancia / Interfaz de red elástica (ENI)</td>
+<td style="text-align: left;">Nivel de subred</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gestión de Estado</strong></td>
+<td style="text-align: left;"><strong>Stateful</strong> (Con estado)</td>
+<td style="text-align: left;"><strong>Stateless</strong> (Sin estado)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tipos de Reglas</strong></td>
+<td style="text-align: left;">Solo reglas de tipo <strong>Allow</strong> (Permitir)</td>
+<td style="text-align: left;">Reglas de tipo <strong>Allow</strong> y <strong>Deny</strong> (Denegar)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Evaluación de Reglas</strong></td>
+<td style="text-align: left;">Se evalúan todas las reglas antes de tomar una decisión</td>
+<td style="text-align: left;">Se procesan en orden numérico secuencial estricto (de menor a mayor número)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Configuración por Defecto</strong></td>
+<td style="text-align: left;">Bloquea todo el tráfico entrante; permite todo el tráfico saliente</td>
+<td style="text-align: left;">La NACL predeterminada permite todo el tráfico de entrada y salida</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>NACL Personalizada</strong></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Bloquea todo el tráfico de entrada y salida hasta añadir reglas explícitas</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comportamiento-stateful-vs-stateless">Comportamiento Stateful vs. Stateless</h4>
+<h5 id="comportamiento-con-estado-stateful-en-security-groups">Comportamiento con Estado (Stateful) en Security Groups</h5>
+<ul>
+<li>Si se permite una petición entrante mediante una regla <em>Inbound</em>, el tráfico de respuesta saliente se permite automáticamente sin necesidad de configurar una regla <em>Outbound</em> equivalente.</li>
+<li>Si se autoriza una conexión saliente mediante una regla <em>Outbound</em>, la respuesta entrante asociada se permite automáticamente sin requerir reglas <em>Inbound</em>.</li>
+</ul>
+<h5 id="comportamiento-sin-estado-stateless-en-network-acls">Comportamiento sin Estado (Stateless) en Network ACLs</h5>
+<ul>
+<li>No existe seguimiento de sesiones ni memoria de conexiones activas.</li>
+<li>Cada paquete de red se evalúa de forma independiente en ambas direcciones: para que una comunicación sea exitosa, debe existir una regla explícita en la tabla <em>Inbound</em> para el tráfico entrante y una regla explícita en la tabla <em>Outbound</em> para el tráfico de respuesta saliente.</li>
+</ul>
+<p><strong>1. FLUJO STATEFUL (SECURITY GROUPS - Nivel de Instancia)</strong>
+<div class="highlight"><pre><span></span><code>[ Instancia A (Cliente) ]          [ Instancia B (Servidor Web) ]
+ Security Group A (SG-A)               Security Group B (SG-B)
+     |                                       |
+     |--- Petición HTTPS  ------------------&gt;|  (SG-B: Requiere Inbound 443)
+     |    (Destino: Puerto 443)              |
+     |    (SG-A: Requiere Outbound 443)      |
+     |                                       |
+     |&lt;-- Respuesta HTTPS  ------------------|  (SG-B: NO requiere Outbound)
+          (Automática por Stateful)
+          (SG-A: NO requiere Inbound)
+</code></pre></div>
+<strong>2. FLUJO STATELESS (NETWORK ACLs - Nivel de Subred)</strong>
+<div class="highlight"><pre><span></span><code>  [ Subred Cliente ]                [ Subred Servidor ]
+   NACL Subred Cliente               NACL Subred Servidor
+       |                                 |
+       |--- Petición HTTPS  ------------&gt;|  (NACL Servidor: Inbound 443)
+       |    (Puerto Destino: 443)        |
+       |    (NACL Cliente: Outbound 443) |
+       |                                 |
+       |&lt;-- Respuesta HTTPS  ------------|  (NACL Servidor: Outbound 1024-65535)
+            (Hacia Puerto Efímero)
+            (NACL Cliente: Inbound 1024-65535)
+</code></pre></div></p>
+<h4 id="gestion-de-puertos-efimeros-ephemeral-ports-en-nacls">Gestión de Puertos Efímeros (Ephemeral Ports) en NACLs</h4>
+<p>Cuando un cliente establece una conexión saliente hacia un servicio externo (ej. peticiones HTTPS al puerto 443), el sistema operativo del cliente selecciona dinámicamente un puerto de origen denominado puerto efímero, ubicado dentro del rango 1024 - 65535.</p>
+<h5 id="reglas-requeridas-en-arquitecturas-con-nacls-personalizadas">Reglas Requeridas en Arquitecturas con NACLs Personalizadas</h5>
+<ul>
+<li><strong>Subred del Cliente</strong> (Petición Saliente):<ul>
+<li><strong>Regla Outbound:</strong> Permitir tráfico hacia la IP de destino en el puerto de servicio (TCP 443).</li>
+<li><strong>Regla Inbound:</strong> Permitir tráfico de retorno desde la IP del servidor en el rango de puertos efímeros (TCP 1024-65535).</li>
+</ul>
+</li>
+<li><strong>Subred del Servidor</strong> (Recepción de Tráfico):<ul>
+<li><strong>Regla Inbound:</strong> Permitir tráfico entrante en el puerto de escucha (TCP 443) desde el origen correspondiente.</li>
+<li><strong>Regla Outbound:</strong> Permitir tráfico de respuesta saliente hacia el rango de puertos efímeros (TCP 1024-65535) del cliente.</li>
+</ul>
+</li>
+</ul>
+<h4 id="capas-de-seguridad-en-profundidad-defense-in-depth">Capas de Seguridad en Profundidad (Defense in Depth)</h4>
+<ul>
+<li>
+<p><strong>Nivel de Subred</strong> (NACLs): Actúa como firewall perimetral de la subred para filtrar o bloquear rangos CIDR completos o IPs específicas mediante reglas de denegación explícita (Deny).</p>
+</li>
+<li>
+<p><strong>Nivel de Instancia</strong> (Security Groups): Actúa como firewall virtual a nivel de interfaz de red (ENI) para permitir tráfico granular entre recursos específicos o grupos de seguridad referenciados.</p>
+</li>
+<li>
+<p><strong>Nivel de Sistema Operativo</strong> (Host-Based Firewalls): Firewalls internos del sistema operativo (como Windows Defender Firewall o iptables/nftables en Linux) que aplican filtrado a nivel de proceso o inspección adicional de paquetes en el host.   </p>
+</li>
+</ul>
+<h2 id="aws-storage">AWS Storage</h2>
+<ul>
+<li>Tipos de almacenamiento:</li>
+<li>Block storage.</li>
+<li>File storage.</li>
+<li>Object storage.</li>
+</ul>
+<h3 id="block-storage-almacenamiento-en-bloques">Block Storage (Almacenamiento en Bloques)</h3>
+<ul>
+<li><strong>Funcionamiento:</strong> Los datos se almacenan en dispositivos divididos en bloques de tamaño fijo (ej. 512 bytes). Las aplicaciones y sistemas de archivos regulan cómo se acceden, combinan y modifican.</li>
+<li><strong>Servicios principales en AWS:</strong><ul>
+<li><strong>Amazon EC2 Instance Store:</strong> Almacenamiento temporal a nivel de bloque ubicado en el mismo servidor físico que hospeda la instancia EC2. <em>Los datos se pierden</em> al detener o terminar la instancia.</li>
+<li><strong>Amazon EBS (Elastic Block Store):</strong> Almacenamiento desacoplable asociado a una Availability Zone (como un disco duro externo). Los datos se conservan aunque detengas o termines la instancia, permitiendo desconectar el volumen y reasignarlo a otra máquina.</li>
+</ul>
+</li>
+<li><strong>Características clave de EBS:</strong><ul>
+<li><strong>Snapshots:</strong> Copias de seguridad completas e incrementales que permiten respaldar volúmenes a otra AZ o usarlas en nuevas instancias.</li>
+<li><strong>Multi-Attach:</strong> Permite adjuntar un solo volumen Provisioned IOPS SSD (io1 o io2) a múltiples instancias dentro de <em>la misma AZ</em>, ideal para aplicaciones Linux en clúster con escrituras concurrentes.</li>
+<li><strong>Tipos de volúmenes:</strong> <ul>
+<li><em>SSD:</em> Para cargas de trabajo aleatorias moderadas/medias y reemplazo de SAN de alto rendimiento.</li>
+<li><em>HDD:</em> Para cargas muy modestas o de <em>streaming</em> de alto rendimiento (no aptos como discos de arranque).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="file-storage-almacenamiento-de-archivos">File Storage (Almacenamiento de Archivos)</h3>
+<ul>
+<li><strong>Funcionamiento:</strong> Permite a usuarios, aplicaciones y servicios acceder a los datos mediante un sistema de archivos compartido (similar a una unidad de red centralizada).</li>
+<li><strong>Servicios principales en AWS:</strong><ul>
+<li><strong>Amazon EFS (Elastic File System):</strong> Sistema de archivos escalable compatible con servicios Cloud y recursos <em>on-premises</em> (estos últimos a través de AWS Direct Connect). Soporta miles de conexiones simultáneas desde instancias EC2 en <em>múltiples AZs</em> usando el protocolo estándar NFSv4.</li>
+<li><strong>Amazon FSx for Windows File Servers:</strong> Almacenamiento de archivos totalmente gestionado accesible mediante el protocolo estándar SMB. Ofrece opciones de despliegue Single-AZ/Multi-AZ, integración con Active Directory, backups gestionados y soporte para discos HDD y SSD.</li>
+</ul>
+</li>
+</ul>
+<h3 id="object-storage-almacenamiento-de-objetos">Object Storage (Almacenamiento de Objetos)</h3>
+<ul>
+<li><strong>Funcionamiento:</strong> Los archivos se almacenan como <strong>objetos</strong>. Cada objeto consta de <strong>datos</strong>, <strong>metadatos</strong> (tamaño, propósito, fecha de modificación, etc.) y una <strong>clave de objeto</strong> (<em>object key</em>, que actúa como identificador único). </li>
+<li><em>Diferencia clave con bloques:</em> Al actualizar un archivo, <strong>se actualiza el objeto completo</strong>, no partes individuales de este.</li>
+<li><strong>Amazon S3 (Simple Storage Service):</strong><ul>
+<li>Servicio de almacenamiento a nivel de objeto altamente escalable (almacenamiento ilimitado). El tamaño máximo por archivo es de <strong>5 TB</strong>.</li>
+<li>Los objetos se guardan dentro de <strong>S3 Buckets</strong> (similares a carpetas). El nombre del bucket debe ser <strong>único a nivel global</strong>, aunque se cree dentro de una Región específica.</li>
+<li><strong>Identificador único:</strong> Se compone de <code>Nombre de Bucket + Key + Version ID</code>.</li>
+<li><strong>Seguridad por defecto:</strong> Los buckets son privados por defecto y S3 Block Public Access viene habilitado de serie. Se gestiona el acceso mediante <strong>IAM Policies</strong>, <strong>Bucket Policies</strong> (máx 20 KB) y <strong>ACLs</strong>. Los datos se pueden cifrar en tránsito (SSL/TLS) y en reposo (Server-side encryption o Client-side encryption).</li>
+</ul>
+</li>
+</ul>
+<h3 id="clases-de-almacenamiento-de-amazon-s3-s3-storage-classes">Clases de Almacenamiento de Amazon S3 (S3 Storage Classes)</h3>
+<p>Amazon S3 ofrece distintas clases de almacenamiento diseñadas para optimizar costes según la frecuencia de acceso, los tiempos de recuperación requeridos y la resiliencia geográfica.</p>
+<ul>
+<li><strong>S3 Standard:</strong> Clase predeterminada para datos de acceso frecuente y propósito general; distribuida en al menos 3 Zonas de Disponibilidad (AZs).</li>
+<li><strong>S3 Intelligent-Tiering:</strong> Optimiza costes monitorizando patrones de acceso y moviendo automáticamente los objetos entre niveles sin impacto en el rendimiento ni tarifas de recuperación.</li>
+<li><strong>S3 Standard-IA (Infrequent Access):</strong> Para datos a los que se accede con poca frecuencia pero que exigen disponibilidad inmediata en milisegundos (mínimo 3 AZs; menor coste por GB con tarifa por GB recuperado).</li>
+<li><strong>S3 One Zone-IA:</strong> Para datos poco frecuentes y fácilmente reproducibles; se almacenan en una <strong>única AZ</strong> para reducir costes un 20% respecto a Standard-IA.</li>
+<li><strong>S3 Glacier Instant Retrieval:</strong> Almacenamiento de archivo para datos de acceso trimestral o semestral que requieren entrega inmediata en <strong>milisegundos</strong>.</li>
+<li><strong>S3 Glacier Flexible Retrieval:</strong> Archivo clásico con tiempos de recuperación configurables de minutos a horas (no apto para acceso en tiempo real).</li>
+<li><strong>S3 Glacier Deep Archive:</strong> Archivo seguro de ultra bajo coste para retención a largo plazo (7-10 años) con tiempos de recuperación de 12 a 48 horas.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+    subgraph G1 ["Acceso Frecuente (Mayor coste almacenamiento / Recuperación en ms)"]
+        direction LR
+        T1["&lt;b&gt;S3 Standard&lt;/b&gt;&lt;br&gt;Datos activos · Multi-AZ"]:::cHot ~~~ T2["&lt;b&gt;S3 Intelligent-Tiering&lt;/b&gt;&lt;br&gt;Patrones variables · Auto-tiering"]:::cHot
+    end
+
+    subgraph G2 ["Acceso Poco Frecuente (Menor coste almacenamiento / Tarifa por GB recuperado)"]
+        direction LR
+        T3["&lt;b&gt;S3 Standard-IA&lt;/b&gt;&lt;br&gt;Poco frecuente · Multi-AZ"]:::cWarm ~~~ T4["&lt;b&gt;S3 One Zone-IA&lt;/b&gt;&lt;br&gt;Datos reproducibles · 1 sola AZ"]:::cWarm
+    end
+
+    subgraph G3 ["Archivo y Retención Fría (Mínimo coste almacenamiento / Mayor tiempo o coste recuperación)"]
+        direction LR
+        T5["&lt;b&gt;Glacier Instant&lt;/b&gt;&lt;br&gt;Acceso raro · ms"]:::cCold ~~~ T6["&lt;b&gt;Glacier Flexible&lt;/b&gt;&lt;br&gt;1-5 min a 12 h"]:::cCold ~~~ T7["&lt;b&gt;Glacier Deep Archive&lt;/b&gt;&lt;br&gt;12 a 48 horas"]:::cDeepCold
+    end
+
+    G1 --&gt; G2 --&gt; G3
+
+    classDef cHot fill:#ffcdd2,stroke:#e53935,stroke-width:2px,color:#000;
+    classDef cWarm fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,color:#000;
+    classDef cCold fill:#b3e5fc,stroke:#039be5,stroke-width:2px,color:#000;
+    classDef cDeepCold fill:#c5cae9,stroke:#3f51b5,stroke-width:2px,color:#000
+</code></pre>
+<h4 id="tabla-comparativa-de-clases-de-almacenamiento">Tabla Comparativa de Clases de Almacenamiento</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Clase de Almacenamiento</th>
+<th style="text-align: left;">Caso de Uso Principal en Examen</th>
+<th style="text-align: left;">Durabilidad</th>
+<th style="text-align: left;">Disponibilidad</th>
+<th style="text-align: left;">Zonas Disp. (AZ)</th>
+<th style="text-align: left;">Tiempo de Recuperación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>S3 Standard</strong></td>
+<td style="text-align: left;">Cargas activas, contenido web dinámico, analítica frecuente.</td>
+<td style="text-align: left;">99.999999999% (11 9s)</td>
+<td style="text-align: left;">99.99%</td>
+<td style="text-align: left;"><span class="arithmatex">\(\ge 3\)</span></td>
+<td style="text-align: left;">Inmediato (ms)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S3 Intelligent-Tiering</strong></td>
+<td style="text-align: left;">Datos con patrones de acceso desconocidos, impredecibles o cambiantes.</td>
+<td style="text-align: left;">11 9s</td>
+<td style="text-align: left;">99.9%</td>
+<td style="text-align: left;"><span class="arithmatex">\(\ge 3\)</span></td>
+<td style="text-align: left;">Inmediato (ms)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S3 Standard-IA</strong></td>
+<td style="text-align: left;">Backups críticos, recuperación ante desastres a largo plazo.</td>
+<td style="text-align: left;">11 9s</td>
+<td style="text-align: left;">99.9%</td>
+<td style="text-align: left;"><span class="arithmatex">\(\ge 3\)</span></td>
+<td style="text-align: left;">Inmediato (ms)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S3 One Zone-IA</strong></td>
+<td style="text-align: left;">Copias secundarias de backups o datos prescindibles/fácilmente reproducibles.</td>
+<td style="text-align: left;">11 9s</td>
+<td style="text-align: left;">99.5%</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Inmediato (ms)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S3 Glacier Instant Retrieval</strong></td>
+<td style="text-align: left;">Archivos médicos, registros o imágenes con acceso poco frecuente pero entrega en ms.</td>
+<td style="text-align: left;">11 9s</td>
+<td style="text-align: left;">99.9%</td>
+<td style="text-align: left;"><span class="arithmatex">\(\ge 3\)</span></td>
+<td style="text-align: left;">Inmediato (ms)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S3 Glacier Flexible Retrieval</strong></td>
+<td style="text-align: left;">Archivo general y copias de seguridad donde no se requiere latencia en ms.</td>
+<td style="text-align: left;">11 9s</td>
+<td style="text-align: left;">99.9%</td>
+<td style="text-align: left;"><span class="arithmatex">\(\ge 3\)</span></td>
+<td style="text-align: left;">1-5 min / 3-5 h / 5-12 h</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S3 Glacier Deep Archive</strong></td>
+<td style="text-align: left;">Retención legal, auditorías regulatorias y archivo a largo plazo (7-10 años).</td>
+<td style="text-align: left;">11 9s</td>
+<td style="text-align: left;">99.9%</td>
+<td style="text-align: left;"><span class="arithmatex">\(\ge 3\)</span></td>
+<td style="text-align: left;">12 h / 48 h</td>
+</tr>
+</tbody>
+</table>
+<h4 id="modos-de-recuperacion-en-la-familia-s3-glacier">Modos de Recuperación en la Familia S3 Glacier</h4>
+<p>Para las clases de archivo no instantáneas, AWS ofrece diferentes velocidades de extracción (<em>Retrieval Tiers</em>):</p>
+<ul>
+<li><strong>S3 Glacier Flexible Retrieval:</strong><ul>
+<li><em>Expedited:</em> Recuperación urgente en <strong>1 a 5 minutos</strong> (mayor coste por GB recuperado).</li>
+<li><em>Standard:</em> Recuperación estándar en <strong>3 a 5 horas</strong>.</li>
+<li><em>Bulk:</em> Recuperación masiva económica en <strong>5 a 12 horas</strong>.</li>
+</ul>
+</li>
+<li><strong>S3 Glacier Deep Archive:</strong><ul>
+<li><em>Standard:</em> Recuperación estándar en <strong>12 horas</strong>.</li>
+<li><em>Bulk:</em> Recuperación masiva económica en <strong>48 horas</strong>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="reglas-de-ciclo-de-vida-y-transicion-s3-lifecycle-policies">Reglas de Ciclo de Vida y Transición (S3 Lifecycle Policies)</h4>
+<p>Permiten automatizar la reducción de costes de almacenamiento moviendo objetos entre clases o programando su eliminación definitiva:</p>
+<ul>
+<li><strong>Acciones de Transición (<em>Transition Actions</em>):</strong> Definen cuándo los objetos deben migrar a una clase de almacenamiento más económica.<ul>
+<li><em>Flujo en cascada típico:</em> <code>S3 Standard</code> <span class="arithmatex">\(\rightarrow\)</span> Día 30 a <code>S3 Standard-IA</code> <span class="arithmatex">\(\rightarrow\)</span> Día 90 a <code>S3 Glacier Flexible Retrieval</code> o <code>Glacier Deep Archive</code> <span class="arithmatex">\(\rightarrow\)</span> Día 365: Eliminación (<em>Expiration</em>).</li>
+</ul>
+</li>
+<li><strong>Acciones de Expiración (<em>Expiration Actions</em>):</strong> Definen cuándo se eliminan permanentemente los objetos o caducan los marcadores de eliminación (<em>Delete Markers</em>) huérfanos.</li>
+<li><strong>Gestión de Versiones Anteriores (<em>Noncurrent Versions</em>):</strong> En buckets con versionado activado, permite configurar reglas independientes (<code>NoncurrentVersionTransition</code> y <code>NoncurrentVersionExpiration</code>) para mover o borrar versiones obsoletas de objetos sin alterar la versión actual.</li>
+</ul>
+<h4 id="trampas-y-patrones-clave-para-certificacion-dva-c02-dop-c02">Trampas y Patrones Clave para Certificación (DVA-C02 &amp; DOP-C02)</h4>
+<ul>
+<li><strong>Criterio de Decisión para S3 Intelligent-Tiering:</strong> Si el escenario menciona <em>patrones de acceso impredecibles, desconocidos o estacionales</em> y exige optimizar costes <strong>sin riesgo operativo ni tarifas por recuperación de datos por GB</strong>, la respuesta correcta es <strong>S3 Intelligent-Tiering</strong>.</li>
+<li><strong>Riesgo de Pérdida de Datos en S3 One Zone-IA:</strong> Al almacenar los datos en una única Zona de Disponibilidad, la pérdida o desastre físico en esa AZ provoca la destrucción permanente de los datos. <strong>Nunca</strong> debe seleccionarse para datos irremplazables o sin respaldo externo.</li>
+<li><strong>Sobrecostes por Tamaño Mínimo Facturable:</strong> Las clases <code>IA</code>, <code>Glacier Instant</code>, <code>Glacier Flexible</code> y <code>Glacier Deep Archive</code> aplican una facturación mínima de <strong>128 KB por objeto</strong>. Si una aplicación almacena millones de archivos pequeños (ej. archivos JSON o logs de 5 KB), moverlos a Glacier o Standard-IA <strong>incrementará la factura total</strong> debido al redondeo a 128 KB y a las tarifas de solicitud de API (<code>PUT/LIST/Lifecycle transition requests</code>).</li>
+<li><strong>Penalización por Eliminación Temprana (<em>Early Deletion Fee</em>):</strong> Borrar, sobrescribir o transicionar un objeto antes de su límite mínimo de retención (30 días en IA, 90 días en Glacier Flexible/Instant, 180 días en Deep Archive) genera el cobro del prorrateo completo de los días restantes como si hubiera permanecido almacenado.</li>
+</ul>
+<h4 id="control-de-versiones-en-s3-versioning">Control de Versiones en S3 (<em>Versioning</em>)</h4>
+<ul>
+<li>Se habilita a nivel de bucket (por defecto viene deshabilitado).</li>
+<li>Conserva múltiples versiones de un objeto en el mismo bucket, protegiéndolo de borrados accidentales y sobrescrituras.</li>
+<li><strong>MFA Delete:</strong> Capacidad de seguridad adicional que exige autenticación multifactor para borrar permanentemente una versión o cambiar el estado de versionado del bucket.</li>
+<li><strong>Comportamiento de Borrado (<em>Delete Markers</em>):</strong><ul>
+<li>Una solicitud simple de <code>DELETE</code> sobre un objeto versionado no elimina los datos; inserta un <strong>Delete Marker</strong> que pasa a ser la versión actual.</li>
+<li>Si se solicita un <code>GET</code> sin especificar <code>versionId</code>, S3 devuelve un error <code>404 Not Found</code>.</li>
+<li>Para eliminar permanentemente un objeto, se debe enviar una solicitud de borrado especificando de forma explícita el <strong><code>versionId</code></strong>.</li>
+</ul>
+</li>
+<li><strong>Estados de Versionado de un Bucket:</strong><ul>
+<li><em>Unversioned (por defecto):</em> Sin versionado activo; los objetos no tienen identificador de versión.</li>
+<li><em>Versioning-enabled:</em> Todos los objetos nuevos y modificaciones reciben un <code>Version ID</code> único generado por S3.</li>
+<li><em>Versioning-suspended:</em> Una vez activado, el versionado <strong>no se puede desactivar</strong>, solo suspender. Los objetos nuevos obtienen <code>Version ID: null</code> y se conservan intactas todas las versiones previas existentes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="bases-de-datos-en-aws">Bases de Datos en AWS</h2>
+<h3 id="beneficios-generales-de-las-bases-de-datos-en-la-nube">Beneficios generales de las bases de datos en la nube</h3>
+<ul>
+<li><strong>Purpose-built (Específicas para cada propósito):</strong> AWS soporta más de 15 motores de bases de datos especializados (relacionales, clave-valor, documentos, etc.) para construir aplicaciones altamente escalables.</li>
+<li><strong>Performance at scale (Rendimiento a escala):</strong> Bases de datos hasta 3-5 veces más rápidas que alternativas populares, o NoSQL con latencias de microsegundos o submilisegundos (ej. Amazon Aurora ofrece 5 veces el rendimiento de MySQL estándar y 3 veces el de PostgreSQL).</li>
+<li><strong>Fully managed (Totalmente gestionadas):</strong> AWS se encarga de tareas como aprovisionamiento, parches, configuración y backups.</li>
+<li><strong>Secure and highly available:</strong> Alta disponibilidad, fiabilidad y seguridad con soporte multi-región y cifrado de extremo a extremo.</li>
+</ul>
+<h3 id="tipos-de-bases-de-datos-y-servicios-aws">Tipos de Bases de Datos y Servicios AWS</h3>
+<ul>
+<li><strong>Relational (Relacionales):</strong> Tablas con filas y columnas (estructuras predefinidas). Aplicaciones ERP, CRM, ecommerce. <ul>
+<li><em>Servicios:</em> Amazon Aurora, Amazon RDS, Amazon Redshift.</li>
+</ul>
+</li>
+<li><strong>Key-value (Clave-valor):</strong> Optimizadas para lectura/escritura de grandes volúmenes. Webs de alto tráfico, ecommerce, gaming.<ul>
+<li><em>Servicios:</em> Amazon DynamoDB.</li>
+</ul>
+</li>
+<li><strong>In-memory (En memoria):</strong> Para acceso en tiempo real. Caché, gestión de sesiones, tablas de clasificación (<em>leaderboards</em>).<ul>
+<li><em>Servicios:</em> Amazon ElastiCache (Memcached, Redis), Amazon MemoryDB.</li>
+</ul>
+</li>
+<li><strong>Document (Documentales):</strong> Datos semi-estructurados en formato JSON. Gestión de contenido, catálogos, perfiles de usuario.<ul>
+<li><em>Servicios:</em> Amazon DocumentDB.</li>
+</ul>
+</li>
+<li><strong>Wide column (Columnas anchas):</strong> NoSQL para aplicaciones industriales a gran escala. Mantenimiento de equipos, flotas.<ul>
+<li><em>Servicios:</em> Amazon Keyspaces.</li>
+</ul>
+</li>
+<li><strong>Graph (Grafos):</strong> Consultas de millones de millones de relaciones altamente conectadas. Detección de fraudes, redes sociales, motores de recomendación.<ul>
+<li><em>Servicios:</em> Amazon Neptune.</li>
+</ul>
+</li>
+<li><strong>Time series (Series temporales):</strong> Datos que cambian con el tiempo. IoT, DevOps, telemetría industrial.<ul>
+<li><em>Servicios:</em> Amazon Timestream.</li>
+</ul>
+</li>
+<li><strong>Ledger (De libros mayores):</strong> Registros inmutables y criptográficamente verificables de transacciones. Cadenas de suministro, transacciones bancarias.<ul>
+<li><em>Servicios:</em> Amazon QLDB (Quantum Ledger Database).</li>
+</ul>
+</li>
+</ul>
+<h3 id="bases-de-datos-relacionales-conceptos-y-rds">Bases de Datos Relacionales (Conceptos y RDS)</h3>
+<ul>
+<li><strong>Estructura:</strong> Organizadas en tablas (filas como registros, columnas como atributos).<ul>
+<li><em>Primary Key (Clave primaria):</em> Identificador único de cada fila.</li>
+<li><em>Foreign Key (Clave foránea):</em> Referencia a la clave primaria de otra tabla para evitar redundancias.</li>
+</ul>
+</li>
+<li><strong>SQL y el Principio ACID:</strong> Utilizan SQL para consultar y unir (<em>join</em>) tablas. Son estrictamente exactas adhiriéndose al principio ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad).</li>
+</ul>
+<h4 id="responsabilidades-on-premises-vs-ec2-vs-managed-rdsaurora">Responsabilidades: On-Premises vs EC2 vs Managed (RDS/Aurora)</h4>
+<ul>
+<li><strong>On-Premises:</strong> El cliente lo gestiona absolutamente todo (desde la app hasta la sala de servidores, hardware, OS y parches).</li>
+<li><strong>EC2 (Self-managed):</strong> Responsabilidad compartida. El cliente gestiona la optimización, escalado, backups, parches de software y del SO. AWS se encarga de la instalación física del SO, mantenimiento de servidores, <em>rack and stack</em>, energía y red.</li>
+<li><strong>Managed (Amazon RDS):</strong> El cliente solo optimiza la aplicación. <strong>AWS se encarga de todo lo demás</strong> (escalado, alta disponibilidad, backups, parches, SO, hardware y centro de datos).</li>
+</ul>
+<h4 id="amazon-rds-relational-database-service">Amazon RDS (Relational Database Service)</h4>
+<ul>
+<li>Servicio web gestionado para crear bases de datos relacionales seguras y escalables (soporta PostgreSQL, MySQL, MariaDB, Oracle, SQL Server y Aurora). No permite acceso directo al host subyacente.</li>
+<li><strong>DB Instance Classes (Capacidad):</strong><ul>
+<li><em>Standard:</em> Propósito general (ej. <code>db.m6g</code>, <code>db.m5</code>).</li>
+<li><em>Memory Optimized:</em> Aplicaciones intensivas en memoria (ej. <code>db.r6g</code>, <code>db.r5</code>).</li>
+<li><em>Burstable Performance:</em> Rendimiento base con capacidad de pico en CPU (ej. <code>db.t4g</code>, <code>db.t3</code>).</li>
+</ul>
+</li>
+<li><strong>Almacenamiento (DB Instance Storage):</strong> Utiliza volúmenes de <strong>Amazon EBS</strong> (General Purpose SSD, Provisioned IOPS para baja latencia/alto I/O, y Magnetic para compatibilidad heredada).</li>
+<li><strong>Seguridad:</strong> Se despliegan dentro de una <strong>subred privada</strong> en una VPC. Se recomienda usar IAM con permisos mínimos, habilitar cifrado en reposo y rotar credenciales.</li>
+<li><strong>Backups:</strong> <ul>
+<li><em>Automáticos:</em> Activados por defecto. Respaldan la BD y logs de transacciones creando snapshots del volumen. Retención configurable hasta <strong>35 días</strong>.</li>
+<li><em>Database Snapshots:</em> Copias manuales almacenadas en <strong>Amazon S3</strong> que se conservan hasta que se borren explícitamente.</li>
+</ul>
+</li>
+<li><strong>Redundancia (Multi-AZ):</strong> Crea una copia secundaria de la base de datos en otra AZ en modo <em>standby</em>. Si la primaria falla, RDS conmuta automáticamente a la secundaria (<em>failover</em>).</li>
+</ul>
+<h3 id="amazon-dynamodb-nosql-key-value">Amazon DynamoDB (NoSQL Key-Value)</h3>
+<ul>
+<li><strong>Qué es:</strong> Base de datos NoSQL <strong>totalmente gestionada y serverless</strong>. Ofrece rendimiento rápido y predecible con escalabilidad fluida. Los datos se guardan en SSDs y se replican automáticamente entre múltiples AZs.</li>
+<li><strong>Componentes Principales:</strong><ul>
+<li><em>Tables (Tablas):</em> Colecciones de datos.</li>
+<li><em>Items (Elementos):</em> Grupo de atributos unívocamente identificables dentro de una tabla (cantidad ilimitada).</li>
+<li><em>Attributes (Atributos):</em> Elementos de datos fundamentales.</li>
+</ul>
+</li>
+<li><strong>Claves (Keys):</strong><ul>
+<li><em>Partition Key:</em> Obligatoria. Determina la partición física de almacenamiento para distribuir la carga.</li>
+<li><em>Composite Primary Key (Clave primaria compuesta):</em> Se compone de una <em>Partition Key</em> y una <em>Sort Key</em> cuando la clave de partición sola no es única.</li>
+</ul>
+</li>
+</ul>
+<h2 id="monitorizacion-escalado-y-balanceo-de-carga-en-aws">Monitorización, Escalado y Balanceo de Carga en AWS</h2>
+<h3 id="monitorizacion">Monitorización</h3>
+<h4 id="amazon-cloudwatch-monitorizacion-y-observabilidad">Amazon CloudWatch (Monitorización y Observabilidad)</h4>
+<ul>
+<li><strong>Qué es:</strong> Servicio para monitorizar recursos y la infraestructura (tanto en AWS como <em>on-premises</em>) en tiempo real o casi real, recopilando métricas, logs y alarmas en un solo lugar.</li>
+<li><strong>Conceptos de Métricas:</strong><ul>
+<li><em>Namespaces (Espacios de nombres):</em> Contenedores que aíslan métricas entre sí (ej. <code>AWS/EC2</code>).</li>
+<li><em>Dimensions (Dimensiones):</em> Pares de clave/valor asociados a una métrica para filtrar resultados (ej. filtrar por un <code>InstanceId</code> específico).</li>
+<li><em>Custom Metrics / High-Resolution:</em> Permite publicar métricas propias con granularidad de hasta 1 segundo.</li>
+</ul>
+</li>
+<li><strong>CloudWatch Dashboards:</strong> Páginas personalizadas con <em>widgets</em> (gráficos, tablas) para visualizar métricas, pudiendo combinar datos de diferentes regiones en una vista global.</li>
+<li><strong>CloudWatch Alarms:</strong> Automatizan acciones basadas en cambios de estado de una métrica al superar un umbral durante un tiempo determinado. <ul>
+<li><em>Estados posibles:</em> <code>OK</code> (dentro del umbral), <code>ALARM</code> (fuera del umbral) y <code>INSUFFICIENT_DATA</code> (datos insuficientes o no disponibles).</li>
+<li><em>Acciones:</em> Pueden activar cambios en EC2, políticas de Auto Scaling o notificaciones.</li>
+</ul>
+</li>
+</ul>
+<h3 id="escalabilidad">Escalabilidad</h3>
+<h4 id="estrategias-de-escalado-vertical-vs-horizontal">Estrategias de Escalado (Vertical vs Horizontal)</h4>
+<ul>
+<li><strong>Vertical Scaling (Escalado Vertical):</strong> Cambiar la capacidad de una instancia (CPU, memoria, disco) seleccionando un tipo o familia de instancia diferente.<ul>
+<li><em>Proceso manual:</em> 1. Detener instancia <span class="arithmatex">\(\rightarrow\)</span> 2. Modificar tamaño/tipo <span class="arithmatex">\(\rightarrow\)</span> 3. Iniciar instancia.</li>
+</ul>
+</li>
+<li><strong>Horizontal Scaling (Escalado Horizontal):</strong> Añadir o eliminar instancias EC2 según la demanda de tráfico. Es un proceso automatizado e ilimitado mediante <strong>Amazon EC2 Auto Scaling</strong>.</li>
+</ul>
+<h4 id="amazon-ec2-auto-scaling">Amazon EC2 Auto Scaling</h4>
+<ul>
+<li><strong>Propósito:</strong> Aumenta la disponibilidad de la aplicación y reduce costes añadiendo/quitando instancias automáticamente y manteniendo la salud de la flota (<em>fleet management</em>). Si una instancia falla, la termina y la reemplaza por una nueva de forma automática.</li>
+<li><strong>Launch Template (Plantilla de Lanzamiento):</strong> Almacena los parámetros de configuración (AMI, tipo de instancia, security groups, volúmenes) para reutilizarlos al lanzar nuevas instancias. Soporta versiones para facilitar rollbacks.</li>
+<li><strong>Auto Scaling Group (ASG):</strong> Define dónde se despliegan los recursos (requiere especificar al menos dos subredes en diferentes AZs). Se controla mediante tres ajustes de capacidad:<ul>
+<li><em>Minimum:</em> Número mínimo garantizado de instancias ejecutándose.</li>
+<li><em>Maximum:</em> Límite máximo al que puede escalar horizontalmente.</li>
+<li><em>Desired capacity:</em> Capacidad deseada actual (debe estar entre el mínimo y el máximo).</li>
+</ul>
+</li>
+<li><strong>Características principales:</strong> Escalado automático (<em>in/out</em>), integración con CloudWatch, <em>Fleet Management</em>, <em>Predictive Scaling</em> (machine learning para detectar patrones) y soporte para múltiples modelos de compra (On-Demand y Spot).</li>
+</ul>
+<h3 id="balanceo-de-carga">Balanceo de Carga</h3>
+<h4 id="elastic-load-balancing-elb">Elastic Load Balancing (ELB)</h4>
+<ul>
+<li><strong>Qué es:</strong> Servicio altamente disponible y escalable que distribuye automáticamente el tráfico entrante de la aplicación entre múltiples destinos (instancias EC2, contenedores, direcciones IP, funciones Lambda) en una o varias AZs.</li>
+<li><strong>Health Checks:</strong> Mecanismo mediante códigos de respuesta API (ej. <code>200 OK</code> o <code>503 Unavailable</code>) para comprobar si un destino está operativo. Si falla, el ELB redirige el tráfico a los recursos sanos.</li>
+<li><strong>Componentes:</strong> <em>Listeners</em> (oyentes), <em>Target groups</em> (grupos de destino) y <em>Rules</em> (reglas).</li>
+</ul>
+<h5 id="tipos-principales-de-load-balancers">Tipos principales de Load Balancers:</h5>
+<ul>
+<li><strong>Application Load Balancer (ALB):</strong><ul>
+<li>Ideal para tráfico <strong>HTTP y HTTPS</strong>.</li>
+<li>Opera a nivel de petición (<strong>Capa 7</strong>).</li>
+<li><em>Características:</em> Seguridad avanzada, deslastre TLS (<em>TLS offloading</em>), <em>Sticky sessions</em> (cookies de sesión), redirecciones automáticas (HTTP a HTTPS), respuestas fijas y <strong>enrutamiento basado en contenido</strong> (según cabeceras, rutas URL, métodos HTTP o IP de origen).</li>
+</ul>
+</li>
+<li><strong>Network Load Balancer (NLB):</strong><ul>
+<li>Ideal para tráfico <strong>TCP y UDP</strong>.</li>
+<li>Opera a nivel de conexión (<strong>Capa 4</strong>).</li>
+<li><em>Características:</em> Latencia ultra baja, persistencia de sesiones (<em>sticky sessions</em> a nivel de target group), <strong>conservación de la IP de origen del cliente</strong>, soporte para IP estática y Elastic IPs por AZ, y <em>DNS failover</em> automático mediante Route 53.</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

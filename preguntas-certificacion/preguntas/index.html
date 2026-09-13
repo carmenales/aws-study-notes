@@ -1,0 +1,1766 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes sobre AWS">
+      
+      
+        <meta name="author" content="carmenales">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Preguntas extraídas de Certificación en Developer y Devops - Apuntes AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preguntas-extraidas-de-certificacion-en-developer-y-devops" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Apuntes AWS" class="md-header__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Preguntas extraídas de Certificación en Developer y Devops
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.public/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../teoria/servicios/" class="md-tabs__link">
+          
+  
+  
+  Teoría
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Apuntes AWS" class="md-nav__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.public/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/technical-essentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/advance-developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advance Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mantener-ip-de-origen-tras-un-lb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mantener IP de origen tras un LB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efs-para-contenedores-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EFS para contenedores Linux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamodb-con-gsi-para-futuras-consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DynamoDB con GSI para futuras consultas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evitar-invocaciones-cruzadas-de-s3-y-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evitar invocaciones cruzadas de S3 y Lambda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sts-y-cloudfront-sin-credenciales-hardcoded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STS y CloudFront sin credenciales hardcoded
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lambda-y-rds-mover-la-conexion-al-global-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda y RDS: mover la conexión al global space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reducir-cold-start-en-lambda-con-api-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reducir cold start en Lambda con API Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cognito-con-s3-y-acceso-por-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cognito con S3 y acceso por usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cognito-para-social-media-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cognito para social media accounts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invitados-y-acceso-diferenciado-con-cognito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invitados y acceso diferenciado con Cognito
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x-ray-y-pii-en-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Ray y PII en EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-beanstalk-despliegue-mas-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic Beanstalk: despliegue más rápido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-beanstalk-sin-downtime-y-con-cambio-de-plataforma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic Beanstalk sin downtime y con cambio de plataforma
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-beanstalk-actualizacion-de-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic Beanstalk: actualización de aplicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orquestacion-de-flujo-de-datos-con-step-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orquestación de flujo de datos con Step Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fallback-con-lambda-destinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fallback con Lambda Destinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procesar-objetos-s3-con-auditoria-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procesar objetos S3 con auditoría externa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limpiar-datos-pii-en-kinesis-firehose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limpiar datos PII en Kinesis Firehose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kinesis-con-spikes-y-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinesis con spikes y retries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam-para-cambios-incrementales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAM para cambios incrementales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-lambda-local-con-sam-y-cdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Lambda local con SAM y CDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam-para-recursos-serverless-en-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAM para recursos serverless en YAML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation-con-notificaciones-a-qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFormation con notificaciones a QA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamodb-dashboard-de-clientes-unicos-por-dia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DynamoDB: dashboard de clientes únicos por día
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamodb-near-real-time-con-minimo-cambio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DynamoDB near real time con mínimo cambio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nuevo-patron-de-acceso-en-dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nuevo patrón de acceso en DynamoDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lambda-en-la-misma-vpc-que-rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda en la misma VPC que RDS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-de-autenticacion-seguro-y-compartible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token de autenticación seguro y compartible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sse-s3-con-putobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSE-S3 con PutObject
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudformation-y-parameter-store-sin-reseteo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFormation y Parameter Store sin reseteo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eventos-ec2-multi-cuenta-a-una-sqs-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventos EC2 multi-cuenta a una SQS principal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lambda-que-falla-al-escribir-en-dynamodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda que falla al escribir en DynamoDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allowedvalues-para-tipos-de-instancia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AllowedValues para tipos de instancia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batchgetitem-y-unprocessedkeys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BatchGetItem y UnprocessedKeys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x-ray-en-servidores-on-premises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Ray en servidores on-premises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compartir-datos-con-api-http-segura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compartir datos con API HTTP segura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecs-con-variables-seguras-y-minimos-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECS con variables seguras y mínimos cambios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directorio-de-empleados-con-fotos-de-alta-resolucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directorio de empleados con fotos de alta resolución
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fotos-en-el-cloud-con-cognito-y-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fotos en el cloud con Cognito y S3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microservicios-con-notificaciones-escalables-para-partners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservicios con notificaciones escalables para partners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-object-lambda-para-eliminar-pii-sin-duplicar-documentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3 Object Lambda para eliminar PII sin duplicar documentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="preguntas-extraidas-de-certificacion-en-developer-y-devops">Preguntas extraídas de Certificación en Developer y Devops</h1>
+<h2 id="mantener-ip-de-origen-tras-un-lb">Mantener IP de origen tras un LB</h2>
+<p>A company is planning to deploy an application on AWS behind an Elastic Load Balancer. The application uses an HTTP/HTTPS listener and must access the client IP addresses.
+Which load-balancing solution meets these requirements?</p>
+<ul>
+<li><strong>A.</strong> Use an Application Load Balancer and the X-Forwarded-For headers.</li>
+<li><strong>B.</strong> Use a Network Load Balancer (NLB). Enable proxy protocol support on the NLB and the target application.</li>
+<li><strong>C.</strong> Use an Application Load Balancer. Register the targets by the instance ID.</li>
+<li><strong>D.</strong> Use a Network Load Balancer and the X-Forwarded-For headers.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A (Probabilidad: 80%)</p>
+<p><strong>Análisis:</strong>
+La A es algo que se hace por ejemplo con docker cuando hay cambio de red. La B y la D es a nivel TCP, no HTTP. La C no suena mal pero creo recordar que al registrar los targets se puede hacer por security group y era más lógico.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="efs-para-contenedores-linux">EFS para contenedores Linux</h2>
+<p>A developer is deploying an application on an Amazon Elastic Container Service (Amazon ECS) cluster that uses AWS Fargate. The developer is using a Docker container with an Ubuntu image.
+The developer needs to implement a solution to store application data that is available from multiple ECS tasks. The application data must remain accessible after the container is terminated.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Attach an Amazon FSx for Windows File Server volume to the container definition.</li>
+<li><strong>B.</strong> Specify the DockerVolumeConfiguration parameter in the ECS task definition to attach a Docker volume.</li>
+<li><strong>C.</strong> Create an Amazon Elastic File System (Amazon EFS) file system. Specify the mountPoints attribute and the efsVolumeConfiguration attribute in the ECS task definition.</li>
+<li><strong>D.</strong> Create an Amazon Elastic Block Store (Amazon EBS) volume. Specify the mount point configuration in the ECS task definition.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 70%)</p>
+<p><strong>Análisis:</strong>
+La D no, es un disco duro normal (EBS), como me están pidiendo “from multiple ECS tasks” (que se pueden ejecutar en maquinas diferentes). La A no parece apropiada para SSOO Linux. Entre la B y la C tengo que mirarlo.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="dynamodb-con-gsi-para-futuras-consultas">DynamoDB con GSI para futuras consultas</h2>
+<p>A company has an ecommerce platform. A developer is designing an Amazon DynamoDB table to store customer order data for the platform. The table uses the order ID as the partition key.
+The developer needs to modify the table to get all order IDs that are associated with a given customer email address in a single query. The solution must give the developer the ability to query order IDs by other item attributes in the future.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Configure the partition key to use the customer email address as the sort key.</li>
+<li><strong>B.</strong> Update the table to use the customer email address as the partition key.</li>
+<li><strong>C.</strong> Create a local secondary index (LSI) with the customer email address as the sort key.</li>
+<li><strong>D.</strong> Create a global secondary index (GSI) with the customer email address as the partition key.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> D (Probabilidad: 70%)</p>
+<p><strong>Análisis:</strong>
+El hecho de que los datos estén particionados por orderID no facilita la query que tiene que consultar todos los orderIDs de un customer concreto, porque tendrías que ir a muchas particiones a pillar trocitos. Además piden que the solution must give the developer the ability to query order IDs by other item attributes in the future, con lo cual todavía peor. La A me suena rara. La B mejoraría las queries por customer y luego podría quizá ordenar por pedido. La D no resuelve el problema de buscar por otros campos no indexados, pero sí es verdad que creando otros GSI resolvemos todo el escenario.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="evitar-invocaciones-cruzadas-de-s3-y-lambda">Evitar invocaciones cruzadas de S3 y Lambda</h2>
+<p>A company uses AWS Lambda functions and an Amazon S3 trigger to process images into an S3 bucket. A development team set up multiple environments in a single AWS account.
+After a recent production deployment, the development team observed that the development S3 buckets invoked the production environment Lambda functions. These invocations caused unwanted execution of development S3 files by using production Lambda functions. The development team must prevent these invocations. The team must follow security best practices.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Update the Lambda execution role for the production Lambda function to add a policy that allows the execution role to read from only the production environment S3 bucket.</li>
+<li><strong>B.</strong> Move the development and production environments into separate AWS accounts. Add a resource policy to each Lambda function to allow only S3 buckets that are within the same account to invoke the function.</li>
+<li><strong>C.</strong> Add a resource policy to the production Lambda function to allow only the production environment S3 bucket to invoke the function.</li>
+<li><strong>D.</strong> Move the development and production environments into separate AWS accounts. Update the Lambda execution role for each function to add a policy that allows the execution role to read from the S3 bucket that is within the same account.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 60%)</p>
+<p><strong>Análisis:</strong>
+Usar Lambda functions con Amazon S3 trigger para set up de múltiples entornos con un S3 Bucket con una sola cuenta de AWS. El problema es que están usando ficheros del entorno de desarrollo en el de producción al usar esas lambda functions. Quieren buenas prácticas. La C tiene pinta que es cierta.</p>
+<p><strong>Información Relevante:</strong>
+https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html
+https://docs.aws.amazon.com/lambda/latest/dg/lambda-permissions.html</p>
+</details>
+<h2 id="sts-y-cloudfront-sin-credenciales-hardcoded">STS y CloudFront sin credenciales hardcoded</h2>
+<p>A social media application uses the AWS SDK for JavaScript on the frontend to get user credentials from AWS Security Token Service (AWS STS). The application stores its assets in an Amazon S3 bucket. The application serves its content by using an Amazon CloudFront distribution with the origin set to the S3 bucket.
+The credentials for the role that the application assumes to make the SDK calls are stored in plaintext in a JSON file within the application code. The developer needs to implement a solution that will allow the application to get user credentials without having any credentials hardcoded in the application code.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Add a Lambda@Edge function to the distribution. Invoke the function on viewer request. Add permissions to the function's execution role to allow the function to access AWS STS. Move all SDK calls from the frontend into the function.</li>
+<li><strong>B.</strong> Add a CloudFront function to the distribution. Invoke the function on viewer request. Add permissions to the function's execution role to allow the function to access AWS STS. Move all SDK calls from the frontend into the function.</li>
+<li><strong>C.</strong> Add a Lambda@Edge function to the distribution. Invoke the function on viewer request. Move the credentials from the JSON file into the function. Move all SDK calls from the frontend into the function.</li>
+<li><strong>D.</strong> Add a CloudFront function to the distribution. Invoke the function on viewer request. Move the credentials from the JSON file into the function. Move all SDK calls from the frontend into the function.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A (Probabilidad: 80%)</p>
+<p><strong>Análisis:</strong>
+Los credenciales para el rol de la aplicación que usa el AWS SDK asume que hace llamadas almacenadas en texto plano en JSON dentro del código de la aplicación. Los desarrolladores necesitan obtener las credenciales de usuarios sin harcodear en el código de la aplicación. Por tanto, yo elegiría la A.</p>
+<p><strong>Información Relevante:</strong>
+CloudFront está limitado por diseño: solo soporta un subconjunto de JavaScript y no tiene acceso a red ni puede hacer llamadas a otros servicios de AWS como STS. Lambda@Edge sí puede ejecutar código y acceder a otros servicios de AWS.</p>
+</details>
+<h2 id="lambda-y-rds-mover-la-conexion-al-global-space">Lambda y RDS: mover la conexión al global space</h2>
+<p>A developer has implemented an AWS Lambda function that inserts new customers into an Amazon RDS database. The function is expected to run hundreds of times each hour. The function and RDS database are in the same VPC. The function is configured to use 512 MB of RAM and is based on the following pseudo code.
+After successfully testing the function multiple times, the developer notices that the execution time is longer than expected.
+What should the developer do to improve performance?</p>
+<ul>
+<li><strong>A.</strong> Increase the reserved concurrency of the Lambda function.</li>
+<li><strong>B.</strong> Increase the size of the RDS database to facilitate an increased number of database connections each hour.</li>
+<li><strong>C.</strong> Move the database connection and close statement out of the handler. Place the connection in the global space.</li>
+<li><strong>D.</strong> Replace Amazon RDS with Amazon DynamoDB to implement control over the number of writes per second.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 80%)</p>
+<p><strong>Análisis:</strong>
+El concepto clave es el ciclo de vida del entorno de ejecución de Lambda. Si el pseudocódigo abre y cierra la conexión dentro del handler, cada invocación repite un proceso costoso. Al mover la conexión al global space, Lambda la crea una vez por entorno de ejecución y la reutiliza en warm starts, evitando el coste repetido.</p>
+<p><strong>Información Relevante:</strong>
+https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html</p>
+</details>
+<h2 id="reducir-cold-start-en-lambda-con-api-gateway">Reducir cold start en Lambda con API Gateway</h2>
+<p>A development team has an Amazon API Gateway REST API that is backed by an AWS Lambda function.
+Users have reported performance issues for the Lambda function. The development team identified the source of the issues as a cold start of the Lambda function. The development team needs to reduce the time needed for the Lambda function to initialize.
+Which solution will meet this requirement?</p>
+<ul>
+<li><strong>A.</strong> Change the Lambda concurrency to reserved concurrency.</li>
+<li><strong>B.</strong> Increase the timeout of the Lambda function.</li>
+<li><strong>C.</strong> Increase the memory allocation of the Lambda function.</li>
+<li><strong>D.</strong> Configure provisioned concurrency for the Lambda function.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> </p>
+<p><strong>Análisis:</strong>
+Preguntan cómo reducir el tiempo de inicialización de Lambda para evitar problemas como el cold start.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="cognito-con-s3-y-acceso-por-usuario">Cognito con S3 y acceso por usuario</h2>
+<p>An application is using Amazon Cognito user pools and identity pools for secure access. A developer wants to integrate the user-specific file upload and download features in the application with Amazon S3. The developer must ensure that the files are saved and retrieved in a secure manner and that users can access only their own files. The file sizes range from 3 KB to 300 MB.
+Which option will meet these requirements with the HIGHEST level of security?</p>
+<ul>
+<li><strong>A.</strong> Use S3 Event Notifications to validate the file upload and download requests and update the user interface (UI).</li>
+<li><strong>B.</strong> Save the details of the uploaded files in a separate Amazon DynamoDB table. Filter the list of files in the user interface (UI) by comparing the current user ID with the user ID associated with the file in the table.</li>
+<li><strong>C.</strong> Use Amazon API Gateway and an AWS Lambda function to upload and download files. Validate each request in the Lambda function before performing the requested operation.</li>
+<li><strong>D.</strong> Use an IAM policy within the Amazon Cognito identity prefix to restrict users to use their own folders in Amazon S3.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> D (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La D tiene mejor pinta porque utiliza una política IAM a través de la identidad de Amazon Cognito para restringir usuarios para usar sus propias carpetas en Amazon S3. Es la opción con mayor nivel de seguridad.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="cognito-para-social-media-accounts">Cognito para social media accounts</h2>
+<p>A developer is creating an application. New users of the application must be able to create an account and register by using their own social media accounts.
+Which AWS service or resource should the developer use to meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> IAM role</li>
+<li><strong>B.</strong> Amazon Cognito identity pools</li>
+<li><strong>C.</strong> Amazon Cognito user pools</li>
+<li><strong>D.</strong> AWS Directory Service</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 99%)</p>
+<p><strong>Análisis:</strong>
+La C es la que tiene mejor pinta.</p>
+<p><strong>Información Relevante:</strong>
+https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html</p>
+</details>
+<h2 id="invitados-y-acceso-diferenciado-con-cognito">Invitados y acceso diferenciado con Cognito</h2>
+<p>A software company is launching a multimedia application. The application will allow guest users to access sample content before the users decide if they want to create an account to gain full access. The company wants to implement an authentication process that can identify users who have already created an account. The company also needs to keep track of the number of guest users who eventually create an account.
+Which combination of steps will meet these requirements? (Choose two.)</p>
+<ul>
+<li><strong>A.</strong> Create an Amazon Cognito user pool. Configure the user pool to allow unauthenticated users. Exchange user tokens for temporary credentials that allow authenticated users to assume a role.</li>
+<li><strong>B.</strong> Create an Amazon Cognito identity pool. Configure the identity pool to allow unauthenticated users. Exchange unique identity for temporary credentials that allow all users to assume a role.</li>
+<li><strong>C.</strong> Create an Amazon CloudFront distribution. Configure the distribution to allow unauthenticated users. Exchange user tokens for temporary credentials that allow all users to assume a role.</li>
+<li><strong>D.</strong> Create a role for authenticated users that allows access to all content. Create a role for unauthenticated users that allows access to only the sample content.</li>
+<li><strong>E.</strong> Allow all users to access the sample content by default. Create a role for authenticated users that allows access to the other content.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B y D</p>
+<p><strong>Análisis:</strong>
+La respuesta está entre la A y la B. Como no es solo registrar usuarios, sino que hay que permitir accesos a contenidos que no son de muestra, parece que eso hay que hacerlo con Amazon Cognito identity pool porque hay que asignar roles. Así que la respuesta es la B y luego juntarla con la D.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="x-ray-y-pii-en-ec2">X-Ray y PII en EC2</h2>
+<p>A developer is incorporating AWS X-Ray into an application that handles personal identifiable information (PII). The application is hosted on Amazon EC2 instances. The application trace messages include encrypted PII and go to Amazon CloudWatch. The developer needs to ensure that no PII goes outside of the EC2 instances.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Manually instrument the X-Ray SDK in the application code.</li>
+<li><strong>B.</strong> Use the X-Ray auto-instrumentation agent.</li>
+<li><strong>C.</strong> Use Amazon Macie to detect and hide PII. Call the X-Ray API from AWS Lambda.</li>
+<li><strong>D.</strong> Use AWS Distro for Open Telemetry.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A (Probabilidad: 80%)</p>
+<p><strong>Análisis:</strong>
+La A permite control granular del contenido de la traza antes de salir de EC2. La B y la D podrían ser, pero no dan el mismo control.</p>
+<p><strong>Información Relevante:</strong>
+https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html
+https://docs.aws.amazon.com/xray/latest/devguide/xray-services-adot.html</p>
+</details>
+<h2 id="elastic-beanstalk-despliegue-mas-rapido">Elastic Beanstalk: despliegue más rápido</h2>
+<p>A developer wants to use AWS Elastic Beanstalk to test a new version of an application in a test environment.
+Which deployment method offers the FASTEST deployment?</p>
+<ul>
+<li><strong>A.</strong> Immutable</li>
+<li><strong>B.</strong> Rolling</li>
+<li><strong>C.</strong> Rolling with additional batch</li>
+<li><strong>D.</strong> All at once</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> D (Probabilidad: 95%)</p>
+<p><strong>Análisis:</strong>
+El método más rápido es All at once.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="elastic-beanstalk-sin-downtime-y-con-cambio-de-plataforma">Elastic Beanstalk sin downtime y con cambio de plataforma</h2>
+<p>A company has a front-end application that runs on four Amazon EC2 instances behind an Elastic Load Balancer (ELB) in a production environment that is provisioned by AWS Elastic Beanstalk. A developer needs to deploy and test new application code while updating the Elastic Beanstalk platform from the current version to a newer version of Node.js. The solution must result in zero downtime for the application.
+Which solution meets these requirements?</p>
+<ul>
+<li><strong>A.</strong> Clone the production environment to a different platform version. Deploy the new application code, and test it. Swap the environment URLs upon verification.</li>
+<li><strong>B.</strong> Deploy the new application code in an all-at-once deployment to the existing EC2 instances. Test the code. Redeploy the previous code if verification fails.</li>
+<li><strong>C.</strong> Perform an immutable update to deploy the new application code to new EC2 instances. Serve traffic to the new instances after they pass health checks.</li>
+<li><strong>D.</strong> Use a rolling deployment for the new application code. Apply the code to a subset of EC2 instances until the tests pass. Redeploy the previous code if the tests fail.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C</p>
+<p><strong>Análisis:</strong>
+La C por lo que he leído en la documentación es la opción más segura en el entorno de producción porque asegura rollback si falla. La D parece un poco liosa.</p>
+<p><strong>Información Relevante:</strong>
+Los métodos Rolling y Rolling with additional batch actúan sobre las instancias existentes y no admiten cambios de versión de plataforma; solo Immutable y All at once pueden aplicar una actualización de plataforma creando instancias nuevas.</p>
+</details>
+<h2 id="elastic-beanstalk-actualizacion-de-aplicacion">Elastic Beanstalk: actualización de aplicación</h2>
+<p>A developer is making changes to a custom application that uses AWS Elastic Beanstalk.
+Which solutions will update the Elastic Beanstalk environment with the new application version after the developer completes the changes? (Choose two.)</p>
+<ul>
+<li><strong>A.</strong> Package the application code into a zip file. Use the AWS Management Console to upload the .zip file and deploy the packaged application.</li>
+<li><strong>B.</strong> Package the application code into a .tar file. Use the AWS Management Console to create a new application version from the .tar file. Update the environment by using the AWS CLI.</li>
+<li><strong>C.</strong> Package the application code into a .tar file. Use the AWS Management Console to upload the .tar file and deploy the packaged application.</li>
+<li><strong>D.</strong> Package the application code into a .zip file. Use the AWS CLI to create a new application version from the .zip file and to update the environment.</li>
+<li><strong>E.</strong> Package the application code into a .zip file. Use the AWS Management Console to create a new application version from the .zip file. Rebuild the environment by using the AWS CLI.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A y D</p>
+<p><strong>Análisis:</strong>
+Elastic Beanstalk trabaja siempre con paquetes .zip (o .war para Java), nunca con .tar; y para aplicar una nueva versión, la acción correcta siempre es update el entorno, nunca rebuild.</p>
+<p><strong>Información Relevante:</strong>
+La opción A es correcta y la D también es correcta. B y C fallan por usar .tar, y E falla por usar rebuild.</p>
+</details>
+<h2 id="orquestacion-de-flujo-de-datos-con-step-functions">Orquestación de flujo de datos con Step Functions</h2>
+<p>A company is building a scalable data management solution by using AWS services to improve the speed and agility of development. The solution will ingest large volumes of data from various sources and will process this data through multiple business rules and transformations.
+The solution requires business rules to run in sequence and to handle reprocessing of data if errors occur when the business rules run. The company needs the solution to be scalable and to require the least possible maintenance.
+Which AWS service should the company use to manage and automate the orchestration of the data flows to meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> AWS Batch</li>
+<li><strong>B.</strong> AWS Step Functions</li>
+<li><strong>C.</strong> AWS Glue</li>
+<li><strong>D.</strong> AWS Lambda</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B (Probabilidad: 95%)</p>
+<p><strong>Análisis:</strong>
+Es AWS Step Functions.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="fallback-con-lambda-destinations">Fallback con Lambda Destinations</h2>
+<p>A developer is using an AWS Lambda function to generate avatars for profile pictures that are uploaded to an Amazon S3 bucket. The Lambda function is automatically invoked for profile pictures that are saved under the /original/ S3 prefix. The developer notices that some pictures cause the Lambda function to time out. The developer wants to implement a fallback mechanism by using another Lambda function that resizes the profile picture.
+Which solution will meet these requirements with the LEAST development effort?</p>
+<ul>
+<li><strong>A.</strong> Set the image resize Lambda function as a destination of the avatar generator Lambda function for the events that fail processing.</li>
+<li><strong>B.</strong> Create an Amazon Simple Queue Service (Amazon SQS) queue. Set the SQS queue as a destination with an on failure condition for the avatar generator Lambda function. Configure the image resize Lambda function to poll from the SQS queue.</li>
+<li><strong>C.</strong> Create an AWS Step Functions state machine that invokes the avatar generator Lambda function and uses the image resize Lambda function as a fallback. Create an Amazon EventBridge rule that matches events from the S3 bucket to invoke the state machine.</li>
+<li><strong>D.</strong> Create an Amazon Simple Notification Service (Amazon SNS) topic. Set the SNS topic as a destination with an on failure condition for the avatar generator Lambda function. Subscribe the image resize Lambda function to the SNS topic.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A</p>
+<p><strong>Análisis:</strong>
+La A funciona y es el menor esfuerzo de desarrollo. B añade cola y polling, C añade state machine y regla EventBridge, y D añade SNS y suscripción.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="procesar-objetos-s3-con-auditoria-externa">Procesar objetos S3 con auditoría externa</h2>
+<p>A photo sharing application uses Amazon S3 to store image files. All user images are manually audited for inappropriate content by a third-party company. The audits are completed 1-24 hours after user upload and the results are written to an Amazon DynamoDB table, which uses the S3 object key as a primary key. The database items can be queried by using a REST API created by the third-party company.
+An application developer needs to implement an automated process to tag all S3 objects with the results of the content audit.
+What should the developer do to meet these requirements in the MOST operationally efficient way?</p>
+<ul>
+<li><strong>A.</strong> Create an AWS Lambda function to run in response to the s3:ObjectCreated event type. Write the S3 key to an Amazon Simple Queue Service (Amazon SQS) queue with a visibility timeout of 24 hours. Create and configure a second Lambda function to read items from the queue. Retrieve the results for each item from the DynamoDB table. Tag each S3 object accordingly.</li>
+<li><strong>B.</strong> Create an AWS Lambda function to run in response to the s3:ObjectCreated event type. Integrate the function into an AWS Step Functions standard workflow. Define an AWS Step Functions Wait state and set the value to 24 hours. Create and configure a second Lambda function to retrieve the audit results and tag the S3 objects accordingly after the Wait state is over.</li>
+<li><strong>C.</strong> Create an AWS Lambda function to load all untagged S3 objects. Retrieve the results for each item from the REST API and tag each S3 object accordingly. Create and configure an Amazon EventBridge rule to run at regular intervals. Set the Lambda function as a target for the EventBridge rule.</li>
+<li><strong>D.</strong> Launch an Amazon EC2 instance. Deploy a script to the EC2 instance to use the external database results to tag the S3 objects accordingly. Configure a crontab file to run the script at regular intervals.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B o C</p>
+<p><strong>Análisis:</strong>
+La C se descarta y la D tampoco parece eficiente. Se está entre la A y la B.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="limpiar-datos-pii-en-kinesis-firehose">Limpiar datos PII en Kinesis Firehose</h2>
+<p>An Amazon Kinesis Data Firehose delivery stream is receiving customer data that contains personally identifiable information. A developer needs to remove pattern-based customer identifiers from the data and store the modified data in an Amazon S3 bucket.
+What should the developer do to meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Implement Kinesis Data Firehose data transformation as an AWS Lambda function. Configure the function to remove the customer identifiers. Set an Amazon S3 bucket as the destination of the delivery stream.</li>
+<li><strong>B.</strong> Launch an Amazon EC2 instance. Set the EC2 instance as the destination of the delivery stream. Run an application on the EC2 instance to remove the customer identifiers. Store the transformed data in an Amazon S3 bucket.</li>
+<li><strong>C.</strong> Create an Amazon OpenSearch Service instance. Set the OpenSearch Service instance as the destination of the delivery stream. Use search and replace to remove the customer identifiers. Export the data to an Amazon S3 bucket.</li>
+<li><strong>D.</strong> Create an AWS Step Functions workflow to remove the customer identifiers. As the last step in the workflow, store the transformed data in an Amazon S3 bucket. Set the workflow as the destination of the delivery stream.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A (Probabilidad: 95%)</p>
+<p><strong>Análisis:</strong>
+La A implementa Firehose data transformation with Lambda y deja S3 como destino.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="kinesis-con-spikes-y-retries">Kinesis con spikes y retries</h2>
+<p>An application is processing clickstream data using Amazon Kinesis. The clickstream data feed into Kinesis experiences periodic spikes. The PutRecords API call occasionally fails and the logs show that the failed call returns the response shown below.
+Which techniques will help mitigate this exception? (Choose two.)</p>
+<ul>
+<li><strong>A.</strong> Implement retries with exponential backoff.</li>
+<li><strong>B.</strong> Use a PutRecord API instead of PutRecords.</li>
+<li><strong>C.</strong> Reduce the frequency and/or size of the requests.</li>
+<li><strong>D.</strong> Use Amazon SNS instead of Kinesis.</li>
+<li><strong>E.</strong> Reduce the number of KCL consumers.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A y C</p>
+<p><strong>Análisis:</strong>
+La A es una buena práctica y la C también. La B, D y E no parecen resolver el problema.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="sam-para-cambios-incrementales">SAM para cambios incrementales</h2>
+<p>A developer is building a serverless application that runs on AWS. The developer wants to create an accelerated development workflow that deploys incremental changes to AWS for testing. The developer wants to deploy the incremental changes but does not want to fully deploy the entire application to AWS for every code commit.
+What should the developer do to meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Use the AWS Serverless Application Model (AWS SAM) to build the application. Use the sam sync command to deploy the incremental changes.</li>
+<li><strong>B.</strong> Use the AWS Serverless Application Model (AWS SAM) to build the application. Use the sam init command to deploy the incremental changes.</li>
+<li><strong>C.</strong> Use the AWS Cloud Development Kit (AWS CDK) to build the application. Use the cdk synth command to deploy the incremental changes.</li>
+<li><strong>D.</strong> Use the AWS Cloud Development Kit (AWS CDK) to build the application. Use the cdk bootstrap command to deploy the incremental changes.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A (Probabilidad: 85%)</p>
+<p><strong>Análisis:</strong>
+Como el desarrollador no quiere desplegar por completo la aplicación en cada commit, SAM con sam sync parece la opción adecuada.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="test-lambda-local-con-sam-y-cdk">Test Lambda local con SAM y CDK</h2>
+<p>A developer is implementing an AWS Cloud Development Kit (AWS CDK) serverless application. The developer will provision several AWS Lambda functions and Amazon API Gateway APIs during AWS CloudFormation stack creation. The developer's workstation has the AWS Serverless Application Model (AWS SAM) and the AWS CDK installed locally.
+How can the developer test a specific Lambda function locally?</p>
+<ul>
+<li><strong>A.</strong> Run the sam package and sam deploy commands. Create a Lambda test event from the AWS Management Console. Test the Lambda function.</li>
+<li><strong>B.</strong> Run the cdk synth and cdk deploy commands. Create a Lambda test event from the AWS Management Console. Test the Lambda function.</li>
+<li><strong>C.</strong> Run the cdk synth and sam local invoke commands with the function construct identifier and the path to the synthesized CloudFormation template.</li>
+<li><strong>D.</strong> Run the cdk synth and sam local start-lambda commands with the function construct identifier and the path to the synthesized CloudFormation template.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La C combina cdk synth y sam local invoke para invocar la función localmente.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="sam-para-recursos-serverless-en-yaml">SAM para recursos serverless en YAML</h2>
+<p>A developer is creating a template that uses AWS CloudFormation to deploy an application. The application is serverless and uses Amazon API Gateway, Amazon DynamoDB, and AWS Lambda.
+Which AWS service or tool should the developer use to define serverless resources in YAML?</p>
+<ul>
+<li><strong>A.</strong> CloudFormation serverless intrinsic functions</li>
+<li><strong>B.</strong> AWS Elastic Beanstalk</li>
+<li><strong>C.</strong> AWS Serverless Application Model (AWS SAM)</li>
+<li><strong>D.</strong> AWS Cloud Development Kit (AWS CDK)</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 80%)</p>
+<p><strong>Análisis:</strong>
+La C es la herramienta para definir recursos serverless en YAML.</p>
+<p><strong>Información Relevante:</strong>
+AWS SAM usa YAML/JSON directo y extiende CloudFormation mediante Transform: AWS::Serverless-2016-10-31.</p>
+</details>
+<h2 id="cloudformation-con-notificaciones-a-qa">CloudFormation con notificaciones a QA</h2>
+<p>A company wants to test its web application more frequently. The company deploys the application by using a separate AWS CloudFormation stack for each environment. The company deploys the same CloudFormation template to each stack as the application progresses through the development lifecycle.
+A developer needs to build in notifications for the quality assurance (QA) team. The developer wants the notifications to occur for new deployments in the final preproduction environment.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Create an Amazon Simple Notification Service (Amazon SNS) topic. Subscribe the QA team to the Amazon SNS topic. Update the CloudFormation stack options to point to the SNS topic in the pre-production environment.</li>
+<li><strong>B.</strong> Create an AWS Lambda function that notifies the QA team. Create an Amazon EventBridge rule to invoke the Lambda function on the default event bus. Filter the events on the CloudFormation service and on the CloudFormation stack Amazon Resource Name (ARN).</li>
+<li><strong>C.</strong> Create an Amazon CloudWatch alarm that monitors the metrics from CloudFormation. Filter the metrics on the stack name and the stack status. Configure the CloudWatch alarm to notify the QA team.</li>
+<li><strong>D.</strong> Create an AWS Lambda function that notifies the QA team. Configure the event source mapping to receive events from CloudFormation. Specify the filtering values to limit invocations to the desired CloudFormation stack.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A o B</p>
+<p><strong>Análisis:</strong>
+La A podría ser. La B parece demasiado rebuscada. La C y la D no parecen correctas.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="dynamodb-dashboard-de-clientes-unicos-por-dia">DynamoDB: dashboard de clientes únicos por día</h2>
+<p>A company uses Amazon DynamoDB as a data store for its order management system. The DynamoDB table is configured to send change events to a DynamoDB stream. The company uses an AWS Lambda function to log and process the incoming orders based on data from the DynamoDB stream.
+An operational review reveals that the order quantity of incoming orders is sometimes set to 0. A developer needs to create a dashboard that will show how many unique customers this problem affects each day.
+What should the developer do to implement the dashboard?</p>
+<ul>
+<li><strong>A.</strong> Grant the Lambda function’s execution role permissions to upload logs to Amazon CloudWatch Logs. Implement a CloudWatch Logs Insights query that selects the number of unique customers for orders with order quantity equal to 0 and groups the results in 1-day periods. Add the CloudWatch Logs Insights query to a CloudWatch dashboard.</li>
+<li><strong>B.</strong> Use Amazon Athena to query AWS CloudTrail API logs for API calls. Implement an Athena query that selects the number of unique customers for orders with order quantity equal to 0 and groups the results in 1-day periods. Add the Athena query to an Amazon CloudWatch dashboard.</li>
+<li><strong>C.</strong> Configure the Lambda function to send events to Amazon EventBridge. Create an EventBridge rule that groups the number of unique customers for orders with order quantity equal to 0 in 1-day periods. Add a CloudWatch dashboard as the target of the rule.</li>
+<li><strong>D.</strong> Turn on custom Amazon CloudWatch metrics for the DynamoDB stream of the DynamoDB table. Create a CloudWatch alarm that groups the number of unique customers for orders with order quantity equal to 0 in 1-day periods. Add the CloudWatch alarm to a CloudWatch dashboard.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A</p>
+<p><strong>Análisis:</strong>
+La A usa CloudWatch Logs Insights sobre logs existentes, con agregación y agrupación temporal.</p>
+<p><strong>Información Relevante:</strong>
+CloudWatch Logs Insights soporta conteo de valores únicos, agrupación por día e integración directa con dashboards.</p>
+</details>
+<h2 id="dynamodb-near-real-time-con-minimo-cambio">DynamoDB near real time con mínimo cambio</h2>
+<p>A developer maintains a critical business application that uses Amazon DynamoDB as the primary data store. The DynamoDB table contains millions of documents and receives 30-60 requests each minute. The developer needs to perform processing in near-real time on the documents when they are added or updated in the DynamoDB table.
+How can the developer implement this feature with the LEAST amount of change to the existing application code?</p>
+<ul>
+<li><strong>A.</strong> Set up a cron job on an Amazon EC2 instance. Run a script every hour to query the table for changes and process the documents.</li>
+<li><strong>B.</strong> Enable a DynamoDB stream on the table. Invoke an AWS Lambda function to process the documents.</li>
+<li><strong>C.</strong> Update the application to send a PutEvents request to Amazon EventBridge. Create an EventBridge rule to invoke an AWS Lambda function to process the documents.</li>
+<li><strong>D.</strong> Update the application to synchronously process the documents directly after the DynamoDB write.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B</p>
+<p><strong>Análisis:</strong>
+La B es la solución elegante con menos cambios: habilitar DynamoDB Streams e invocar Lambda.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="nuevo-patron-de-acceso-en-dynamodb">Nuevo patrón de acceso en DynamoDB</h2>
+<p>A developer manages an application that writes customer orders to an Amazon DynamoDB table. The orders use customer_id as the partition key, order_id as the sort key, and order_date as an attribute. A new access pattern requires accessing data by order_date and order_id. The developer needs to implement a new AWS Lambda function to support the new access pattern.
+How should the developer support the new access pattern in the MOST operationally efficient way?</p>
+<ul>
+<li><strong>A.</strong> Add a new local secondary index (LSI) to the DynamoDB table that specifies order_date as the partition key and order_id as the sort key. Write the new Lambda function to query the new LSI index.</li>
+<li><strong>B.</strong> Write the new Lambda function to scan the DynamoDB table. In the Lambda function, write a method to retrieve and combine results by order_date and order_id.</li>
+<li><strong>C.</strong> Add a new global secondary index (GSI) to the DynamoDB table that specifies order_date as the partition key and order_id as the sort key. Write the new Lambda function to query the new GSI index.</li>
+<li><strong>D.</strong> Enable DynamoDB Streams on the table. Choose the new and old images information to write to the DynamoDB stream. Write the new Lambda function to query the DynamoDB stream.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C</p>
+<p><strong>Análisis:</strong>
+La C habla de añadir un GSI y consultar ese índice.</p>
+<p><strong>Información Relevante:</strong>
+Los GSI permiten añadir un nuevo patrón de acceso con claves distintas sin rediseñar la tabla.</p>
+</details>
+<h2 id="lambda-en-la-misma-vpc-que-rds">Lambda en la misma VPC que RDS</h2>
+<p>A developer creates a VPC named VPC-A that has public and private subnets. The developer also creates an Amazon RDS database inside the private subnet of VPC-A. To perform some queries, the developer creates an AWS Lambda function in the default VPC. The Lambda function has code to access the RDS database. When the Lambda function runs, an error message indicates that the function cannot connect to the RDS database.
+How can the developer solve this problem?</p>
+<ul>
+<li><strong>A.</strong> Modify the RDS security group. Add a rule to allow traffic from all the ports from the VPC CIDR block.</li>
+<li><strong>B.</strong> Redeploy the Lambda function in the same subnet as the RDS instance. Ensure that the RDS security group allows traffic from the Lambda function.</li>
+<li><strong>C.</strong> Create a security group for the Lambda function. Add a new rule in the RDS security group to allow traffic from the new Lambda security group.</li>
+<li><strong>D.</strong> Create an IAM role. Attach a policy that allows access to the RDS database. Attach the role to the Lambda function.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B</p>
+<p><strong>Análisis:</strong>
+La causa es que la Lambda está en la VPC por defecto y RDS en una subred privada de VPC-A; no hay conectividad de red entre ellas.</p>
+<p><strong>Información Relevante:</strong>
+The Lambda function must exist in the same VPC as the DB instance.</p>
+</details>
+<h2 id="token-de-autenticacion-seguro-y-compartible">Token de autenticación seguro y compartible</h2>
+<p>A company is implementing an application on Amazon EC2 instances. The application needs to process incoming transactions. When the application detects a transaction that is not valid, the application must send a chat message to the company's support team. To send the message, the application needs to retrieve the access token to authenticate by using the chat API.
+A developer needs to implement a solution to store the access token. The access token must be encrypted at rest and in transit. The access token must also be accessible from other AWS accounts.
+Which solution will meet these requirements with the LEAST management overhead?</p>
+<ul>
+<li><strong>A.</strong> Use an AWS Systems Manager Parameter Store SecureString parameter that uses an AWS Key Management Service (AWS KMS) AWS managed key to store the access token. Add a resource-based policy to the parameter to allow access from other accounts. Update the IAM role of the EC2 instances with permissions to access Parameter Store. Retrieve the token from Parameter Store with the decrypt flag enabled. Use the decrypted access token to send the message to the chat.</li>
+<li><strong>B.</strong> Encrypt the access token by using an AWS Key Management Service (AWS KMS) customer managed key. Store the access token in an Amazon DynamoDB table. Update the IAM role of the EC2 instances with permissions to access DynamoDB and AWS KMS. Retrieve the token from DynamoDB. Decrypt the token by using AWS KMS on the EC2 instances. Use the decrypted access token to send the message to the chat.</li>
+<li><strong>C.</strong> Use AWS Secrets Manager with an AWS Key Management Service (AWS KMS) customer managed key to store the access token. Add a resource-based policy to the secret to allow access from other accounts. Update the IAM role of the EC2 instances with permissions to access Secrets Manager. Retrieve the token from Secrets Manager. Use the decrypted access token to send the message to the chat.</li>
+<li><strong>D.</strong> Encrypt the access token by using an AWS Key Management Service (AWS KMS) AWS managed key. Store the access token in an Amazon S3 bucket. Add a bucket policy to the S3 bucket to allow access from other accounts. Update the IAM role of the EC2 instances with permissions to access Amazon S3 and AWS KMS. Retrieve the token from the S3 bucket. Decrypt the token by using AWS KMS on the EC2 instances. Use the decrypted access token to send the message to the chat.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La C usa AWS Secrets Manager con KMS, añade una policy basada en recursos para acceso entre cuentas y minimiza la carga administrativa.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="sse-s3-con-putobject">SSE-S3 con PutObject</h2>
+<p>A developer has an application that stores data in an Amazon S3 bucket. The application uses an HTTP API to store and retrieve objects. When the PutObject API operation adds objects to the S3 bucket the developer must encrypt these objects at rest by using server-side encryption with Amazon S3 managed keys (SSE-S3).
+Which solution will meet this requirement?</p>
+<ul>
+<li><strong>A.</strong> Create an AWS Key Management Service (AWS KMS) key. Assign the KMS key to the S3 bucket.</li>
+<li><strong>B.</strong> Set the x-amz-server-side-encryption header when invoking the PutObject API operation.</li>
+<li><strong>C.</strong> Provide the encryption key in the HTTP header of every request.</li>
+<li><strong>D.</strong> Apply TLS to encrypt the traffic to the S3 bucket.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La B establece la cabecera x-amz-server-side-encryption cuando se invoca PutObject, que corresponde a SSE-S3.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="cloudformation-y-parameter-store-sin-reseteo">CloudFormation y Parameter Store sin reseteo</h2>
+<p>A company's developer has deployed an application in AWS by using AWS CloudFormation. The CloudFormation stack includes parameters in AWS Systems Manager Parameter Store that the application uses as configuration settings. The application can modify the parameter values.
+When the developer updated the stack to create additional resources with tags, the developer noted that the parameter values were reset and that the values ignored the latest changes made by the application. The developer needs to change the way the company deploys the CloudFormation stack. The developer also needs to avoid resetting the parameter values outside the stack.
+Which solution will meet these requirements with the LEAST development effort?</p>
+<ul>
+<li><strong>A.</strong> Modify the CloudFormation stack to set the deletion policy to Retain for the Parameter Store parameters.</li>
+<li><strong>B.</strong> Create an Amazon DynamoDB table as a resource in the CloudFormation stack to hold configuration data for the application. Migrate the parameters that the application is modifying from Parameter Store to the DynamoDB table.</li>
+<li><strong>C.</strong> Create an Amazon RDS DB instance as a resource in the CloudFormation stack. Create a table in the database for parameter configuration. Migrate the parameters that the application is modifying from Parameter Store to the configuration table.</li>
+<li><strong>D.</strong> Modify the CloudFormation stack policy to deny updates on Parameter Store parameters.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> D</p>
+<p><strong>Análisis:</strong>
+La stack policy con Deny sobre el parámetro evita que CloudFormation vuelva a sobrescribir su valor y requiere el mínimo esfuerzo.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="eventos-ec2-multi-cuenta-a-una-sqs-principal">Eventos EC2 multi-cuenta a una SQS principal</h2>
+<p>A company is running Amazon EC2 instances in multiple AWS accounts. A developer needs to implement an application that collects all the lifecycle events of the EC2 instances. The application needs to store the lifecycle events in a single Amazon Simple Queue Service (Amazon SQS) queue in the company's main AWS account for further processing.
+Which solution will meet these requirements?</p>
+<ul>
+<li><strong>A.</strong> Configure Amazon EC2 to deliver the EC2 instance lifecycle events from all accounts to the Amazon EventBridge event bus of the main account. Add an EventBridge rule to the event bus of the main account that matches all EC2 instance lifecycle events. Add the SQS queue as a target of the rule.</li>
+<li><strong>B.</strong> Use the resource policies of the SQS queue in the main account to give each account permissions to write to that SQS queue. Add to the Amazon EventBridge event bus of each account an EventBridge rule that matches all EC2 instance lifecycle events. Add the SQS queue in the main account as a target of the rule.</li>
+<li><strong>C.</strong> Write an AWS Lambda function that scans through all EC2 instances in the company accounts to detect EC2 instance lifecycle changes. Configure the Lambda function to write a notification message to the SQS queue in the main account if the function detects an EC2 instance lifecycle change. Add an Amazon EventBridge scheduled rule that invokes the Lambda function every minute.</li>
+<li><strong>D.</strong> Configure the permissions on the main account event bus to receive events from all accounts. Create an Amazon EventBridge rule in each account to send all the EC2 instance lifecycle events to the main account event bus. Add an EventBridge rule to the main account event bus that matches all EC2 instance lifecycle events. Set the SQS queue as a target for the rule.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> D (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La D sigue el proceso documentado por EventBridge cross-account: permisos en el event bus receptor, reglas en las cuentas emisoras apuntando a ese bus y una regla final en la cuenta principal que enruta a la SQS.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="lambda-que-falla-al-escribir-en-dynamodb">Lambda que falla al escribir en DynamoDB</h2>
+<p>A developer has created an AWS Lambda function that is written in Python. The Lambda function reads data from objects in Amazon S3 and writes data to an Amazon DynamoDB table. The function is successfully invoked from an S3 event notification when an object is created. However, the function fails when it attempts to write to the DynamoDB table.
+What is the MOST likely cause of this issue?</p>
+<ul>
+<li><strong>A.</strong> The Lambda function's concurrency limit has been exceeded.</li>
+<li><strong>B.</strong> DynamoDB table requires a global secondary index (GSI) to support writes.</li>
+<li><strong>C.</strong> The Lambda function does not have IAM permissions to write to DynamoDB.</li>
+<li><strong>D.</strong> The DynamoDB table is not running in the same Availability Zone as the Lambda function.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C</p>
+<p><strong>Análisis:</strong>
+La causa más probable es que la función no tenga permisos IAM para escribir en DynamoDB.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="allowedvalues-para-tipos-de-instancia">AllowedValues para tipos de instancia</h2>
+<p>A developer is creating an AWS CloudFormation template to deploy Amazon EC2 instances across multiple AWS accounts. The developer must choose the EC2 instances from a list of approved instance types.
+How can the developer incorporate the list of approved instance types in the CloudFormation template?</p>
+<ul>
+<li><strong>A.</strong> Create a separate CloudFormation template for each EC2 instance type in the list.</li>
+<li><strong>B.</strong> In the Resources section of the CloudFormation template, create resources for each EC2 instance type in the list.</li>
+<li><strong>C.</strong> In the CloudFormation template, create a separate parameter for each EC2 instance type in the list.</li>
+<li><strong>D.</strong> In the CloudFormation template, create a parameter with the list of EC2 instance types as AllowedValues.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> D (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La D incorpora la lista aprobada mediante AllowedValues.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="batchgetitem-y-unprocessedkeys">BatchGetItem y UnprocessedKeys</h2>
+<p>A developer has an application that makes batch requests directly to Amazon DynamoDB by using the BatchGetItem low-level API operation. The responses frequently return values in the UnprocessedKeys element.
+Which actions should the developer take to increase the resiliency of the application when the batch response includes values in UnprocessedKeys? (Choose two.)</p>
+<ul>
+<li><strong>A.</strong> Retry the batch operation immediately.</li>
+<li><strong>B.</strong> Retry the batch operation with exponential backoff and randomized delay.</li>
+<li><strong>C.</strong> Update the application to use an AWS software development kit (AWS SDK) to make the requests.</li>
+<li><strong>D.</strong> Increase the provisioned read capacity of the DynamoDB tables that the operation accesses.</li>
+<li><strong>E.</strong> Increase the provisioned write capacity of the DynamoDB tables that the operation accesses.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B y D</p>
+<p><strong>Análisis:</strong>
+La documentación confirma que BatchGetItem devuelve UnprocessedKeys cuando se supera el throughput de lectura y recomienda exponential backoff; además, aumentar la read capacity reduce el throttling.</p>
+<p><strong>Información Relevante:</strong>
+BatchGetItem es una operación de lectura, así que la write capacity no resuelve este problema.</p>
+</details>
+<h2 id="x-ray-en-servidores-on-premises">X-Ray en servidores on-premises</h2>
+<p>A company is running a custom application on a set of on-premises Linux servers that are accessed using Amazon API Gateway. AWS X-Ray tracing has been enabled on the API test stage.
+How can a developer enable X-Ray tracing on the on-premises servers with the LEAST amount of configuration?</p>
+<ul>
+<li><strong>A.</strong> Install and run the X-Ray SDK on the on-premises servers to capture and relay the data to the X-Ray service.</li>
+<li><strong>B.</strong> Install and run the X-Ray daemon on the on-premises servers to capture and relay the data to the X-Ray service.</li>
+<li><strong>C.</strong> Capture incoming requests on-premises and configure an AWS Lambda function to pull, process, and relay relevant data to X-Ray using the PutTraceSegments API call.</li>
+<li><strong>D.</strong> Capture incoming requests on-premises and configure an AWS Lambda function to pull, process, and relay relevant data to X-Ray using the PutTelemetryRecords API call.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+La B es la solución con menos configuración: instalar el daemon de X-Ray en Linux y dejar que reciba y reenvíe los segmentos.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="compartir-datos-con-api-http-segura">Compartir datos con API HTTP segura</h2>
+<p>A company wants to share information with a third party. The third party has an HTTP API endpoint that the company can use to share the information. The company has the required API key to access the HTTP API.
+The company needs a way to manage the API key by using code. The integration of the API key with the application code cannot affect application performance.
+Which solution will meet these requirements MOST securely?</p>
+<ul>
+<li><strong>A.</strong> Store the API credentials in AWS Secrets Manager. Retrieve the API credentials at runtime by using the AWS SDK. Use the credentials to make the API call.</li>
+<li><strong>B.</strong> Store the API credentials in a local code variable. Push the code to a secure Git repository. Use the local code variable at runtime to make the API call.</li>
+<li><strong>C.</strong> Store the API credentials as an object in a private Amazon S3 bucket. Restrict access to the S3 object by using IAM policies. Retrieve the API credentials at runtime by using the AWS SDK. Use the credentials to make the API call.</li>
+<li><strong>D.</strong> Store the API credentials in an Amazon DynamoDB table. Restrict access to the table by using resource-based policies. Retrieve the API credentials at runtime by using the AWS SDK. Use the credentials to make the API call.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+Secrets Manager es la opción más segura para gestionar la API key sin afectar al rendimiento.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="ecs-con-variables-seguras-y-minimos-cambios">ECS con variables seguras y mínimos cambios</h2>
+<p>A developer is deploying a new application to Amazon Elastic Container Service (Amazon ECS). The developer needs to securely store and retrieve different types of variables. These variables include authentication information for a remote API, the URL for the API, and credentials. The authentication information and API URL must be available to all current and future deployed versions of the application across development, testing, and production environments.
+How should the developer retrieve the variables with the FEWEST application changes?</p>
+<ul>
+<li><strong>A.</strong> Update the application to retrieve the variables from AWS Systems Manager Parameter Store. Use unique paths in Parameter Store for each variable in each environment. Store the credentials in AWS Secrets Manager in each environment.</li>
+<li><strong>B.</strong> Update the application to retrieve the variables from AWS Key Management Service (AWS KMS). Store the API URL and credentials as unique keys for each environment.</li>
+<li><strong>C.</strong> Update the application to retrieve the variables from an encrypted file that is stored with the application. Store the API URL and credentials in unique files for each environment.</li>
+<li><strong>D.</strong> Update the application to retrieve the variables from each of the deployed environments. Define the authentication information and API URL in the ECS task definition as unique names during the deployment process.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> A</p>
+<p><strong>Análisis:</strong>
+Parameter Store para la URL y Secrets Manager para las credenciales minimiza cambios y separa configuración sensible de no sensible.</p>
+<p><strong>Información Relevante:</strong>
+KMS es la capa de cifrado subyacente; no es el almacén de variables que la aplicación debería consultar directamente.</p>
+</details>
+<h2 id="directorio-de-empleados-con-fotos-de-alta-resolucion">Directorio de empleados con fotos de alta resolución</h2>
+<p>A company is migrating legacy internal applications to AWS. Leadership wants to rewrite the internal employee directory to use native AWS services. A developer needs to create a solution for storing employee contact details and high-resolution photos for use with the new application.
+Which solution will enable the search and retrieval of each employee's individual details and high-resolution photos using AWS APIs?</p>
+<ul>
+<li><strong>A.</strong> Encode each employee's contact information and photos using Base64. Store the information in an Amazon DynamoDB table using a sort key.</li>
+<li><strong>B.</strong> Store each employee's contact information in an Amazon DynamoDB table along with the object keys for the photos stored in Amazon S3.</li>
+<li><strong>C.</strong> Use Amazon Cognito user pools to implement the employee directory in a fully managed software-as-a-service (SaaS) method.</li>
+<li><strong>D.</strong> Store employee contact information in an Amazon RDS DB instance with the photos stored in Amazon Elastic File System (Amazon EFS).</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B</p>
+<p><strong>Análisis:</strong>
+La B guarda contactos en DynamoDB y las claves de objeto de las fotos en S3, que es el patrón recomendado para datos pequeños + objetos grandes.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="fotos-en-el-cloud-con-cognito-y-s3">Fotos en el cloud con Cognito y S3</h2>
+<p>A developer is creating an application that will give users the ability to store photos from their cellphones in the cloud. The application needs to support tens of thousands of users. The application uses an Amazon API Gateway REST API that is integrated with AWS Lambda functions to process the photos. The application stores details about the photos in Amazon DynamoDB.
+Users need to create an account to access the application. In the application, users must be able to upload photos and retrieve previously uploaded photos. The photos will range in size from 300 KB to 5 MB.
+Which solution will meet these requirements with the LEAST operational overhead?</p>
+<ul>
+<li><strong>A.</strong> Use Amazon Cognito user pools to manage user accounts. Create an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Use the Lambda function to store the photos and details in the DynamoDB table. Retrieve previously uploaded photos directly from the DynamoDB table.</li>
+<li><strong>B.</strong> Use Amazon Cognito user pools to manage user accounts. Create an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Use the Lambda function to store the photos in Amazon S3. Store the object's S3 key as part of the photo details in the DynamoDB table. Retrieve previously uploaded photos by querying DynamoDB for the S3 key.</li>
+<li><strong>C.</strong> Create an IAM user for each user of the application during the sign-up process. Use IAM authentication to access the API Gateway API. Use the Lambda function to store the photos in Amazon S3. Store the object's S3 key as part of the photo details in the DynamoDB table. Retrieve previously uploaded photos by querying DynamoDB for the S3 key.</li>
+<li><strong>D.</strong> Create a users table in DynamoDB. Use the table to manage user accounts. Create a Lambda authorizer that validates user credentials against the users table. Integrate the Lambda authorizer with API Gateway to control access to the API. Use the Lambda function to store the photos in Amazon S3. Store the object's S3 key as part of the photo details in the DynamoDB table. Retrieve previously uploaded photos by querying DynamoDB for the S3 key.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> B</p>
+<p><strong>Análisis:</strong>
+La solución usa Cognito user pools, API Gateway authorizer, S3 para las fotos y DynamoDB para guardar la clave del objeto, que es el patrón correcto.</p>
+<p><strong>Información Relevante:</strong></p>
+</details>
+<h2 id="microservicios-con-notificaciones-escalables-para-partners">Microservicios con notificaciones escalables para partners</h2>
+<p>A company receives food orders from multiple partners. The company has a microservices application that uses Amazon API Gateway APIs with AWS Lambda integration. Each partner sends orders by calling a customized API that is exposed through API Gateway. The API call invokes a shared Lambda function to process the orders.</p>
+<p>Partners need to be notified after the Lambda function processes the orders. Each partner must receive updates for only the partner's own orders. The company wants to add new partners in the future with the fewest code changes possible.</p>
+<p>Which solution will meet these requirements in the MOST scalable way?</p>
+<ul>
+<li><strong>A.</strong> Create a different Amazon Simple Notification Service (Amazon SNS) topic for each partner. Configure the Lambda function to publish messages for each partner to the partner's SNS topic.</li>
+<li><strong>B.</strong> Create a different Lambda function for each partner. Configure the Lambda function to notify each partner's service endpoint directly.</li>
+<li><strong>C.</strong> Create an Amazon Simple Notification Service (Amazon SNS) topic. Configure the Lambda function to publish messages with specific attributes to the SNS topic. Subscribe each partner to the SNS topic. Apply the appropriate filter policy to the topic subscriptions.</li>
+<li><strong>D.</strong> Create one Amazon Simple Notification Service (Amazon SNS) topic. Subscribe all partners to the SNS topic.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 90%)</p>
+<p><strong>Análisis:</strong>
+Una empresa recibe pedidos de comida de múltiples partners. Tienen una aplicación basada en microservicios que usa un API Gateway con Lambda integrada. Cada partner envía pedidos llamando a una API customizada hacia el API Gateway y la llamada invoca a una función Lambda compartida para procesar los pedidos.</p>
+<p>Los partners necesitan ser notificados tras el procesado de pedidos de la Lambda. Cada partner debe recibir solo lo de sus pedidos. La empresa quiere añadir nuevos partners en el futuro con el menor cambio de código posible.</p>
+<p>La A no me parece eficiente, la descarto. La B está totalmente descartada. La C permite publicar en un único topic y filtrar las notificaciones mediante atributos, por lo que es la opción más escalable. La D no cumpliría que cada partner reciba únicamente sus propias actualizaciones. Elijo la C.</p>
+<p><strong>Información Relevante:</strong>
+La opción C es la más escalable: permite utilizar un único SNS topic para todos los partners, minimizando los cambios de código al añadir nuevos partners. La función Lambda publica mensajes con atributos específicos y cada suscripción aplica una filter policy para recibir únicamente los pedidos correspondientes a ese partner.</p>
+<p>Documentación relevante: https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html</p>
+</details>
+<h2 id="s3-object-lambda-para-eliminar-pii-sin-duplicar-documentos">S3 Object Lambda para eliminar PII sin duplicar documentos</h2>
+<p>A financial company must store original customer records for 10 years for legal reasons. A complete record contains personally identifiable information (PII). According to local regulations, PII is available to only certain people in the company and must not be shared with third parties. The company needs to make the records available to third-party organizations for statistical analysis without sharing the PII.</p>
+<p>A developer wants to store the original immutable record in Amazon S3. Depending on who accesses the S3 document, the document should be returned as is or with all the PII removed. The developer has written an AWS Lambda function to remove the PII. The function is named <code>removePii</code>.</p>
+<p>What should the developer do so that the company can meet the PII requirements while maintaining only one copy of the document?</p>
+<ul>
+<li><strong>A.</strong> Set up an S3 event notification that invokes the <code>removePii</code> function when an S3 GET request is made. Call Amazon S3 by using a GET request to access the object without PII.</li>
+<li><strong>B.</strong> Set up an S3 event notification that invokes the <code>removePii</code> function when an S3 PUT request is made. Call Amazon S3 by using a PUT request to access the object without PII.</li>
+<li><strong>C.</strong> Create an S3 Object Lambda access point from the S3 console. Select the <code>removePii</code> function. Use S3 Access Points to access the object without PII.</li>
+<li><strong>D.</strong> Create an S3 access point from the S3 console. Use the access point name to call the <code>GetObjectLegalHold</code> S3 API function. Pass in the <code>removePii</code> function name to access the object without PII.</li>
+</ul>
+<details class="success">
+<summary>Ver Respuesta, Análisis e Información Relevante</summary>
+<p><strong>Respuesta:</strong> C (Probabilidad: 80%)</p>
+<p><strong>Análisis:</strong>
+Quieren compartir datos legales sin información confidencial con terceras partes y mantener una única copia del documento. La respuesta está entre la A y la B.</p>
+<p>La A configura un evento S3 que invoca a la función <code>removePii</code> cuando se hace una petición GET a S3. Creo que es la A porque se harán peticiones GET para consultar los datos, no PUT. La B configura un evento S3 que invoca a la función cuando se hace una petición PUT, pero la necesidad se produce al acceder al objeto.</p>
+<p>Sin embargo, la respuesta correcta es la C: S3 Object Lambda permite transformar dinámicamente el contenido de un objeto durante una solicitud GET, manteniendo el objeto original y evitando duplicarlo.</p>
+<p><strong>Información Relevante:</strong>
+El requisito clave es mantener una sola copia del documento original en S3 y poder servir dos versiones según quién lo solicite: la versión completa con PII para usuarios internos autorizados y la versión redactada sin PII para terceros.</p>
+<p>S3 Object Lambda permite añadir código propio a las solicitudes GET estándar de S3 para procesar y modificar los datos devueltos a la aplicación, sin crear ni almacenar copias adicionales del objeto.</p>
+<p>El funcionamiento es el siguiente:</p>
+<ul>
+<li>Se crea un S3 Access Point normal sobre el bucket.</li>
+<li>Sobre ese access point se crea un S3 Object Lambda Access Point asociado a la función Lambda <code>removePii</code>.</li>
+<li>Cuando una solicitud GET llega a través del Object Lambda Access Point, S3 invoca automáticamente la función Lambda, que recibe el objeto original, elimina la PII y devuelve la versión transformada al solicitante.</li>
+<li>Cuando se accede al objeto mediante el endpoint estándar de S3, sin pasar por el Object Lambda Access Point, se obtiene el documento original sin transformación.</li>
+</ul>
+<p>Esto resuelve el requisito de almacenar un único objeto en S3 y utilizar dos rutas de acceso distintas: el endpoint normal devuelve el documento completo y el S3 Object Lambda Access Point devuelve el documento redactado.</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

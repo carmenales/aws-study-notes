@@ -1,0 +1,1933 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes sobre AWS">
+      
+      
+        <meta name="author" content="carmenales">
+      
+      
+      
+        <link rel="prev" href="../advance-developing/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Caché - Apuntes AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#amazon-elasticache" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Apuntes AWS" class="md-header__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Caché
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.public/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../servicios/" class="md-tabs__link">
+          
+  
+  
+  Teoría
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Apuntes AWS" class="md-nav__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.public/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-essentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advance-developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advance Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Qué es
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-para-que-se-utiliza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Para qué se utiliza
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-conceptos-fundamentales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conceptos fundamentales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Conceptos fundamentales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-hit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache hit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache miss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TTL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-motores-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Motores disponibles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-valkey-y-redis-oss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Valkey y Redis OSS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Memcached
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-valkey-o-redis-frente-a-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Valkey o Redis frente a Memcached
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-patron-cache-aside-o-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Patrón cache-aside o lazy loading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-write-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Write-through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cache-aside-frente-a-write-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cache-aside frente a write-through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-invalidacion-de-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Invalidación de caché
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-sesiones-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Sesiones de usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-escalado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Escalado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Escalado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escalado-vertical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalado vertical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escalado-horizontal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalado horizontal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-alta-disponibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Alta disponibilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-monitorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Monitorización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-elasticache-no-sustituye-necesariamente-a-una-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. ElastiCache no sustituye necesariamente a una base de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-elasticache-frente-a-dynamodb-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. ElastiCache frente a DynamoDB Accelerator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-elasticache-frente-a-cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. ElastiCache frente a CloudFront
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-claves-para-el-examen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Claves para el examen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Claves para el examen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elegir-valkey-o-redis-oss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elegir Valkey o Redis OSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elegir-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elegir Memcached
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elegir-dax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elegir DAX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-elegir-elasticache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No elegir ElastiCache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-politicas-de-escritura-e-invalidacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Políticas de escritura e invalidación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="21. Políticas de escritura e invalidación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-aside-con-invalidacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache-aside con invalidación:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Write-through:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-resumen-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Resumen rápido
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Qué es
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-para-que-se-utiliza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Para qué se utiliza
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-conceptos-fundamentales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conceptos fundamentales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Conceptos fundamentales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-hit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache hit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache miss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TTL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-motores-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Motores disponibles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-valkey-y-redis-oss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Valkey y Redis OSS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Memcached
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-valkey-o-redis-frente-a-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Valkey o Redis frente a Memcached
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-patron-cache-aside-o-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Patrón cache-aside o lazy loading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-write-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Write-through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cache-aside-frente-a-write-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cache-aside frente a write-through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-invalidacion-de-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Invalidación de caché
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-sesiones-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Sesiones de usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-escalado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Escalado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Escalado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escalado-vertical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalado vertical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escalado-horizontal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalado horizontal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-alta-disponibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Alta disponibilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-monitorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Monitorización
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-elasticache-no-sustituye-necesariamente-a-una-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. ElastiCache no sustituye necesariamente a una base de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-elasticache-frente-a-dynamodb-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. ElastiCache frente a DynamoDB Accelerator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-elasticache-frente-a-cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. ElastiCache frente a CloudFront
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-claves-para-el-examen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Claves para el examen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Claves para el examen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elegir-valkey-o-redis-oss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elegir Valkey o Redis OSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elegir-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elegir Memcached
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elegir-dax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elegir DAX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-elegir-elasticache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No elegir ElastiCache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-politicas-de-escritura-e-invalidacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Políticas de escritura e invalidación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="21. Políticas de escritura e invalidación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-aside-con-invalidacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache-aside con invalidación:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Write-through:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-resumen-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Resumen rápido
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="amazon-elasticache">Amazon ElastiCache</h1>
+<h2 id="1-que-es">1. Qué es</h2>
+<p>Amazon ElastiCache es un servicio administrado de almacenamiento de datos en memoria.</p>
+<p>Permite utilizar una caché de alto rendimiento sin tener que instalar, configurar y mantener manualmente los servidores que ejecutan el motor de caché.</p>
+<p>Los datos se almacenan principalmente en memoria RAM, por lo que su acceso es mucho más rápido que una consulta habitual a una base de datos basada en almacenamiento persistente.</p>
+<h2 id="2-para-que-se-utiliza">2. Para qué se utiliza</h2>
+<p>ElastiCache se utiliza principalmente para:</p>
+<ul>
+<li>Reducir la latencia de una aplicación.</li>
+<li>Disminuir el número de consultas realizadas a una base de datos.</li>
+<li>Almacenar resultados de consultas frecuentes.</li>
+<li>Mantener sesiones de usuario compartidas.</li>
+<li>Guardar rankings y tablas de clasificación.</li>
+<li>Implementar contadores.</li>
+<li>Almacenar datos temporales.</li>
+<li>Implementar mecanismos de rate limiting.</li>
+<li>Compartir información entre varias instancias de una aplicación.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code>Aplicación
+    |
+    v
+ElastiCache
+    |
+    | El dato no está en caché
+    v
+Base de datos
+</code></pre></div>
+<p>La aplicación consulta primero ElastiCache. Si el dato está disponible, lo recupera directamente. Si no está disponible, consulta la base de datos y puede guardar posteriormente el resultado en la caché.</p>
+<h2 id="3-conceptos-fundamentales">3. Conceptos fundamentales</h2>
+<h3 id="cache-hit">Cache hit</h3>
+<p>Se produce un cache hit cuando el dato solicitado ya se encuentra en la caché.</p>
+<div class="highlight"><pre><span></span><code>Aplicación -&gt; ElastiCache -&gt; dato encontrado
+</code></pre></div>
+<p>La aplicación no necesita consultar la base de datos.</p>
+<h3 id="cache-miss">Cache miss</h3>
+<p>Se produce un cache miss cuando el dato solicitado no está en la caché.</p>
+<div class="highlight"><pre><span></span><code>Aplicación -&gt; ElastiCache -&gt; dato no encontrado
+                           -&gt; base de datos
+</code></pre></div>
+<p>La aplicación debe consultar la fuente de datos original.</p>
+<h3 id="ttl">TTL</h3>
+<p>TTL significa Time to Live.</p>
+<p>Indica cuánto tiempo puede permanecer un dato en la caché antes de expirar automáticamente.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code>usuario:123 -&gt; TTL de 300 segundos
+</code></pre></div>
+<p>Después de cinco minutos, la entrada expira y deberá volver a obtenerse desde la fuente original.</p>
+<p>El TTL ayuda a evitar que la caché mantenga datos obsoletos indefinidamente.</p>
+<h2 id="4-motores-disponibles">4. Motores disponibles</h2>
+<p>Amazon ElastiCache admite motores compatibles con:</p>
+<ul>
+<li>Valkey.</li>
+<li>Redis OSS.</li>
+<li>Memcached.</li>
+</ul>
+<h2 id="5-valkey-y-redis-oss">5. Valkey y Redis OSS</h2>
+<p>Valkey y Redis OSS son motores de almacenamiento en memoria con funcionalidades avanzadas.</p>
+<p>Permiten utilizar estructuras de datos como:</p>
+<ul>
+<li>Strings.</li>
+<li>Listas.</li>
+<li>Sets.</li>
+<li>Sorted sets.</li>
+<li>Hashes.</li>
+<li>Streams.</li>
+</ul>
+<p>Casos de uso habituales:</p>
+<ul>
+<li>Sesiones de usuario.</li>
+<li>Rankings.</li>
+<li>Contadores.</li>
+<li>Pub/Sub.</li>
+<li>Rate limiting.</li>
+<li>Datos temporales.</li>
+<li>Caché de consultas.</li>
+</ul>
+<p>Características relevantes:</p>
+<ul>
+<li>Replicación.</li>
+<li>Réplicas de lectura.</li>
+<li>Alta disponibilidad.</li>
+<li>Multi-AZ.</li>
+<li>Failover automático.</li>
+<li>Copias de seguridad.</li>
+<li>Persistencia.</li>
+<li>Particionado mediante shards.</li>
+<li>Estructuras de datos avanzadas.</li>
+</ul>
+<p>En preguntas de certificación, Valkey o Redis OSS suelen ser la respuesta adecuada cuando se necesita:</p>
+<ul>
+<li>Alta disponibilidad.</li>
+<li>Replicación.</li>
+<li>Recuperación ante fallos.</li>
+<li>Backups.</li>
+<li>Rankings.</li>
+<li>Contadores atómicos.</li>
+<li>Pub/Sub.</li>
+<li>Estructuras de datos complejas.</li>
+</ul>
+<h2 id="6-memcached">6. Memcached</h2>
+<p>Memcached es un motor de caché distribuida más sencillo.</p>
+<p>Está orientado principalmente a guardar pares clave-valor en memoria.</p>
+<p>Características relevantes:</p>
+<ul>
+<li>Arquitectura sencilla.</li>
+<li>Escalado horizontal añadiendo nodos.</li>
+<li>Funcionamiento multihilo.</li>
+<li>Distribución de datos entre nodos.</li>
+<li>No proporciona replicación nativa equivalente a Redis o Valkey.</li>
+<li>No ofrece persistencia.</li>
+<li>No está diseñado para backups.</li>
+<li>No ofrece las mismas estructuras de datos avanzadas.</li>
+</ul>
+<p>En preguntas de certificación, Memcached suele elegirse cuando se necesita:</p>
+<ul>
+<li>Una caché sencilla.</li>
+<li>Distribuir datos entre varios nodos.</li>
+<li>Escalado horizontal.</li>
+<li>Procesamiento multihilo.</li>
+<li>No se necesitan backups ni replicación.</li>
+</ul>
+<h2 id="7-valkey-o-redis-frente-a-memcached">7. Valkey o Redis frente a Memcached</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th style="text-align: right;">Valkey / Redis OSS</th>
+<th style="text-align: right;">Memcached</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caché clave-valor</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí</td>
+</tr>
+<tr>
+<td>Estructuras de datos avanzadas</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Replicación</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Multi-AZ y failover</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Persistencia</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Pub/Sub</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Multihilo</td>
+<td style="text-align: right;">Limitado según arquitectura</td>
+<td style="text-align: right;">Sí</td>
+</tr>
+<tr>
+<td>Escalado horizontal</td>
+<td style="text-align: right;">Mediante shards</td>
+<td style="text-align: right;">Añadiendo nodos</td>
+</tr>
+<tr>
+<td>Rankings y contadores</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Uso limitado</td>
+</tr>
+<tr>
+<td>Caché sencilla distribuida</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí, especialmente adecuado</td>
+</tr>
+</tbody>
+</table>
+<p>Resumen:</p>
+<div class="highlight"><pre><span></span><code>Valkey / Redis = funcionalidades avanzadas y alta disponibilidad
+Memcached      = caché simple, distribuida y multihilo
+</code></pre></div>
+<h2 id="8-patron-cache-aside-o-lazy-loading">8. Patrón cache-aside o lazy loading</h2>
+<p>Cache-aside es uno de los patrones de caché más habituales.</p>
+<p>Funcionamiento:</p>
+<ol>
+<li>La aplicación solicita un dato a la caché.</li>
+<li>Si el dato existe, lo devuelve.</li>
+<li>Si el dato no existe, consulta la base de datos.</li>
+<li>La aplicación guarda el resultado en la caché.</li>
+<li>La aplicación devuelve el dato.</li>
+</ol>
+<p>Pseudocódigo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="k">return</span> <span class="n">value</span>
+</code></pre></div>
+<p>Ventajas:</p>
+<ul>
+<li>Solo se guardan en caché los datos que se utilizan.</li>
+<li>Reduce la carga sobre la base de datos.</li>
+<li>Es relativamente sencillo de implementar.</li>
+</ul>
+<p>Inconvenientes:</p>
+<ul>
+<li>La primera consulta siempre produce un cache miss.</li>
+<li>Puede haber datos obsoletos.</li>
+<li>La aplicación debe gestionar la lógica de caché.</li>
+<li>Si muchas solicitudes piden simultáneamente un dato ausente, puede producirse una sobrecarga de la base de datos.</li>
+</ul>
+<h2 id="9-write-through">9. Write-through</h2>
+<p>En el patrón write-through, la aplicación actualiza la caché al mismo tiempo que escribe en la base de datos.</p>
+<div class="highlight"><pre><span></span><code>Aplicación
+    |
+    +--&gt; Base de datos
+    |
+    +--&gt; Caché
+</code></pre></div>
+<p>Ventajas:</p>
+<ul>
+<li>La caché contiene datos actualizados.</li>
+<li>Se reducen los cache misses posteriores a una escritura.</li>
+</ul>
+<p>Inconvenientes:</p>
+<ul>
+<li>Se almacenan en caché datos que quizá nunca se consulten.</li>
+<li>Las operaciones de escritura son más complejas.</li>
+<li>Puede aumentar el coste y el uso de memoria.</li>
+</ul>
+<h2 id="10-cache-aside-frente-a-write-through">10. Cache-aside frente a write-through</h2>
+<table>
+<thead>
+<tr>
+<th>Patrón</th>
+<th>Funcionamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-aside</td>
+<td>Se guarda el dato en caché después de un cache miss</td>
+</tr>
+<tr>
+<td>Write-through</td>
+<td>Se actualiza la caché al escribir en la base de datos</td>
+</tr>
+</tbody>
+</table>
+<p>Cache-aside prioriza la eficiencia del uso de memoria.</p>
+<p>Write-through prioriza que los datos estén disponibles y actualizados en la caché.</p>
+<p>En algunas arquitecturas se combinan ambos patrones.</p>
+<h2 id="11-invalidacion-de-cache">11. Invalidación de caché</h2>
+<p>La invalidación consiste en eliminar o actualizar una entrada cuando deja de ser válida.</p>
+<p>Estrategias habituales:</p>
+<ul>
+<li>Expiración mediante TTL.</li>
+<li>Eliminación explícita al actualizar la base de datos.</li>
+<li>Actualización de la caché después de una escritura.</li>
+<li>Uso de claves versionadas.</li>
+</ul>
+<p>La invalidación es importante porque una caché puede contener información desactualizada.</p>
+<h2 id="12-sesiones-de-usuario">12. Sesiones de usuario</h2>
+<p>ElastiCache puede utilizarse para almacenar sesiones cuando una aplicación se ejecuta en varias instancias.</p>
+<div class="highlight"><pre><span></span><code>             +--&gt; EC2 1
+Usuario ---&gt; Load Balancer
+             +--&gt; EC2 2
+                    |
+                    v
+              ElastiCache
+</code></pre></div>
+<p>Todas las instancias pueden acceder a la misma sesión almacenada en ElastiCache.</p>
+<p>Esto evita depender del almacenamiento local de una instancia concreta.</p>
+<p>Para este caso suelen utilizarse Valkey o Redis OSS.</p>
+<h2 id="13-escalado">13. Escalado</h2>
+<h3 id="escalado-vertical">Escalado vertical</h3>
+<p>Consiste en utilizar nodos con mayor capacidad de CPU, memoria o red.</p>
+<h3 id="escalado-horizontal">Escalado horizontal</h3>
+<p>Consiste en añadir nodos o particiones.</p>
+<p>En Valkey o Redis, los datos pueden distribuirse mediante shards cuando se utiliza el modo de clúster.</p>
+<p>En Memcached, se añaden nodos y los datos se distribuyen entre ellos.</p>
+<h2 id="14-alta-disponibilidad">14. Alta disponibilidad</h2>
+<p>Con Valkey o Redis OSS pueden utilizarse:</p>
+<ul>
+<li>Nodo primario.</li>
+<li>Réplicas.</li>
+<li>Multi-AZ.</li>
+<li>Failover automático.</li>
+</ul>
+<p>Si el nodo primario falla, una réplica puede convertirse en el nuevo nodo primario.</p>
+<p>Memcached no ofrece una arquitectura equivalente de replicación y failover automático.</p>
+<h2 id="15-seguridad">15. Seguridad</h2>
+<p>ElastiCache se despliega normalmente dentro de una VPC.</p>
+<p>El acceso puede controlarse mediante:</p>
+<ul>
+<li>Security groups.</li>
+<li>Subnet groups.</li>
+<li>Autenticación del motor.</li>
+<li>Cifrado en tránsito.</li>
+<li>Cifrado en reposo.</li>
+<li>IAM, en las funcionalidades compatibles.</li>
+<li>AWS Secrets Manager para almacenar credenciales o tokens.</li>
+</ul>
+<p>Los nodos de ElastiCache no se exponen normalmente de forma directa a Internet.</p>
+<h2 id="16-monitorizacion">16. Monitorización</h2>
+<p>ElastiCache se integra con Amazon CloudWatch.</p>
+<p>Se pueden supervisar métricas como:</p>
+<ul>
+<li>Uso de CPU.</li>
+<li>Uso de memoria.</li>
+<li>Número de conexiones.</li>
+<li>Cache hits.</li>
+<li>Cache misses.</li>
+<li>Evictions.</li>
+<li>Latencia.</li>
+<li>Tráfico de red.</li>
+<li>Uso de swap.</li>
+</ul>
+<p>Una tasa elevada de cache misses puede indicar:</p>
+<ul>
+<li>TTL demasiado corto.</li>
+<li>Claves mal diseñadas.</li>
+<li>Datos que no se reutilizan.</li>
+<li>Caché insuficiente.</li>
+<li>Estrategia de caché inadecuada.</li>
+</ul>
+<p>Las evictions indican que el motor está eliminando elementos para liberar memoria.</p>
+<h2 id="17-elasticache-no-sustituye-necesariamente-a-una-base-de-datos">17. ElastiCache no sustituye necesariamente a una base de datos</h2>
+<p>ElastiCache suele utilizarse como capa adicional delante de una base de datos persistente.</p>
+<div class="highlight"><pre><span></span><code>Aplicación -&gt; ElastiCache -&gt; RDS / DynamoDB
+</code></pre></div>
+<p>La base de datos continúa siendo normalmente la fuente autoritativa de los datos.</p>
+<p>La caché:</p>
+<ul>
+<li>Puede perder información.</li>
+<li>Puede contener datos obsoletos.</li>
+<li>Puede eliminar entradas.</li>
+<li>Puede expirar entradas mediante TTL.</li>
+<li>No debe considerarse siempre como almacenamiento definitivo.</li>
+</ul>
+<h2 id="18-elasticache-frente-a-dynamodb-accelerator">18. ElastiCache frente a DynamoDB Accelerator</h2>
+<p>DynamoDB Accelerator, DAX, es una caché en memoria diseñada específicamente para DynamoDB.</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>ElastiCache</th>
+<th>DAX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uso general</td>
+<td>Sí</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Diseñado específicamente para DynamoDB</td>
+<td>No</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Compatible con Redis/Valkey/Memcached</td>
+<td>Sí</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Puede almacenar sesiones o rankings</td>
+<td>Sí</td>
+<td>No es su finalidad principal</td>
+</tr>
+<tr>
+<td>Compatible con la API de DynamoDB</td>
+<td>No</td>
+<td>Sí</td>
+</tr>
+</tbody>
+</table>
+<p>Regla de examen:</p>
+<ul>
+<li>Caché específica y compatible con DynamoDB: DAX.</li>
+<li>Caché de propósito general: ElastiCache.</li>
+</ul>
+<h2 id="19-elasticache-frente-a-cloudfront">19. ElastiCache frente a CloudFront</h2>
+<p>ElastiCache y CloudFront implementan caché en capas diferentes.</p>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Tipo de caché</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ElastiCache</td>
+<td>Datos de la aplicación</td>
+</tr>
+<tr>
+<td>CloudFront</td>
+<td>Contenido distribuido en ubicaciones edge</td>
+</tr>
+<tr>
+<td>API Gateway cache</td>
+<td>Respuestas de una API</td>
+</tr>
+<tr>
+<td>DAX</td>
+<td>Consultas de DynamoDB</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplos:</p>
+<ul>
+<li>Sesiones de usuario: ElastiCache.</li>
+<li>Resultados de consultas SQL: ElastiCache.</li>
+<li>Imágenes y contenido estático global: CloudFront.</li>
+<li>Respuestas repetidas de una API: API Gateway cache.</li>
+<li>Lecturas repetidas de DynamoDB: DAX.</li>
+</ul>
+<h2 id="20-claves-para-el-examen">20. Claves para el examen</h2>
+<h3 id="elegir-valkey-o-redis-oss">Elegir Valkey o Redis OSS</h3>
+<p>Elegir Valkey o Redis cuando aparezcan requisitos como:</p>
+<ul>
+<li>Replicación.</li>
+<li>Multi-AZ.</li>
+<li>Failover.</li>
+<li>Backups.</li>
+<li>Persistencia.</li>
+<li>Rankings.</li>
+<li>Sorted sets.</li>
+<li>Pub/Sub.</li>
+<li>Contadores atómicos.</li>
+<li>Estructuras de datos complejas.</li>
+</ul>
+<h3 id="elegir-memcached">Elegir Memcached</h3>
+<p>Elegir Memcached cuando aparezcan requisitos como:</p>
+<ul>
+<li>Caché sencilla.</li>
+<li>Datos temporales.</li>
+<li>Arquitectura distribuida.</li>
+<li>Escalado horizontal añadiendo nodos.</li>
+<li>Procesamiento multihilo.</li>
+<li>No se requiere persistencia.</li>
+<li>No se requieren backups ni replicación.</li>
+</ul>
+<h3 id="elegir-dax">Elegir DAX</h3>
+<p>Elegir DAX cuando:</p>
+<ul>
+<li>La base de datos es DynamoDB.</li>
+<li>Se necesita una caché transparente para lecturas de DynamoDB.</li>
+<li>Se quiere mantener compatibilidad con la API de DynamoDB.</li>
+</ul>
+<h3 id="no-elegir-elasticache">No elegir ElastiCache</h3>
+<p>No elegir ElastiCache como única solución cuando:</p>
+<ul>
+<li>Los datos deben conservarse permanentemente.</li>
+<li>Se necesita almacenamiento de objetos.</li>
+<li>Se necesita una base de datos relacional.</li>
+<li>Se requiere una CDN global.</li>
+<li>Se necesita consultar directamente archivos almacenados en S3.</li>
+</ul>
+<h2 id="21-politicas-de-escritura-e-invalidacion">21. Políticas de escritura e invalidación</h2>
+<h3 id="cache-aside-con-invalidacion">Cache-aside con invalidación:</h3>
+<div class="highlight"><pre><span></span><code>backend → invalidar caché → siguiente lectura repuebla la caché
+</code></pre></div>
+<h3 id="write-through">Write-through:</h3>
+<div class="highlight"><pre><span></span><code>backend → actualizar inmediatamente la caché
+</code></pre></div>
+<h2 id="22-resumen-rapido">22. Resumen rápido</h2>
+<ul>
+<li>ElastiCache es una caché administrada en memoria.</li>
+<li>Reduce la latencia y la carga de las bases de datos.</li>
+<li>Valkey y Redis OSS ofrecen replicación, backups, failover y estructuras avanzadas.</li>
+<li>Memcached ofrece una caché sencilla, distribuida y multihilo.</li>
+<li>Cache-aside carga los datos en caché después de un cache miss.</li>
+<li>Write-through actualiza la caché al escribir en la base de datos.</li>
+<li>TTL controla cuánto tiempo permanece una entrada en caché.</li>
+<li>CloudWatch permite monitorizar hits, misses, memoria y evictions.</li>
+<li>ElastiCache suele complementar a RDS o DynamoDB, no sustituirlos.</li>
+<li>DAX es la caché específica para DynamoDB.</li>
+<li>CloudFront almacena contenido en ubicaciones edge; ElastiCache almacena datos de aplicación.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
