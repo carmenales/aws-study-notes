@@ -1,0 +1,2480 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes sobre AWS">
+      
+      
+        <meta name="author" content="carmenales">
+      
+      
+      
+        <link rel="prev" href="../cache/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>EKS - Apuntes AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Apuntes AWS" class="md-header__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EKS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../servicios/" class="md-tabs__link">
+          
+  
+  
+  Teoría
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Apuntes AWS" class="md-nav__button md-logo" aria-label="Apuntes AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoría
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-essentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advance-developing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advance Developing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EKS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EKS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elementos-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elementos Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elementos Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control plane
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Control plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        etcd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        api-server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        controller manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data plane
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubelet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kube-proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workloads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmaps-y-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMaps y Secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#afinidad-de-los-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Afinidad de los nodos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Helm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo-de-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo de Helm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-aporta-realmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué aporta realmente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argocd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ArgoCD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EKS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-scaling-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Scaling Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-ecr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon ECR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Inspector
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-fargate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Fargate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-en-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad en Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad en Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacion-y-autorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autenticación y autorización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autenticación y autorización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-y-credenciales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets y credenciales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmaps-vs-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMaps vs Secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagenes-y-vulnerabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imágenes y vulnerabilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-en-amazon-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad en Amazon EKS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad en Amazon EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iam-y-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM y EKS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red-y-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red y VPC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos-de-nodos-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupos de nodos y seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encriptacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encriptación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escaneo-de-vulnerabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escaneo de vulnerabilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buenas-practicas-de-seguridad-en-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buenas prácticas de seguridad en EKS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-guardduty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon GuardDuty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-detective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Detective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Security Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-entre-ellos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relación entre ellos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elementos-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elementos Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elementos Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control plane
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Control plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        etcd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        api-server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        controller manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data plane
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubelet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kube-proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workloads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmaps-y-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMaps y Secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#afinidad-de-los-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Afinidad de los nodos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Helm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo-de-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo de Helm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-aporta-realmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué aporta realmente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argocd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ArgoCD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EKS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-scaling-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Scaling Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-ecr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon ECR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon Inspector
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-fargate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Fargate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-en-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad en Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad en Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacion-y-autorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autenticación y autorización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autenticación y autorización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-y-credenciales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets y credenciales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmaps-vs-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMaps vs Secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagenes-y-vulnerabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imágenes y vulnerabilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-en-amazon-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seguridad en Amazon EKS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seguridad en Amazon EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iam-y-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IAM y EKS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red-y-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red y VPC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos-de-nodos-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupos de nodos y seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encriptacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encriptación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escaneo-de-vulnerabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escaneo de vulnerabilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buenas-practicas-de-seguridad-en-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buenas prácticas de seguridad en EKS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-guardduty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon GuardDuty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-detective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Detective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Security Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-entre-ellos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relación entre ellos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="eks">EKS</h1>
+<h2 id="general">General</h2>
+<h3 id="arquitectura-kubernetes">Arquitectura Kubernetes</h3>
+<p><img alt="Arquitectura Kubernetes" src="images/arquitectura-kubernetes.jpg" /></p>
+<ul>
+<li><code>kubectl</code></li>
+<li><code>control plane</code><ul>
+<li><code>api-server</code></li>
+<li><code>etcd</code></li>
+<li><code>controller manager</code></li>
+<li><code>scheduler</code></li>
+</ul>
+</li>
+<li><code>data plane</code><ul>
+<li><code>nodes</code></li>
+<li><code>kubelet</code></li>
+<li><code>kube-proxy</code></li>
+</ul>
+</li>
+<li><code>pods</code></li>
+<li><code>services</code></li>
+<li><code>deployments</code></li>
+<li><code>namespaces</code></li>
+<li><code>configmaps</code></li>
+<li><code>secrets</code></li>
+<li><code>volumes</code></li>
+</ul>
+<h3 id="elementos-kubernetes">Elementos Kubernetes</h3>
+<h4 id="control-plane">Control plane</h4>
+<p><img alt="Elementos del control plane de Kubernetes" src="images/elementos-control-plane-kubernetes.jpg" /></p>
+<ul>
+<li>Es la capa de gestión de Kubernetes.</li>
+<li>El control plane decide el estado deseado y el data plane lo ejecuta realmente sobre infraestructura física o virtual.</li>
+<li>Está formado por los componentes que gestionan la API, el estado, la programación y el control del clúster.</li>
+</ul>
+<h5 id="etcd">etcd</h5>
+<ul>
+<li>Base de datos distribuida y confiable que guarda el estado del clúster.</li>
+<li>Contiene la configuración y el estado de todos los recursos de Kubernetes.</li>
+<li>La integridad de etcd es crítica para la gestión del cluster.</li>
+</ul>
+<h5 id="api-server">api-server</h5>
+<ul>
+<li>Es el punto de entrada principal a Kubernetes.</li>
+<li>Toda operación (crear, leer, actualizar, borrar) pasa por el API Server.</li>
+<li>Expone la API REST del clúster y valida las peticiones.</li>
+</ul>
+<h5 id="controller-manager">controller manager</h5>
+<ul>
+<li>Es el componente encargado de gestionar el estado deseado del sistema.</li>
+<li>Asegura que los recursos del clúster permanezcan en el estado correcto.</li>
+<li>Controla aspectos como replicas, nodos y endpoints.</li>
+</ul>
+<h5 id="scheduler">scheduler</h5>
+<ul>
+<li>Es el componente del control plane que decide en qué nodo se debe ejecutar cada pod.</li>
+<li>Tiene en cuenta restricciones como recursos disponibles, afinidad, taints y tolerations.</li>
+<li>El objetivo es equilibrar el uso de recursos y cumplir los requisitos de programación.</li>
+</ul>
+<h4 id="data-plane">Data plane</h4>
+<ul>
+<li>Es la capa donde se ejecutan las cargas de trabajo.</li>
+<li>Incluye los nodos worker que ejecutan los contenedores y los agentes de Kubernetes.</li>
+<li>Aquí se ejecutan los pods y se gestionan los contenedores reales.</li>
+</ul>
+<h5 id="nodes">Nodes</h5>
+<ul>
+<li>Un nodo es una máquina física o virtual que ejecuta contenedores.</li>
+<li>Cada nodo tiene un sistema operativo, un runtime de contenedores y componentes de Kubernetes.</li>
+<li>Los nodos pueden estar en Linux o Windows según la carga de trabajo.</li>
+</ul>
+<h5 id="kubelet">kubelet</h5>
+<ul>
+<li>Agente que se ejecuta en cada nodo worker.</li>
+<li>Se comunica con el control plane y garantiza que los contenedores definidos en los pods estén corriendo correctamente.</li>
+<li>Es responsable de registrar el nodo y reportar su estado.</li>
+</ul>
+<h5 id="kube-proxy">kube-proxy</h5>
+<ul>
+<li>Mantiene las reglas de red de los servicios y conexiones de red dentro del clúster.</li>
+<li>Permite que los pods puedan comunicarse entre sí y con servicios externos según la red del clúster.</li>
+<li>Actúa como proxy de red para cada nodo.</li>
+</ul>
+<h4 id="pods">Pods</h4>
+<ul>
+<li>Un pod es la unidad mínima de despliegue en Kubernetes.</li>
+<li>Un pod puede contener uno o varios contenedores que comparten red, almacenamiento y configuración.</li>
+<li>Normalmente cada pod ejecuta una sola aplicación principal y, si hace falta, contenedores auxiliares.</li>
+<li>Los pods son efímeros: pueden reiniciarse, moverarse o recrearse; por eso no se debe guardar estado dentro del pod.</li>
+</ul>
+<h4 id="workloads">Workloads</h4>
+<ul>
+<li>Son los recursos que gestionan la ejecución de aplicaciones.</li>
+<li><strong>Deployment:</strong> asegura que un número determinado de réplicas de un pod se estén ejecutando. Maneja actualizaciones y rollback.</li>
+<li><strong>ReplicaSet:</strong> mantiene la cantidad deseada de réplicas de un pod.</li>
+<li><strong>StatefulSet:</strong> para aplicaciones con estado, orden y identidad estables, como bases de datos o sistemas con persistencia.</li>
+<li><strong>DaemonSet:</strong> garantiza que un pod se ejecute en cada nodo o en un subconjunto de nodos; se usa para agentes, métricas o seguridad.</li>
+<li><strong>Job:</strong> ejecuta una tarea puntual y termina cuando finaliza.</li>
+<li><strong>CronJob:</strong> ejecuta jobs según una programación tipo cron.</li>
+</ul>
+<h4 id="services">Services</h4>
+<ul>
+<li>Un Service es una abstracción que expone un conjunto de pods como un punto de acceso estable.</li>
+<li>Permite la comunicación con una aplicación sin depender de las IPs de los pods individuales.</li>
+<li>Tipos principales:<ul>
+<li><code>ClusterIP</code>: acceso interno dentro del clúster.</li>
+<li><code>NodePort</code>: expone el servicio en un puerto del nodo.</li>
+<li><code>LoadBalancer</code>: crea un balanceador externo para acceder a la aplicación.</li>
+</ul>
+</li>
+<li>Los Services resuelven la conectividad entre microservicios y clientes.</li>
+</ul>
+<h4 id="deployments">Deployments</h4>
+<ul>
+<li>Un Deployment define el estado deseado de una aplicación y gestiona la creación y actualización de pods.</li>
+<li>Permite realizar actualizaciones declarativas y revertir cambios fácilmente.</li>
+<li>Aplica estrategias de despliegue como rolling update y recreate.</li>
+<li>Es la forma más común de desplegar aplicaciones en Kubernetes.</li>
+</ul>
+<h4 id="namespaces">Namespaces</h4>
+<ul>
+<li>Son espacios lógicos dentro de un clúster para aislar recursos.</li>
+<li>Se usan para separar entornos como desarrollo, pruebas y producción.</li>
+<li>Ejemplos: <code>default</code>, <code>kube-system</code>, <code>kube-public</code>.</li>
+<li>También permiten aisolar equipos o proyectos dentro del mismo clúster.</li>
+</ul>
+<h4 id="configmaps-y-secrets">ConfigMaps y Secrets</h4>
+<ul>
+<li>Ambos se usan para separar configuración y credenciales del código de la aplicación.</li>
+<li>Ayudan a mantener los contenedores más seguros y reutilizables.</li>
+<li><code>ConfigMap</code>: almacena configuración no sensible como variables de entorno o archivos de configuración.</li>
+<li><code>Secret</code>: almacena información sensible como contraseñas, tokens y claves privadas.</li>
+</ul>
+<h4 id="volumes">Volumes</h4>
+<ul>
+<li>Un volume es un mecanismo para persistir datos o compartir almacenamiento entre contenedores dentro de un pod.</li>
+<li>Los datos de un contenedor no son persistentes por defecto; los volumes permiten conservar información.</li>
+<li>Se usan para configuraciones, logs, bases de datos temporales y archivos compartidos.</li>
+</ul>
+<h3 id="afinidad-de-los-nodos">Afinidad de los nodos</h3>
+<ul>
+<li>Sirve para optimizar disponibilidad, rendimiento y colocación de cargas de trabajo.</li>
+<li><strong>Node affinity:</strong> permite dirigir un pod a nodos con determinadas etiquetas o características.</li>
+<li><strong>Anti-affinity:</strong> evita que dos pods se ejecuten en el mismo nodo si es necesario.</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, un pod puede ejecutarse solo en nodos con GPU o en nodos de tipo de producción.</p>
+</blockquote>
+<h3 id="plugins-kubernetes">Plugins Kubernetes</h3>
+<h4 id="helm">Helm</h4>
+<ul>
+<li>Helm es un <strong>gestor de paquetes</strong> para <strong>Kubernetes</strong>.</li>
+<li>Los paquetes se llaman charts y contienen plantillas, valores y dependencias para desplegar aplicaciones.</li>
+<li>Facilita la automatización de despliegues complejos con variables y reutilización.</li>
+<li>Se usa mucho para instalar servicios como Prometheus, Nginx Ingress, ArgoCD y bases de datos.</li>
+<li><strong>Helm charts:</strong> empaquetan una aplicación o servicio con sus manifiestos y configuración, permitiendo desplegarlo de forma reproducible y versionada.</li>
+</ul>
+<h5 id="objetivo-de-helm">Objetivo de Helm</h5>
+<p>Kubernetes puede desplegar aplicaciones con muchos archivos YAML, pero pronto se vuelve difícil de mantener cuando hay:</p>
+<ul>
+<li>Varios servicios.</li>
+<li>Muchas variables de entorno.</li>
+<li>Distintos entornos (dev, test, prod).</li>
+<li>Configuraciones distintas por entorno.</li>
+<li>Versiones y rollbacks frecuentes.</li>
+</ul>
+<p>Helm resuelve eso con un concepto simple:</p>
+<p>Un <strong>chart</strong> es un <strong>paquete</strong> que contiene la aplicación o servicio incluye sus manifiestos de Kubernetes, variables, plantillas y dependencias permite desplegarlo igual en distintos entornos, solo cambiando valores.</p>
+<p>En resumen, el objetivo de Helm es:</p>
+<ul>
+<li>Automatizar despliegues.</li>
+<li>Reutilizar configuraciones.</li>
+<li>Versionar aplicaciones.</li>
+<li>Facilitar la actualización y rollback.</li>
+<li>Evitar repetir manualmente los mismos YAMLs.</li>
+</ul>
+<h5 id="que-aporta-realmente">¿Qué aporta realmente?</h5>
+<ul>
+<li>Reproducibilidad.</li>
+<li>Parametrización.</li>
+<li>Trazabilidad de versiones.</li>
+<li>Despliegues más ordenados.</li>
+<li>Menos errores manuales.</li>
+</ul>
+<h5 id="resumen">Resumen</h5>
+<p>Helm es una herramienta para empaquetar, versionar y desplegar aplicaciones en Kubernetes con plantillas reutilizables y configuración parametrizada.</p>
+<h4 id="argocd">ArgoCD</h4>
+<ul>
+<li>ArgoCD es una herramienta de despliegue <strong>GitOps</strong> para <strong>Kubernetes</strong>.</li>
+<li>Mantiene el estado del clúster sincronizado con el repositorio Git.</li>
+<li>Permite ver diferencias entre el estado deseado en Git y el estado real en el clúster.</li>
+<li>Es útil para despliegues repetibles, auditoría y automatización de entregas.</li>
+</ul>
+<h4 id="cluster">Cluster</h4>
+<ul>
+<li>Un clúster de Kubernetes es un c<strong>onjunto de nodos gestionados por un control plane</strong>.</li>
+<li><strong>Agrupa recursos y workloads</strong> que <strong>colaboran</strong> para ejecutar aplicaciones distribuidas.</li>
+<li>Un clúster puede abarcar varias zonas de disponibilidad y múltiples nodos.</li>
+</ul>
+<p><img alt="Cluster de nodos de Kubernetes" src="images/cluster-nodes-kubernetes.jpg" /></p>
+<h2 id="amazon-eks">Amazon EKS</h2>
+<ul>
+<li>Amazon Elastic Kubernetes Service (Amazon EKS) es un servicio totalmente gestionado para ejecutar Kubernetes en AWS.</li>
+<li>AWS se encarga de la parte control plane en Amazon EKS, incluyendo la API, el almacenamiento del estado y los componentes de control.</li>
+<li>El control plane de EKS está gestionado por AWS y se encarga de tareas complejas como actualizaciones, patches, alta disponibilidad y seguridad.</li>
+<li>Los usuarios solo gestionan los nodos, las cargas de trabajo y la configuración del clúster.</li>
+<li>EKS se integra con Amazon VPC, IAM, Amazon ECR y otros servicios de AWS.</li>
+<li>Permite desplegar aplicaciones empresariales, microservicios y servicios distribuidos en Kubernetes.</li>
+<li>Modelos:<ul>
+<li><strong>Managed node groups</strong>: AWS gestiona la infraestructura de los nodos EC2.</li>
+<li><strong>Self-managed nodes:</strong> el usuario crea y administra los nodos.</li>
+<li><strong>Fargate:</strong> para nodos serverless sin gestionar infraestructura.</li>
+</ul>
+</li>
+<li>EKS ofrece alta disponibilidad al desplegar el control plane en varias zonas de disponibilidad.</li>
+<li>Es ideal para migrar aplicaciones Kubernetes desde on-premises o para nuevas arquitecturas cloud-native.</li>
+<li><strong>Modo ahorro:</strong> todos los workloads que no sean fundamentales se apagan.<ul>
+<li><code>kube-downscaler</code>: plugin para apagar cargas de trabajo que no sean esenciales durante horas o periodos de baja actividad.</li>
+</ul>
+</li>
+</ul>
+<h3 id="node-group">Node Group</h3>
+<ul>
+<li>Un node group es un conjunto de nodos de Kubernetes gestionados por EKS.</li>
+<li>Puede estar basado en EC2 con Amazon Linux o Windows, y se administra como una unidad.</li>
+<li>EKS soporta node groups gestionados y auto-scaling para ajustar la capacidad de los nodos.</li>
+<li>Los node groups permiten aislar diferentes tipos de cargas de trabajo por perfil de capacidad.</li>
+</ul>
+<h3 id="auto-scaling-group">Auto Scaling Group</h3>
+<ul>
+<li>Es un conjunto de instancias EC2 con capacidad de escalado automática.</li>
+<li>En EKS, se usa para crear grupos de nodos que aumentan o disminuyen según la demanda.</li>
+<li>Facilita la escalabilidad horizontal de los nodos del clúster.</li>
+<li>Puede ampliar o reducir los nodos según métricas de CPU, memoria o métricas personalizadas.</li>
+</ul>
+<h3 id="amazon-ecr">Amazon ECR</h3>
+<ul>
+<li>Amazon Elastic Container Registry (Amazon ECR) es el registro privado de contenedores de AWS.</li>
+<li>Permite almacenar imágenes Docker para usarlas en ECS, EKS y otros servicios.</li>
+<li>Integra perfectamente con IAM y con pipelines de CI/CD.</li>
+<li>Soporta control de versiones de imágenes, seguridad y políticas de ciclo de vida.</li>
+<li>Es la opción natural para albergar imágenes usadas por clústeres EKS.</li>
+</ul>
+<h2 id="amazon-inspector">Amazon Inspector</h2>
+<ul>
+<li>Amazon Inspector es un servicio de escaneo de seguridad para evaluar vulnerabilidades en aplicaciones y contenedores.</li>
+<li>En entornos de contenedores puede detectar riesgos en imágenes, paquetes y configuraciones.</li>
+<li>Emite eventos a Amazon EventBridge para integrar alertas y automatización.</li>
+<li>Ayuda a detectar problemas de seguridad antes de desplegar a producción.</li>
+<li>Es una parte importante del cumplimiento y de la gobernanza de seguridad dentro de EKS.</li>
+</ul>
+<h2 id="aws-fargate">AWS Fargate</h2>
+<ul>
+<li>AWS Fargate es un motor de computación serverless para contenedores.</li>
+<li>Permite ejecutar pods de Kubernetes sin aprovisionar ni gestionar nodos EC2.</li>
+<li>Se paga por los recursos consumidos por cada pod.</li>
+<li>Es útil para cargas de trabajo con patrones irregulares o que requieren menos operación.</li>
+<li>Reduce la complejidad operativa porque AWS gestiona el host y la infraestructura.</li>
+<li><strong>Fargate profiles:</strong> conjunto de reglas que indican qué pods deben ejecutarse en Fargate.</li>
+<li>En EKS, un Fargate profile suele definir:<ul>
+<li><strong>namespace</strong> en el que se ejecutan los pods</li>
+<li><strong>labels</strong> para seleccionar los workloads</li>
+<li>la <strong>configuración del pod</strong> que debe lanzarse en <strong>Fargate</strong></li>
+</ul>
+</li>
+<li><strong>Ventajas:</strong><ul>
+<li>No se gestionan instancias EC2.</li>
+<li>Escala automáticamente.</li>
+<li>Mejor para workloads con pico de uso.</li>
+<li>Alineado con el modelo serverless.</li>
+</ul>
+</li>
+<li><strong>Limitaciones:</strong><ul>
+<li>Menos control sobre el host y la configuración del sistema operativo.</li>
+<li>Se debe ajustar bien el tamaño de la demanda para evitar coste innecesario.</li>
+</ul>
+</li>
+</ul>
+<h2 id="amazon-ec2">Amazon EC2</h2>
+<ul>
+<li>Amazon EC2 ofrece instancias virtualizadas en la nube para ejecutar aplicaciones.</li>
+<li>En EKS, los nodos worker suelen ejecutarse sobre instancias EC2.</li>
+<li>Las instancias EC2 permiten más control sobre el sistema operativo, la red, el almacenamiento y el rendimiento.</li>
+<li>Se pueden elegir tipos de instancia según la necesidad de CPU, memoria, red y almacenamiento.</li>
+<li>EC2 es útil cuando se necesita:<ul>
+<li>personalización del entorno</li>
+<li>control avanzado del sistema operativo</li>
+<li>cargas de trabajo con requisitos específicos</li>
+<li>integración con grupos de autoescalado y node groups</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>En comparación con Fargate, EC2 requiere más operación pero ofrece mayor flexibilidad y personalización.</p>
+</blockquote>
+<h2 id="seguridad">Seguridad</h2>
+<h3 id="seguridad-en-kubernetes">Seguridad en Kubernetes</h3>
+<ul>
+<li>La seguridad en Kubernetes se basa en controlar quién puede acceder al clúster, qué puede hacer y cómo se comunican los recursos.</li>
+<li>Hay que proteger el control plane, los nodos, las redes y los secretos.</li>
+<li>El principio básico es el de mínimo privilegio: dar solo los permisos necesarios.</li>
+</ul>
+<h4 id="autenticacion-y-autorizacion">Autenticación y autorización</h4>
+<ul>
+<li><strong>Autenticación:</strong> identifica quién intenta acceder al clúster.</li>
+<li><strong>Autorización:</strong> decide si ese usuario o entidad tiene permiso para realizar la acción.</li>
+<li>En Kubernetes, la combinación más habitual es:<ul>
+<li>usuarios o identidades federadas</li>
+<li>certificados y tokens</li>
+<li><strong>RBAC (Role-Based Access Control)</strong> para dar permisos por roles</li>
+</ul>
+</li>
+</ul>
+<h5 id="rbac">RBAC</h5>
+<ul>
+<li>RBAC permite definir roles con permisos concretos y asignarlos a usuarios, grupos o service accounts.</li>
+<li>Esto evita dar acceso administrativo completo a todo el clúster.</li>
+<li>Ejemplo: un servicio puede leer ConfigMaps pero no gestionar deployments.</li>
+</ul>
+<h4 id="secrets-y-credenciales">Secrets y credenciales</h4>
+<ul>
+<li>Los secretos deben tratarse como información sensible y nunca como texto libre en el código.</li>
+<li>Se usan para contraseñas, tokens, certificados y credenciales de acceso.</li>
+<li>Se deben almacenar en sistemas seguros y limitar el acceso a ellos.</li>
+<li>En AWS, se puede integrar con <strong>AWS Secrets Manager</strong> o <strong>SSM Parameter Store</strong>.</li>
+</ul>
+<h4 id="configmaps-vs-secrets">ConfigMaps vs Secrets</h4>
+<ul>
+<li><strong>ConfigMap:</strong> guarda configuración no sensible.</li>
+<li><strong>Secret:</strong> guarda datos sensibles.</li>
+<li>Separar ambos reduce riesgos y facilita la gestión del entorno.</li>
+</ul>
+<h4 id="network-policies">Network policies</h4>
+<ul>
+<li>Las <strong>Network Policies</strong> permiten controlar el tráfico entre pods y entre namespaces.</li>
+<li>Se pueden definir reglas de entrada y salida para limitar la comunicación.</li>
+<li>Son importantes para aislar microservicios y reducir la superficie de ataque.</li>
+</ul>
+<h4 id="pod-security">Pod Security</h4>
+<ul>
+<li>Los contenedores no deben ejecutarse como root si no es necesario.</li>
+<li>Se recomienda usar usuarios no privilegiados.</li>
+<li>Reducir capacidades del contenedor (<code>capabilities</code>) y evitar permisos innecesarios.</li>
+<li>Montar archivos de solo lectura cuando sea posible.</li>
+<li>Usar imágenes confiables y mantenerlas actualizadas.</li>
+</ul>
+<h4 id="imagenes-y-vulnerabilidades">Imágenes y vulnerabilidades</h4>
+<ul>
+<li>Las imágenes deben construirse desde bases confiables y verificadas.</li>
+<li>Deben escanearse para detectar vulnerabilidades antes de desplegar.</li>
+<li>En AWS, este control se complementa con servicios como <strong>Amazon ECR</strong> y <strong>Amazon Inspector</strong>.</li>
+</ul>
+<h3 id="seguridad-en-amazon-eks">Seguridad en Amazon EKS</h3>
+<ul>
+<li>EKS gestiona el control plane, pero el usuario sigue siendo responsable de proteger los nodos, redes, IAM y workloads.</li>
+<li>La seguridad en EKS se debe centrar en cuatro áreas principales:<ul>
+<li>identidad y permisos</li>
+<li>red</li>
+<li>nodos y workloads</li>
+<li>secretos e imágenes</li>
+</ul>
+</li>
+</ul>
+<h4 id="iam-y-eks">IAM y EKS</h4>
+<ul>
+<li>Los nodos y pods deben usar permisos mínimos.</li>
+<li>Los pods pueden asumir roles mediante <strong>IAM Roles for Service Accounts (IRSA)</strong>.</li>
+<li>Así un pod puede acceder a AWS services sin usar credenciales fijas en el código.</li>
+<li>Esto reduce la exposición de secretos y mejora la trazabilidad.</li>
+</ul>
+<h4 id="red-y-vpc">Red y VPC</h4>
+<ul>
+<li>Los clústeres EKS suelen ejecutarse dentro de una <strong>VPC</strong>.</li>
+<li>Se recomienda usar subredes privadas para nodos y workloads sensibles.</li>
+<li>Controlar el acceso con <strong>Security Groups</strong> y <strong>Network ACLs</strong>.</li>
+<li>Limitar el acceso al API server y usar endpoints privados cuando sea posible.</li>
+</ul>
+<h4 id="grupos-de-nodos-y-seguridad">Grupos de nodos y seguridad</h4>
+<ul>
+<li>Los node groups deben cumplir el principio de mínimo privilegio.</li>
+<li>Los nodos deben estar en subredes adecuadas y con políticas de seguridad restrictivas.</li>
+<li>Se deben aplicar actualizaciones y parches regulares.</li>
+</ul>
+<h4 id="encriptacion">Encriptación</h4>
+<ul>
+<li>Los datos del clúster y los secretos deben estar cifrados cuando sea posible.</li>
+<li>EKS puede usar <strong>AWS KMS</strong> para proteger claves y encriptar datos del clúster.</li>
+<li>Los secretos en tránsito y en reposo deben protegerse con cifrado.</li>
+</ul>
+<h4 id="escaneo-de-vulnerabilidades">Escaneo de vulnerabilidades</h4>
+<ul>
+<li>Amazon Inspector puede ayudar a detectar vulnerabilidades en imágenes y aplicaciones.</li>
+<li>ECR también ofrece control de versiones, artefactos y trazabilidad.</li>
+<li>Esto permite detectar riesgos antes de que el software llegue a producción.</li>
+</ul>
+<h3 id="buenas-practicas-de-seguridad-en-eks">Buenas prácticas de seguridad en EKS</h3>
+<ul>
+<li>Usar <strong>IAM Roles for Service Accounts</strong> en lugar de credenciales hardcodeadas.</li>
+<li>Limitar permisos con <strong>RBAC</strong> y políticas IAM mínimas.</li>
+<li>No ejecutar contenedores como root.</li>
+<li>Usar <strong>Network Policies</strong> y segmentación por namespaces.</li>
+<li>Proteger secretos y no versionarlos en repositorios.</li>
+<li>Mantener imágenes actualizadas y escaneadas.</li>
+<li>Revisar logs, métricas y alertas de seguridad.</li>
+<li>Asegurar actualizaciones del control plane y nodos.</li>
+</ul>
+<h3 id="resumen_1">Resumen</h3>
+<ul>
+<li>Kubernetes aporta mecanismos de seguridad, pero requieren configuración correcta.</li>
+<li>EKS gestiona parte del control plane, pero la seguridad de la aplicación sigue siendo responsabilidad del usuario.</li>
+<li>La clave está en combinar IAM, RBAC, secretos seguros, redes restringidas, imágenes verificadas y monitorización continua.</li>
+</ul>
+<h3 id="amazon-guardduty">Amazon GuardDuty</h3>
+<ul>
+<li>Amazon GuardDuty es un servicio de detección de amenazas y análisis de seguridad para AWS.</li>
+<li>Monitoriza continuamente actividades sospechosas en la cuenta y en los servicios del entorno, incluyendo EKS.</li>
+<li>Puede analizar logs de auditoría, VPC Flow Logs, DNS, CloudTrail y eventos del control plane de Kubernetes.</li>
+<li>Para EKS, puede detectar comportamientos anómalos relacionados con el acceso al clúster, comunicaciones sospechosas o actividad maliciosa.</li>
+<li><strong>No se basa solo en reglas estáticas:</strong> también usa análisis de comportamiento, correlación de señales y patrones de actividad para detectar amenazas que no encajan con el uso normal del entorno.</li>
+<li>En el control plane de EKS, esto es especialmente útil porque el control plane registra operaciones críticas del clúster: crear deployments, modificar RBAC, exponer servicios, cambiar roles, acceder a secretos, etc.</li>
+<li>Si una identidad o un pod intenta hacer actividad rara o desproporcionada, GuardDuty puede generar un hallazgo de seguridad.</li>
+<li>Emite hallazgos que pueden enviarse a EventBridge, CloudWatch o integrarse con otros servicios de seguridad.</li>
+<li><strong>Relación con el control plane:</strong> el control plane es el punto central de gestión del clúster, y GuardDuty vigila ese flujo de operaciones para detectar comportamientos sospechosos y posibles ataques o compromisos.</li>
+</ul>
+<h3 id="aws-detective">AWS Detective</h3>
+<ul>
+<li>AWS Detective ayuda a investigar incidentes de seguridad y entender qué ha ocurrido en la cuenta.</li>
+<li>Recopila y analiza datos de diferentes fuentes de seguridad, como GuardDuty, VPC Flow Logs, CloudTrail y otros eventos de AWS.</li>
+<li>Permite seguir la pista de una actividad sospechosa, ver cómo se propagó y comprender el alcance del problema.</li>
+<li>Es muy útil en incident response, porque ayuda a reconstruir la historia del ataque o del comportamiento anómalo.</li>
+<li>En un entorno EKS, permite correlacionar eventos del clúster con otros servicios de AWS para identificar la causa raíz.</li>
+</ul>
+<h3 id="aws-security-hub">AWS Security Hub</h3>
+<ul>
+<li>AWS Security Hub es un servicio de gestión de seguridad centralizada y cumplimiento.</li>
+<li>Agrega y consolida hallazgos de seguridad procedentes de GuardDuty, Inspector, IAM Access Analyzer, Firewall Manager y otros servicios.</li>
+<li>Proporciona una vista centralizada para revisar riesgos, prioridades y cumplimiento en la cuenta.</li>
+<li>Ayuda a estandarizar la seguridad en múltiples servicios y cuentas de AWS.</li>
+<li>En EKS, puede integrar hallazgos sobre vulnerabilidades de imágenes, riesgos de configuración y detección de amenazas.</li>
+</ul>
+<h3 id="relacion-entre-ellos">Relación entre ellos</h3>
+<ul>
+<li><strong>GuardDuty</strong> detecta amenazas y genera hallazgos.</li>
+<li><strong>Security Hub</strong> centraliza y organiza esos hallazgos para una visión global.</li>
+<li><strong>Detective</strong> ayuda a investigar y reconstruir el incidente a partir de los datos generados.</li>
+<li>Juntos forman una capa útil de seguridad operativa para entornos Kubernetes y AWS.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
