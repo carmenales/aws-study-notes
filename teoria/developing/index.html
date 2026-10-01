@@ -1622,10 +1622,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#permisos-y-variables-de-entorno-en-ecs" class="md-nav__link">
+  <a href="#configuracion-de-tareas-y-variables-de-entorno-en-ecs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Permisos y Variables de Entorno en ECS
+        Configuración de Tareas y Variables de Entorno en ECS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permisos-y-seguridad-en-ecs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permisos y Seguridad en ECS
       
     </span>
   </a>
@@ -3532,10 +3543,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#permisos-y-variables-de-entorno-en-ecs" class="md-nav__link">
+  <a href="#configuracion-de-tareas-y-variables-de-entorno-en-ecs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Permisos y Variables de Entorno en ECS
+        Configuración de Tareas y Variables de Entorno en ECS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permisos-y-seguridad-en-ecs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permisos y Seguridad en ECS
       
     </span>
   </a>
@@ -5188,10 +5210,56 @@ flowchart TD
 <li>ECS recupera el valor automáticamente durante el arranque y lo inyecta como una <strong>variable de entorno</strong> estándar dentro del contenedor.</li>
 <li>La aplicación no requiere importar el SDK de AWS ni cambiar su código; simplemente lee variables de entorno normales (ej. <code>process.env.API_URL</code>).</li>
 </ul>
-<h3 id="permisos-y-variables-de-entorno-en-ecs">Permisos y Variables de Entorno en ECS</h3>
+<h3 id="configuracion-de-tareas-y-variables-de-entorno-en-ecs">Configuración de Tareas y Variables de Entorno en ECS</h3>
+<p>En Amazon ECS, todas las configuraciones que determinan cómo se ejecutan los contenedores se especifican en la <strong>Definición de Tarea (<em>Task Definition</em>)</strong>, no en el Servicio de ECS.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Elemento / Parámetro</th>
+<th style="text-align: left;">Función y Uso Correcto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>taskDefinition</code></strong></td>
+<td style="text-align: left;">Plantilla (<em>blueprint</em>) en formato JSON/YAML que describe uno o más contenedores: imagen Docker, CPU/memoria, mapeo de puertos, volúmenes, comandos y variables de entorno.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>containerDefinitions[].environment</code></strong></td>
+<td style="text-align: left;">Declara variables de entorno directas como lista de objetos con pares clave-valor <code>[{"name": "VAR_NAME", "value": "valor"}]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>containerDefinitions[].environmentFiles</code></strong></td>
+<td style="text-align: left;">Permite cargar listas masivas de variables de entorno desde un archivo <code>.env</code> alojado en un bucket de <strong>Amazon S3</strong> (<code>type: "s3"</code>, <code>value: "arn:aws:s3:::bucket/config.env"</code>). Evita sobrecargar la Task Definition.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>containerDefinitions[].secrets</code></strong></td>
+<td style="text-align: left;">Inyecta datos sensibles como variables de entorno directamente desde <strong>AWS Secrets Manager</strong> o <strong>SSM Parameter Store</strong> (<code>valueFrom: ARN_DEL_SECRETO</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>containerDefinitions[].entryPoint</code></strong></td>
+<td style="text-align: left;">Define el proceso o ejecutable inicial del contenedor (sobrescribe la instrucción <code>ENTRYPOINT</code> del Dockerfile).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>containerDefinitions[].command</code></strong></td>
+<td style="text-align: left;">Argumentos pasados al <code>entryPoint</code> (sobrescribe la instrucción <code>CMD</code> del Dockerfile).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Servicio ECS (<em>ECS Service</em>)</strong></td>
+<td style="text-align: left;">Orquesta, ejecuta y mantiene activa la cantidad deseada de tareas (<em>Desired Count</em>), gestiona el balanceador de carga (ALB) y el autoescalado, pero <strong>nunca define directamente las variables ni la configuración interna de los contenedores</strong>.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Diferencia Roles de IAM en ECS:</strong>
+- <strong><code>executionRoleArn</code> (Task Execution Role):</strong> Utilizado por el <strong>agente de ECS / infraestructura de AWS</strong> antes de arrancar el contenedor. Permite descargar la imagen de ECR, escribir logs en CloudWatch, leer archivos <code>.env</code> de S3 (<code>s3:GetObject</code>) y recuperar valores de Secrets Manager o SSM Parameter Store.
+- <strong><code>taskRoleArn</code> (Task Role):</strong> Utilizado por el <strong>código de la aplicación</strong> una vez el contenedor está en ejecución para interactuar con otros servicios de AWS (ej. consultar DynamoDB o escribir en S3 usando el AWS SDK).</p>
+</blockquote>
+<h3 id="permisos-y-seguridad-en-ecs">Permisos y Seguridad en ECS</h3>
 <ul>
-<li><strong>Permisos mínimos (Least Privilege):</strong> Para otorgar privilegios mínimos a distintos microservicios en ECS (ej. uno que lee RDS Aurora y otro que lee DynamoDB), debes configurar cada definición de tarea (<em>Task Definition</em>) para que referencie un rol de IAM distinto con los accesos necesarios para ese servicio. En las instancias EC2 subyacentes, debes configurar <code>ECS_ENABLE_TASK_IAM_ROLE</code> a <code>true</code> en el archivo de configuración del agente de ECS.</li>
-<li><strong>Inyección de Variables de Entorno:</strong> Para pasar variables de entorno a un contenedor en Amazon ECS (incluyendo entornos Fargate), define un array bajo el parámetro <code>environment</code> dentro de la definición de la tarea (<em>Task Definition</em>).</li>
+<li><strong>Permisos mínimos (Least Privilege):</strong> Cada microservicio debe tener su propia definición de tarea asignándole un <code>taskRoleArn</code> específico con los permisos justos que necesita su aplicación.</li>
+<li><strong>Configuración en instancias EC2:</strong> Si las tareas se ejecutan sobre instancias EC2 administradas (en lugar de AWS Fargate), es necesario activar <code>ECS_ENABLE_TASK_IAM_ROLE=true</code> en <code>/etc/ecs/ecs.config</code> para que el agente de ECS asigne las credenciales temporales del <code>taskRole</code> a cada contenedor.</li>
 </ul>
 <h2 id="security">Security</h2>
 <h3 id="aws-kms-vs-parameter-store-vs-secrets-manager">AWS KMS vs Parameter Store vs Secrets Manager</h3>
