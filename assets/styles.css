@@ -1,0 +1,57 @@
+/* Diagramas Mermaid */
+.mermaid {
+  overflow-x: auto;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.mermaid svg {
+  max-width: none !important;
+  height: auto;
+}
+
+/* Mejor lectura del contenido */
+.md-typeset {
+  line-height: 1.65;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h2 {
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding-bottom: 0.25rem;
+}
+
+/* Código */
+.md-typeset code {
+  border-radius: 0.25rem;
+}
+
+.md-typeset pre {
+  border-radius: 0.5rem;
+}
+
+/* Imágenes y capturas */
+.md-typeset img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
+}
+
+/* Colores inspirados en AWS */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #232f3e;
+  --md-primary-fg-color--light: #37475a;
+  --md-primary-fg-color--dark: #131a22;
+  --md-accent-fg-color: #ff9900;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #161e2d;
+  --md-primary-fg-color--light: #26354d;
+  --md-primary-fg-color--dark: #0f141d;
+  --md-accent-fg-color: #ff9900;
+}

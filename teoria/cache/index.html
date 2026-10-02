@@ -53,6 +53,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/styles.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -69,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -1423,34 +1425,34 @@
 <li>Compartir información entre varias instancias de una aplicación.</li>
 </ul>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code>Aplicación
-    |
-    v
-ElastiCache
-    |
-    | El dato no está en caché
-    v
-Base de datos
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Aplicación
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    v
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ElastiCache
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    |
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    | El dato no está en caché
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    v
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Base de datos
+</span></code></pre></div>
 <p>La aplicación consulta primero ElastiCache. Si el dato está disponible, lo recupera directamente. Si no está disponible, consulta la base de datos y puede guardar posteriormente el resultado en la caché.</p>
 <h2 id="3-conceptos-fundamentales">3. Conceptos fundamentales</h2>
 <h3 id="cache-hit">Cache hit</h3>
 <p>Se produce un cache hit cuando el dato solicitado ya se encuentra en la caché.</p>
-<div class="highlight"><pre><span></span><code>Aplicación -&gt; ElastiCache -&gt; dato encontrado
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Aplicación -&gt; ElastiCache -&gt; dato encontrado
+</span></code></pre></div>
 <p>La aplicación no necesita consultar la base de datos.</p>
 <h3 id="cache-miss">Cache miss</h3>
 <p>Se produce un cache miss cuando el dato solicitado no está en la caché.</p>
-<div class="highlight"><pre><span></span><code>Aplicación -&gt; ElastiCache -&gt; dato no encontrado
-                           -&gt; base de datos
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Aplicación -&gt; ElastiCache -&gt; dato no encontrado
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                           -&gt; base de datos
+</span></code></pre></div>
 <p>La aplicación debe consultar la fuente de datos original.</p>
 <h3 id="ttl">TTL</h3>
 <p>TTL significa Time to Live.</p>
 <p>Indica cuánto tiempo puede permanecer un dato en la caché antes de expirar automáticamente.</p>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code>usuario:123 -&gt; TTL de 300 segundos
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>usuario:123 -&gt; TTL de 300 segundos
+</span></code></pre></div>
 <p>Después de cinco minutos, la entrada expira y deberá volver a obtenerse desde la fuente original.</p>
 <p>El TTL ayuda a evitar que la caché mantenga datos obsoletos indefinidamente.</p>
 <h2 id="4-motores-disponibles">4. Motores disponibles</h2>
@@ -1594,9 +1596,9 @@ Base de datos
 </tbody>
 </table>
 <p>Resumen:</p>
-<div class="highlight"><pre><span></span><code>Valkey / Redis = funcionalidades avanzadas y alta disponibilidad
-Memcached      = caché simple, distribuida y multihilo
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Valkey / Redis = funcionalidades avanzadas y alta disponibilidad
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Memcached      = caché simple, distribuida y multihilo
+</span></code></pre></div>
 <h2 id="8-patron-cache-aside-o-lazy-loading">8. Patrón cache-aside o lazy loading</h2>
 <p>Cache-aside es uno de los patrones de caché más habituales.</p>
 <p>Funcionamiento:</p>
@@ -1608,14 +1610,14 @@ Memcached      = caché simple, distribuida y multihilo
 <li>La aplicación devuelve el dato.</li>
 </ol>
 <p>Pseudocódigo:</p>
-<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-
-<span class="k">return</span> <span class="n">value</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">value</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">return</span> <span class="n">value</span>
+</span></code></pre></div>
 <p>Ventajas:</p>
 <ul>
 <li>Solo se guardan en caché los datos que se utilizan.</li>
@@ -1631,12 +1633,12 @@ Memcached      = caché simple, distribuida y multihilo
 </ul>
 <h2 id="9-write-through">9. Write-through</h2>
 <p>En el patrón write-through, la aplicación actualiza la caché al mismo tiempo que escribe en la base de datos.</p>
-<div class="highlight"><pre><span></span><code>Aplicación
-    |
-    +--&gt; Base de datos
-    |
-    +--&gt; Caché
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Aplicación
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    |
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    +--&gt; Base de datos
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    |
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    +--&gt; Caché
+</span></code></pre></div>
 <p>Ventajas:</p>
 <ul>
 <li>La caché contiene datos actualizados.</li>
@@ -1682,13 +1684,13 @@ Memcached      = caché simple, distribuida y multihilo
 <p>La invalidación es importante porque una caché puede contener información desactualizada.</p>
 <h2 id="12-sesiones-de-usuario">12. Sesiones de usuario</h2>
 <p>ElastiCache puede utilizarse para almacenar sesiones cuando una aplicación se ejecuta en varias instancias.</p>
-<div class="highlight"><pre><span></span><code>             +--&gt; EC2 1
-Usuario ---&gt; Load Balancer
-             +--&gt; EC2 2
-                    |
-                    v
-              ElastiCache
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>             +--&gt; EC2 1
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Usuario ---&gt; Load Balancer
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>             +--&gt; EC2 2
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>                    |
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>                    v
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>              ElastiCache
+</span></code></pre></div>
 <p>Todas las instancias pueden acceder a la misma sesión almacenada en ElastiCache.</p>
 <p>Esto evita depender del almacenamiento local de una instancia concreta.</p>
 <p>Para este caso suelen utilizarse Valkey o Redis OSS.</p>
@@ -1747,8 +1749,8 @@ Usuario ---&gt; Load Balancer
 <p>Las evictions indican que el motor está eliminando elementos para liberar memoria.</p>
 <h2 id="17-elasticache-no-sustituye-necesariamente-a-una-base-de-datos">17. ElastiCache no sustituye necesariamente a una base de datos</h2>
 <p>ElastiCache suele utilizarse como capa adicional delante de una base de datos persistente.</p>
-<div class="highlight"><pre><span></span><code>Aplicación -&gt; ElastiCache -&gt; RDS / DynamoDB
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Aplicación -&gt; ElastiCache -&gt; RDS / DynamoDB
+</span></code></pre></div>
 <p>La base de datos continúa siendo normalmente la fuente autoritativa de los datos.</p>
 <p>La caché:</p>
 <ul>
@@ -1881,11 +1883,11 @@ Usuario ---&gt; Load Balancer
 </ul>
 <h2 id="21-politicas-de-escritura-e-invalidacion">21. Políticas de escritura e invalidación</h2>
 <h3 id="cache-aside-con-invalidacion">Cache-aside con invalidación:</h3>
-<div class="highlight"><pre><span></span><code>backend → invalidar caché → siguiente lectura repuebla la caché
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>backend → invalidar caché → siguiente lectura repuebla la caché
+</span></code></pre></div>
 <h3 id="write-through">Write-through:</h3>
-<div class="highlight"><pre><span></span><code>backend → actualizar inmediatamente la caché
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>backend → actualizar inmediatamente la caché
+</span></code></pre></div>
 <h2 id="22-resumen-rapido">22. Resumen rápido</h2>
 <ul>
 <li>ElastiCache es una caché administrada en memoria.</li>
@@ -1917,8 +1919,16 @@ Usuario ---&gt; Load Balancer
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -1949,7 +1959,7 @@ Usuario ---&gt; Load Balancer
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
