@@ -1633,6 +1633,45 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#aws-resource-access-manager-aws-ram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Resource Access Manager (AWS RAM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Resource Access Manager (AWS RAM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-un-resource-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo funciona un Resource Share?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursos-principales-y-casos-de-uso-clave-examen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos Principales y Casos de Uso Clave (Examen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3049,6 +3088,45 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#aws-resource-access-manager-aws-ram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Resource Access Manager (AWS RAM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Resource Access Manager (AWS RAM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-un-resource-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo funciona un Resource Share?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursos-principales-y-casos-de-uso-clave-examen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos Principales y Casos de Uso Clave (Examen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4073,6 +4151,40 @@ AWS SAM permite automatizar los despliegues graduales de las funciones Lambda in
   - <em>Self-managed permissions:</em> Requiere la creación manual de roles IAM específicos (<code>cloudformation-stackset-execution-role</code>) en cada cuenta de destino para autorizar a la cuenta administradora.
   - <em>Service-managed permissions (Recomendado):</em> Integrado de forma nativa con AWS Organizations. Permite automatizar el despliegue en todas las cuentas actuales y futuras de una organización o de una OU específica sin configurar roles manualmente en cada cuenta miembro.
 - <strong>Parámetros de Operación:</strong> Permite definir la concurrencia máxima de despliegue y el porcentaje de tolerancia a fallos (<em>Failure Tolerance</em>) para controlar la propagación de los cambios a escala global.</p>
+<h3 id="aws-resource-access-manager-aws-ram">AWS Resource Access Manager (AWS RAM)</h3>
+<p>Servicio que permite <strong>compartir recursos de AWS de forma segura entre cuentas de AWS</strong>, ya sea dentro de una Organización de AWS (o unidad organizativa OU), o con cuentas individuales externas e identidades de IAM.</p>
+<p>Elimina la necesidad de duplicar recursos en cada cuenta, reduciendo significativamente los costes de infraestructura y la sobrecarga operativa.</p>
+<h4 id="como-funciona-un-resource-share">¿Cómo funciona un Resource Share?</h4>
+<ol>
+<li><strong>Creación del Recurso Compartido (<em>Resource Share</em>):</strong> La cuenta propietaria (<em>Resource Owner</em>) selecciona los recursos que desea compartir.</li>
+<li><strong>Asignación de Permisos (<em>Managed Permissions</em>):</strong> Define qué acciones exactas pueden realizar las cuentas consumidoras sobre el recurso.</li>
+<li><strong>Especificación de Destinatarios (<em>Principals</em>):</strong> Se pueden especificar cuentas de AWS individuales, IDs de OUs o la Organización completa.</li>
+<li><strong>Mecanismo de Aceptación:</strong></li>
+<li><strong>Dentro de AWS Organizations:</strong> Si el uso compartido está habilitado a nivel de organización, los recursos compartidos se aceptan <strong>automáticamente</strong> y están disponibles de inmediato sin enviar invitaciones manuales.</li>
+<li><strong>Fuera de la Organización (Cuentas individuales):</strong> La cuenta de destino recibe una <strong>invitación</strong> en AWS RAM que debe ser aceptada explícitamente antes de acceder a los recursos.</li>
+</ol>
+<h4 id="recursos-principales-y-casos-de-uso-clave-examen">Recursos Principales y Casos de Uso Clave (Examen)</h4>
+<ul>
+<li><strong>VPC Subnets (VPC Sharing / Subredes Compartidas):</strong></li>
+<li>Permite a una cuenta central de red compartir subnets de una VPC con otras cuentas miembro de la organización.</li>
+<li>Las cuentas consumidoras pueden desplegar sus recursos de cómputo (instancias EC2, tareas ECS, funciones Lambda en VPC, bases de datos RDS) dentro de las mismas subnets compartidas.</li>
+<li><strong>Reglas de Seguridad y Aislamiento:</strong><ul>
+<li>Los usuarios de una cuenta solo pueden ver, modificar y gestionar sus propios recursos. <strong>No pueden ver ni modificar recursos creados por otras cuentas</strong>.</li>
+<li>Los Security Groups pertenecen a cada cuenta; los recursos de una cuenta pueden referenciar Security Groups de otra cuenta usando el formato <code>AccountID/sg-xxxxxx</code>.</li>
+<li>La cuenta propietaria de la VPC retiene el control exclusivo sobre la VPC, subnets, Route Tables, Internet Gateways, NAT Gateways y Network ACLs (NACLs).</li>
+</ul>
+</li>
+<li><strong>AWS Transit Gateway:</strong> Compartir un Transit Gateway centralizado entre todas las cuentas de la organización para interconectar múltiples VPCs y conexiones on-premises sin duplicar pasarelas.</li>
+<li><strong>Route 53 Resolver Rules:</strong> Compartir reglas de reenvío DNS (DNS Forwarding Rules) entre múltiples cuentas para resolución de nombres híbrida u hospedada.</li>
+<li><strong>AWS License Manager:</strong> Compartir licencias de software comerciales entre cuentas para controlar cuotas y evitar infracciones de licenciamiento.</li>
+<li><strong>Amazon Aurora DB Clusters:</strong> Compartir snapshots de bases de datos para clonación rápida entre cuentas.</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+<strong>Diferencia Arquitectónica Clave para el Examen:</strong>
+- <strong>VPC Peering / Transit Gateway:</strong> Conectan <strong>VPCs distintas y separadas</strong> entre sí para permitir tráfico IP entre ellas.
+- <strong>AWS RAM (VPC Sharing):</strong> Permite que múltiples cuentas compartan las <strong>mismas subredes dentro de una única VPC común</strong>, centralizando la gestión de red (un solo NAT Gateway, una sola tabla de rutas) y reduciendo costes de transferencia entre cuentas.</p>
+</blockquote>
 <h2 id="gestion-de-gobernanza-y-automatizacion-aws-systems-manager-y-aws-config">Gestión de Gobernanza y Automatización (AWS Systems Manager y AWS Config)</h2>
 <h3 id="aws-systems-manager-ssm">AWS Systems Manager (SSM)</h3>
 <p>Suite de herramientas centralizada para el control operativo, la gestión de configuración y la automatización de recursos en la nube y en entornos <em>on-premises</em>.</p>
